@@ -5,7 +5,7 @@
     "promo_announcement-1792616626080": {
       "name": "Announcement / Promo",
       "type": "promo_announcement",
-      "hidden": true,
+      "hidden": false,
       "settings": {
         "color_scheme": "dark"
       },
