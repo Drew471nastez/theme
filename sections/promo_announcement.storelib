@@ -11,7 +11,7 @@
 </template>
 
 <style scoped>
-.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); position: relative; z-index: 2; }
 .s__in {
   margin: 0 auto;
   padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
@@ -78,7 +78,8 @@
   "schema_version": 1,
   "type": "promo_announcement",
   "name": "Announcement / Promo",
-  "category": "marketing",
+  "category": "announcement",
+  "enabled_on": { "groups": ["header"] },
   "description": "A thin band with one thing to say.",
   "version": "1.0.0",
   "icon": "megaphone",

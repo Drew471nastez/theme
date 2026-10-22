@@ -65,7 +65,7 @@
         "show_language_selector": true,
         "logo_vertical_offset_px": -2,
         "logo_horizontal_offset_px": -4,
-        "header_sticky_on_scroll_up": true,
+        "header_sticky_on_scroll_up": false,
         "logo_vertical_offset_enabled": false,
         "logo_horizontal_offset_enabled": false,
         "mobile_logo_horizontal_offset_px": -2,
