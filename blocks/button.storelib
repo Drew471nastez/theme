@@ -1,0 +1,57 @@
+{# ===========================================================================
+   Button: a theme block
+
+   A link drawn as one of the scheme's two buttons. Each style has its own
+   colours, and each colour follows that button of the section's scheme
+   ("default": "scheme.primary_button_background") until somebody picks one.
+   Only the chosen style's colours are shown in the sidebar (visible_if).
+   They reach the CSS as inline custom properties, so the rules stay one per
+   type and a block with its own fill needs no CSS of its own.
+   =========================================================================== #}
+<template>
+<a class="sl-button sl-button--{{ block.settings.style }}" style="{% if block.settings.style == 'secondary' %}--b-bg: {{ block.settings.secondary_color | default: scheme.secondary_btn_bg }}; --b-text: {{ block.settings.secondary_text_color | default: scheme.secondary_btn_text }}; --b-border: {{ block.settings.secondary_border_color | default: scheme.secondary_btn_border }}; --b-hover-bg: {{ block.settings.secondary_hover_color | default: scheme.secondary_btn_hover_bg }}; --b-hover-text: {{ block.settings.secondary_hover_text_color | default: scheme.secondary_btn_hover_text }};{% else %}--b-bg: {{ block.settings.button_color | default: scheme.primary_btn_bg }}; --b-text: {{ block.settings.button_text_color | default: scheme.primary_btn_text }}; --b-border: {{ block.settings.button_color | default: scheme.primary_btn_bg }}; --b-hover-bg: {{ block.settings.button_hover_color | default: scheme.primary_btn_hover_bg }}; --b-hover-text: {{ block.settings.button_hover_text_color | default: scheme.primary_btn_hover_text }};{% endif %}" href="{{ block.settings.link | default: '#' | url }}"{% if block.settings.new_tab %} target="_blank" rel="noopener"{% endif %}>{{ block.settings.label }}</a>
+</template>
+
+<style>
+& { display: flex; }
+.sl-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 24px; font-size: 15px; font-weight: 600; text-decoration: none;
+  border-radius: var(--s-radius, 8px); border: 1px solid transparent;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.sl-button--primary { background: var(--b-bg, var(--s-btn, #111)); color: var(--b-text, var(--s-btn-text, #fff)); border-color: var(--b-border, var(--s-btn, #111)); }
+.sl-button--secondary { background: var(--b-bg, var(--s-btn2, transparent)); color: var(--b-text, var(--s-btn2-text, inherit)); border-color: var(--b-border, var(--s-btn2-border, currentColor)); }
+.sl-button--primary:hover { background: var(--b-hover-bg, var(--s-btn-hover, var(--s-btn, #111))); color: var(--b-hover-text, var(--s-btn-hover-text, var(--s-btn-text, #fff))); border-color: var(--b-hover-bg, var(--s-btn-hover, var(--s-btn, #111))); }
+.sl-button--secondary:hover { background: var(--b-hover-bg, var(--s-btn2-hover, var(--s-btn2, transparent))); color: var(--b-hover-text, var(--s-btn2-hover-text, var(--s-btn2-text, inherit))); }
+</style>
+
+<schema>
+{
+  "name": "Button",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Shop now" },
+    { "type": "url", "id": "link", "label": "Link", "default": "/products" },
+    { "type": "toggle", "id": "new_tab", "label": "Open in a new tab", "default": false },
+    {
+      "type": "radio", "id": "style", "label": "Style", "default": "primary",
+      "options": [
+        { "label": "Primary", "value": "primary" },
+        { "label": "Secondary", "value": "secondary" }
+      ]
+    },
+    { "type": "color", "id": "button_color", "label": "Fill", "default": "scheme.primary_button_background", "visible_if": "{{ block.settings.style == 'primary' }}" },
+    { "type": "color", "id": "button_text_color", "label": "Text", "default": "scheme.primary_button_text", "visible_if": "{{ block.settings.style == 'primary' }}" },
+    { "type": "color", "id": "button_hover_color", "label": "Hover fill", "default": "scheme.primary_button_hover_background", "visible_if": "{{ block.settings.style == 'primary' }}" },
+    { "type": "color", "id": "button_hover_text_color", "label": "Hover text", "default": "scheme.primary_button_hover_text", "visible_if": "{{ block.settings.style == 'primary' }}" },
+    { "type": "color", "id": "secondary_color", "label": "Fill", "default": "scheme.secondary_button_background", "visible_if": "{{ block.settings.style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_text_color", "label": "Text", "default": "scheme.secondary_button_text", "visible_if": "{{ block.settings.style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_border_color", "label": "Border", "default": "scheme.secondary_button_border", "visible_if": "{{ block.settings.style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_hover_color", "label": "Hover fill", "default": "scheme.secondary_button_hover_background", "visible_if": "{{ block.settings.style == 'secondary' }}" },
+    { "type": "color", "id": "secondary_hover_text_color", "label": "Hover text", "default": "scheme.secondary_button_hover_text", "visible_if": "{{ block.settings.style == 'secondary' }}" }
+  ],
+  "presets": [
+    { "name": "Button" }
+  ]
+}
+</schema>
