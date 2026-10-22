@@ -2,7 +2,7 @@
 {# Fixed to a corner of the screen on the live site, and shown once the page
    has been scrolled (components/website-builder/sections/overlay-hooks.ts sets
    data-shown). In the builder it sits in the page where it can be selected. #}
-<div class="btt {% if page.in_editor %}btt--canvas{% endif %}" data-scheme="{{ settings.color_scheme }}" style="--btt-bg: {{ settings.background | default: scheme.primary_btn_bg }}; --btt-text: {{ settings.icon_color | default: scheme.primary_btn_text }}; --btt-size: {{ settings.size }}px; --btt-gap: {{ settings.offset }}px; --btt-radius: {% if settings.shape == 'circle' %}999px{% else %}{{ theme.radius.medium }}px{% endif %};">
+<div class="btt {% if page.in_editor %}btt--canvas{% endif %}" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--btt-bg: {{ settings.background | default: scheme.primary_btn_bg }}; --btt-text: {{ settings.icon_color | default: scheme.primary_btn_text }}; --btt-size: {{ settings.size }}px; --btt-gap: {{ settings.offset }}px; --btt-radius: {% if settings.shape == 'circle' %}999px{% else %}{{ theme.radius.medium }}px{% endif %};">
   <button class="btt__go btt__go--{{ settings.side }}" type="button" data-storelib-back-to-top data-after="{{ settings.show_after }}" aria-label="{{ settings.label }}">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     {% if settings.show_label %}<span class="btt__label">{{ settings.label }}</span>{% endif %}

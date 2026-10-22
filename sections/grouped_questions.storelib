@@ -1,6 +1,6 @@
 <template>
 {# Grouped Questions: a heading column beside questions in <details>, split into topics. #}
-<section class="gq gq--{{ settings.heading_side }}" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-heading: {{ settings.heading_color }}; --s-text: {{ settings.text_color }}; --s-border: {{ settings.border_color }}; --s-accent: {{ scheme.accent }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --s-ptm: {{ settings.padding_top_mobile }}px; --s-pbm: {{ settings.padding_bottom_mobile }}px;">
+<section class="gq gq--{{ settings.heading_side }}" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--s-bg: {{ scheme.bg }}; --s-heading: {{ settings.heading_color }}; --s-text: {{ settings.text_color }}; --s-border: {{ settings.border_color }}; --s-accent: {{ scheme.accent }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --s-ptm: {{ settings.padding_top_mobile }}px; --s-pbm: {{ settings.padding_bottom_mobile }}px;">
   <div class="gq__in gq__in--{{ settings.max_width }}">
     <div class="gq__grid">
 
