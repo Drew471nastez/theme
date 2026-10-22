@@ -1,5 +1,5 @@
 <template>
-<header class="fh" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.background }}; --s-text: {{ settings.link_color }}; --s-heading: {{ settings.link_color }}; --s-border: {{ scheme.border }}; --s-icon: {{ settings.icon_color }}; --s-h: {{ settings.logo_height }}px; --s-py: {{ settings.padding_y }}px;" data-btn="{{ theme.buttons.style }}" data-btn-hover="{{ theme.buttons.hover }}">
+<header class="fh" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--s-bg: {{ scheme.background }}; --s-text: {{ settings.link_color }}; --s-heading: {{ settings.link_color }}; --s-border: {{ scheme.border }}; --s-icon: {{ settings.icon_color }}; --s-h: {{ settings.logo_height }}px; --s-py: {{ settings.padding_y }}px;">
   <div class="fh__bar">
     <button class="fh__menu" type="button" data-storelib-menu="{{ settings.menu.handle }}" data-storelib-menu-from="left" aria-label="{{ settings.menu_label }}">
       <span></span><span></span><span></span>

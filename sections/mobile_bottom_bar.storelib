@@ -4,7 +4,7 @@
    footer from ending up underneath it. In the builder it is drawn in the
    page, so it can be selected at any width. The page publishes the bar's
    height as --sl-bottom-bar-h, so back to top and a popup sit above it. #}
-<div class="mb {% if page.in_editor %}mb--canvas{% endif %}" data-scheme="{{ settings.color_scheme }}" style="--mb-bg: {{ scheme.bg }}; --mb-text: {{ scheme.paragraph }}; --mb-active: {{ settings.active_color | default: scheme.heading }}; --mb-border: {{ scheme.border }}; --mb-h: {{ settings.height }}px;">
+<div class="mb {% if page.in_editor %}mb--canvas{% endif %}" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--mb-bg: {{ scheme.bg }}; --mb-text: {{ scheme.paragraph }}; --mb-active: {{ settings.active_color | default: scheme.heading }}; --mb-border: {{ scheme.border }}; --mb-h: {{ settings.height }}px;">
   <div class="mb__space" aria-hidden="true"></div>
   <nav class="mb__bar" aria-label="{{ settings.label }}" data-storelib-bottom-bar>
     {% if blocks.size == 0 %}

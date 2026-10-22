@@ -9,7 +9,7 @@
 <template>
 {% if reviews.enabled %}
 {% if reviews.here.summary.count > 0 or page.in_editor %}
-<div class="s rb" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-accent: {{ scheme.accent }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --rv-star: {{ settings.star_color | default: reviews.star_color }}; --rb-size: {{ settings.size }}px;">
+<div class="s rb" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-accent: {{ scheme.accent }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --rv-star: {{ settings.star_color | default: reviews.star_color }}; --rb-size: {{ settings.size }}px;">
   <div class="s__in s__in--{{ settings.max_width }} rb__in rb__in--{{ settings.align }}">
     {% if reviews.here.summary.count > 0 %}
       <a class="rb__link" href="{{ settings.link | default: '#reviews' }}">

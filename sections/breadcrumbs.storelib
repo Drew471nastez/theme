@@ -1,5 +1,5 @@
 <template>
-<nav class="s bc bc--{{ settings.style }}" aria-label="{{ words.breadcrumb }}" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --bc-size: {{ settings.size }}px;">
+<nav class="s bc bc--{{ settings.style }}" aria-label="{{ words.breadcrumb }}" data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --bc-size: {{ settings.size }}px;">
   <div class="s__in s__in--{{ settings.max_width }} bc__in bc__in--{{ settings.align }}">
     {# The trail is the page's own (lib/products/breadcrumbs.ts): Home > Shop >
        the product on a product page, Home > the title on any other. The

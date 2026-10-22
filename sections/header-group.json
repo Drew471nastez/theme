@@ -2,12 +2,13 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "promo_announcement-1792616626080": {
+    "promo_announcement-1792660310883": {
       "name": "Announcement / Promo",
       "type": "promo_announcement",
       "hidden": false,
       "settings": {
-        "color_scheme": "dark"
+        "label": "New",
+        "color_scheme": "highlight"
       },
       "blocks": {},
       "block_order": []
@@ -17,6 +18,7 @@
       "type": "header",
       "hidden": false,
       "settings": {
+        "menu": "main-menu",
         "sticky": true,
         "cta_url": "",
         "bg_color": "#FCFCFA",
@@ -64,7 +66,7 @@
         "show_language_selector": true,
         "logo_vertical_offset_px": -2,
         "logo_horizontal_offset_px": -4,
-        "header_sticky_on_scroll_up": false,
+        "header_sticky_on_scroll_up": true,
         "logo_vertical_offset_enabled": false,
         "logo_horizontal_offset_enabled": false,
         "mobile_logo_horizontal_offset_px": -2,
@@ -113,7 +115,7 @@
     }
   },
   "order": [
-    "promo_announcement-1792616626080",
+    "promo_announcement-1792660310883",
     "header"
   ]
 }

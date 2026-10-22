@@ -1,7 +1,7 @@
 <template>
 <section
   class="tst tst--{{ settings.layout }}"
-  data-scheme="{{ settings.color_scheme }}"
+  data-scheme="{{ settings.color_scheme }}" data-btn="{{ theme.buttons.style }}" data-btn-shape="{{ theme.buttons.shape }}" data-btn-hover="{{ theme.buttons.hover }}" data-btn-shadow="{{ theme.buttons.shadow }}"
   style="background: {{ settings.bg_color | default: scheme.bg }}; --tst-heading: {{ settings.text_color | default: scheme.heading }}; --tst-para: {{ settings.text_color | default: scheme.paragraph }}; --tst-card: {{ settings.card_bg_color }}; --tst-accent: {{ settings.accent_color | default: scheme.primary_btn_bg }}; --tst-border: {{ scheme.border }}; --tst-avatar-bg: {{ scheme.primary_btn_bg }}; --tst-avatar-text: {{ scheme.primary_btn_text }}; --tst-pad-top: {{ settings.padding_top }}px; --tst-pad-bottom: {{ settings.padding_bottom }}px;"
 >
   <div class="tst__inner">
