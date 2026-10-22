@@ -1,0 +1,271 @@
+{
+  "sections": {
+    "hero": {
+      "name": "Foundation Hero",
+      "type": "foundation_hero",
+      "hidden": false,
+      "settings": {
+        "body": "Discover the collection, explore something new, and find what feels like you.",
+        "eyebrow": "YOUR STUDIO · CURATED FINDS",
+        "heading": "Good things, thoughtfully made.",
+        "card_url": "/products",
+        "small_note": "Thoughtful details. Everyday inspiration.",
+        "card_kicker": "EXPLORE MORE",
+        "padding_top": 76,
+        "primary_url": "/products",
+        "card_heading": "See the latest arrivals",
+        "color_scheme": "white",
+        "primary_label": "Explore the collection",
+        "secondary_url": "/about",
+        "padding_bottom": 72,
+        "secondary_label": "Our story",
+        "show_floating_card": true
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "benefits": {
+      "name": "Foundation Benefits",
+      "type": "foundation_benefits",
+      "hidden": false,
+      "settings": {
+        "padding_top": 24,
+        "color_scheme": "light",
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "block-1": {
+          "type": "benefit",
+          "settings": {
+            "text": "Good details make the difference.",
+            "symbol": "✦",
+            "heading": "Thoughtful by design"
+          }
+        },
+        "block-2": {
+          "type": "benefit",
+          "settings": {
+            "text": "Explore the latest additions.",
+            "symbol": "↗",
+            "heading": "Discover what is new"
+          }
+        },
+        "block-3": {
+          "type": "benefit",
+          "settings": {
+            "text": "Find what fits your style.",
+            "symbol": "♡",
+            "heading": "Made to feel personal"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    },
+    "featured-products": {
+      "name": "Product Grid",
+      "type": "product_grid",
+      "hidden": false,
+      "settings": {
+        "align": "left",
+        "source": "shop",
+        "columns": {
+          "mobile": 1,
+          "tablet": 2,
+          "desktop": 3
+        },
+        "eyebrow": "THE COLLECTION",
+        "heading": "A closer look at what’s new.",
+        "max_width": "wide",
+        "button_url": "/products",
+        "show_price": true,
+        "subheading": "Explore the pieces, ideas, and products we are proud to share.",
+        "button_text": "View all products",
+        "padding_top": 80,
+        "show_rating": false,
+        "color_scheme": "white",
+        "show_filters": false,
+        "show_wishlist": false,
+        "padding_bottom": 84
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "browse-editorial": {
+      "name": "Foundation Bento",
+      "type": "foundation_bento",
+      "hidden": false,
+      "settings": {
+        "intro": "Good things to discover, wherever your interests lead.",
+        "eyebrow": "BROWSE BY INTEREST",
+        "heading": "Find your next favourite.",
+        "padding_top": 80,
+        "color_scheme": "light",
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "block-1": {
+          "type": "tile",
+          "settings": {
+            "url": "/products",
+            "title": "The essentials",
+            "kicker": "EXPLORE"
+          }
+        },
+        "block-2": {
+          "type": "tile",
+          "settings": {
+            "url": "/products",
+            "title": "Just added",
+            "kicker": "EXPLORE"
+          }
+        },
+        "block-3": {
+          "type": "tile",
+          "settings": {
+            "url": "/products",
+            "title": "Worth a look",
+            "kicker": "EXPLORE"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    },
+    "story-feature": {
+      "name": "Foundation Image Text Grid",
+      "type": "foundation_image_text_grid",
+      "hidden": false,
+      "settings": {
+        "intro": "A considered experience, from the first look to the finishing touch.",
+        "eyebrow": "THE THOUGHT BEHIND IT",
+        "heading": "Good design is in the details.",
+        "button_url": "/about",
+        "padding_top": 88,
+        "button_label": "Learn about us",
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "block-1": {
+          "type": "reason",
+          "settings": {
+            "text": "A simple idea: every detail should matter.",
+            "title": "Made with intention"
+          }
+        },
+        "block-2": {
+          "type": "reason",
+          "settings": {
+            "text": "Find what you came for, without the noise.",
+            "title": "Easy to explore"
+          }
+        },
+        "block-3": {
+          "type": "reason",
+          "settings": {
+            "text": "There is always something new to see.",
+            "title": "Discover more"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    },
+    "brand-statement": {
+      "name": "Foundation Quote",
+      "type": "foundation_quote",
+      "hidden": false,
+      "settings": {
+        "quote": "Less noise. More of the good stuff.",
+        "eyebrow": "OUR THINKING",
+        "link_url": "/about",
+        "link_label": "Read our story",
+        "attribution": "",
+        "padding_top": 96,
+        "color_scheme": "highlight",
+        "padding_bottom": 96
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "faq": {
+      "name": "Faq Accordion",
+      "type": "faq_accordion",
+      "hidden": false,
+      "settings": {
+        "align": "center",
+        "eyebrow": "HELPFUL INFORMATION",
+        "heading": "A few good questions.",
+        "subheading": "The important details, all in one place.",
+        "padding_top": 80,
+        "color_scheme": "white",
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "block-1": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>Open any product to see its description, pricing, and what is included.</p>",
+            "question": "Where can I find the product details?"
+          }
+        },
+        "block-2": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>Visit our contact page to get in touch with us.</p>",
+            "question": "How do I contact the store?"
+          }
+        },
+        "block-3": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>You can find the policies at the bottom of the site.</p>",
+            "question": "Where are store policies?"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    },
+    "closing": {
+      "name": "Foundation Cta",
+      "type": "foundation_cta",
+      "hidden": false,
+      "settings": {
+        "body": "Take a look around and find something worth keeping.",
+        "eyebrow": "DISCOVER SOMETHING NEW",
+        "heading": "Your next favourite is waiting.",
+        "button_url": "/products",
+        "padding_top": 96,
+        "button_label": "Explore the collection",
+        "color_scheme": "dark",
+        "padding_bottom": 96
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "featured-products",
+    "browse-editorial",
+    "story-feature",
+    "brand-statement",
+    "faq",
+    "closing"
+  ]
+}

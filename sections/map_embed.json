@@ -1,0 +1,276 @@
+{
+  "type": "map_embed",
+  "name": "Map embed",
+  "description": "Embed a Google Maps or custom map to show your location",
+  "supports_typography_overrides": false,
+  "icon": "map-pin",
+  "category": "content",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Find us"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "placeholder": "Come visit us in person"
+    },
+    {
+      "id": "hdr_map",
+      "label": "Map",
+      "type": "header"
+    },
+    {
+      "id": "embed_url",
+      "label": "Google Maps link",
+      "type": "text",
+      "placeholder": "Empty shows the address below",
+      "info": "Any link from Google Maps works, or a place name."
+    },
+    {
+      "id": "embed_code",
+      "label": "Embed code (replaces the map)",
+      "type": "textarea",
+      "placeholder": "<iframe src=\"...\" ...></iframe>"
+    },
+    {
+      "id": "map_height",
+      "label": "Map height",
+      "type": "range",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 450
+    },
+    {
+      "id": "hdr_address",
+      "label": "Address Info",
+      "type": "header"
+    },
+    {
+      "id": "show_info_panel",
+      "label": "Show info panel beside map",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "address_line1",
+      "label": "Address line 1",
+      "type": "text",
+      "placeholder": "123 Main Street"
+    },
+    {
+      "id": "address_line2",
+      "label": "Address line 2",
+      "type": "text",
+      "placeholder": "Suite 100"
+    },
+    {
+      "id": "city_state_zip",
+      "label": "City, state / zip",
+      "type": "text",
+      "placeholder": "New York, NY 10001"
+    },
+    {
+      "id": "country",
+      "label": "Country",
+      "type": "text",
+      "placeholder": "United States"
+    },
+    {
+      "id": "phone",
+      "label": "Phone number",
+      "type": "text",
+      "placeholder": "+1 (555) 000-0000"
+    },
+    {
+      "id": "email",
+      "label": "Email address",
+      "type": "text",
+      "placeholder": "hello@mystore.com"
+    },
+    {
+      "id": "hours",
+      "label": "Opening hours",
+      "type": "textarea",
+      "placeholder": "Mon–Fri: 9am–6pm\nSat: 10am–4pm\nSun: Closed"
+    },
+    {
+      "id": "directions_url",
+      "label": "Get directions URL",
+      "type": "link"
+    },
+    {
+      "id": "directions_text",
+      "label": "Get directions button text",
+      "type": "text",
+      "placeholder": "Get directions",
+      "default": "Get directions"
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "radio",
+      "default": "map_right",
+      "options": [
+        {
+          "label": "Map full width",
+          "value": "full"
+        },
+        {
+          "label": "Info left, map right",
+          "value": "map_right"
+        },
+        {
+          "label": "Map left, info right",
+          "value": "map_left"
+        },
+        {
+          "label": "Info above map",
+          "value": "info_above"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "panel_bg_color",
+      "label": "Info panel background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_radius",
+      "label": "Map border radius",
+      "type": "range",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map with address panel",
+      "settings": {
+        "heading": "Visit us",
+        "subheading": "We'd love to see you in person",
+        "show_info_panel": true,
+        "map_height": 450,
+        "layout": "map_right",
+        "address_line1": "123 Main Street",
+        "city_state_zip": "New York, NY 10001",
+        "country": "United States",
+        "phone": "+1 (555) 000-0000",
+        "email": "hello@mystore.com",
+        "hours": "Mon–Fri: 9am–6pm\nSat: 10am–4pm\nSun: Closed",
+        "directions_text": "Get directions",
+        "border_radius": 12,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      }
+    },
+    {
+      "name": "Full-width map",
+      "settings": {
+        "heading": "Our location",
+        "show_info_panel": false,
+        "map_height": 500,
+        "layout": "full",
+        "border_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

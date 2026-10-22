@@ -1,0 +1,343 @@
+<template>
+<section
+  class="hero hero--{{ settings.layout }}{% if settings.full_height %} hero--full{% endif %}"
+  data-scheme="{{ settings.color_scheme }}"
+  style="{% if settings.bg_type == 'gradient' %}background: {% if settings.bg_gradient %}{{ settings.bg_gradient }}{% else %}linear-gradient(135deg, {{ settings.bg_color | default: scheme.bg }} 0%, {{ scheme.primary_btn_bg }} 100%){% endif %};{% elsif settings.bg_type == 'color' %}background: {{ settings.bg_color | default: scheme.bg }};{% endif %} --hero-text: {{ settings.text_color | default: scheme.heading }}; --hero-para: {{ settings.text_color | default: scheme.paragraph }}; --hero-ring: {{ settings.text_color | default: scheme.heading | alpha: 0.55 }}; --hero-heading-size: {{ settings.font_size_heading }}px; --hero-pad-top: {{ settings.padding_top }}px; --hero-pad-bottom: {{ settings.padding_bottom }}px;"
+>
+  {% if settings.bg_type == 'video' and settings.bg_video %}
+    <video class="hero__media" src="{{ settings.bg_video | asset }}" autoplay muted loop playsinline></video>
+  {% elsif settings.bg_type == 'image' and settings.bg_image %}
+    <img class="hero__media" src="{{ settings.bg_image | asset }}" alt="" loading="eager" fetchpriority="high" decoding="async">
+  {% endif %}
+  {% if settings.bg_type == 'video' and settings.bg_video or settings.bg_type == 'image' and settings.bg_image %}
+    <div class="hero__overlay" style="background: {{ settings.bg_overlay_color }}; opacity: {{ settings.bg_overlay_opacity | divided_by: 100 }};"></div>
+  {% endif %}
+
+  <div class="hero__inner hero__inner--{{ settings.max_width }}">
+    <div class="hero__content">
+      {% if settings.eyebrow %}<span class="hero__eyebrow">{{ settings.eyebrow }}</span>{% endif %}
+      {% if settings.badge_text %}
+        <span class="hero__badge" style="background: {{ settings.button_color | default: scheme.primary_btn_bg | alpha: 0.14 }}; color: {{ settings.button_color | default: scheme.primary_btn_bg }};">{{ settings.badge_text }}</span>
+      {% endif %}
+      {% if settings.heading %}
+        <h1 class="hero__heading{% if settings.animate_heading %} hero__heading--animate{% endif %}">{{ settings.heading }}</h1>
+      {% endif %}
+      {% if settings.subheading %}<p class="hero__sub">{{ settings.subheading }}</p>{% endif %}
+      {% if settings.button_text or settings.button2_text %}
+        <div class="hero__actions">
+          {% if settings.button_text %}
+            <a class="hero__button hero__button--{{ settings.button_style }}" href="{{ settings.button_url | default: '#' | url }}" style="--btn: {{ settings.button_color | default: scheme.primary_btn_bg }}; --btn-text: {{ settings.button_text_color | default: scheme.primary_btn_text }};{% if settings.button_color %}{% else %} --btn-hover: {{ scheme.primary_btn_hover_bg }}; --btn-hover-text: {{ scheme.primary_btn_hover_text }};{% endif %} border-radius: {{ settings.button_border_radius }}px;">{{ settings.button_text }}</a>
+          {% endif %}
+          {% if settings.button2_text %}
+            <a class="hero__button hero__button--{{ settings.button2_style }}" href="{{ settings.button2_url | default: '#' | url }}" style="--btn: {{ settings.text_color | default: scheme.heading }}; --btn-text: {{ settings.bg_color | default: scheme.bg }}; border-radius: {{ settings.button_border_radius }}px;">{{ settings.button2_text }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+    {% if settings.layout == 'split' and settings.hero_image %}
+      <div class="hero__image"><img src="{{ settings.hero_image | asset }}" alt="{{ settings.heading }}" loading="eager" fetchpriority="high" decoding="async"></div>
+    {% endif %}
+  </div>
+
+  {% if settings.scroll_indicator %}
+    <div class="hero__scroll" aria-hidden="true"><span></span></div>
+  {% endif %}
+</section>
+</template>
+
+<style scoped>
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--hero-text);
+  container-type: inline-size;
+}
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+}
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  margin: 0 auto;
+  padding: calc(var(--hero-pad-top) * var(--theme-spacing-scale, 1)) 32px calc(var(--hero-pad-bottom) * var(--theme-spacing-scale, 1));
+}
+.hero__inner--narrow { max-width: 720px; }
+.hero__inner--medium { max-width: 960px; }
+.hero__inner--wide { max-width: var(--theme-page-width, 1230px); }
+.hero__inner--full { max-width: none; }
+.hero--full .hero__inner { min-height: 80vh; }
+/*
+  `justify-content: center` belongs to the stacked layouts only. The React
+  hero applied it when the layout was NOT split; left on in split it centres
+  the single content column in the row and moves everything 259px right,
+  which is what the parity probe measured.
+*/
+.hero--split .hero__inner { flex-direction: column; justify-content: flex-start; }
+@container (min-width: 820px) {
+  .hero--split .hero__inner { flex-direction: row; align-items: center; }
+  .hero--split .hero__content, .hero--split .hero__image { width: 50%; }
+}
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+.hero--left .hero__content, .hero--split .hero__content { align-items: flex-start; text-align: left; }
+.hero--right .hero__content { align-items: flex-end; text-align: right; }
+.hero__eyebrow {
+  font-size: 12px;
+  line-height: calc(1 / 0.75);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.hero__badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border-radius: 3.40282e38px;
+  padding: 4px 12px;
+  font-size: 12px;
+  line-height: calc(1 / 0.75);
+  font-weight: 500;
+}
+.hero__heading {
+  margin: 0;
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+  max-width: 48rem;
+  font-size: 36px;
+  font-weight: 700;
+  /* What the React hero shipped: its `leading-[1.08]` never reached the
+     stylesheet, so the heading has always had text-4xl's 2.5/2.25. Matching
+     the pixels people see, not the class they never saw. */
+  line-height: calc(2.5 / 2.25);
+}
+@container (min-width: 640px) {
+  .hero__heading { font-size: var(--hero-heading-size); }
+}
+@keyframes rise {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__heading--animate { animation: rise 700ms ease-out both; }
+}
+.hero__sub {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 18px;
+  line-height: 1.625;
+  color: var(--hero-para);
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero--center .hero__actions { justify-content: center; }
+.hero__button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+/* The primary button's hover is the scheme's, after the section's own
+   Advanced colors; a colour typed into the old Button colour field gets one
+   worked out from it. Outline and ghost buttons take a tint of their colour. */
+.hero__button--filled:hover { background: var(--btn-hover, color-mix(in srgb, var(--btn) 88%, #000)); border-color: var(--btn-hover, color-mix(in srgb, var(--btn) 88%, #000)); color: var(--btn-hover-text, var(--btn-text)); }
+.hero__button--outline:hover,
+.hero__button--ghost:hover { background: color-mix(in srgb, var(--btn) 10%, transparent); }
+.hero__button--filled { background: var(--btn); color: var(--btn-text); border: 1px solid var(--btn); }
+.hero__button--outline { background: transparent; color: var(--btn); border: 2px solid var(--btn); }
+.hero__button--ghost { background: transparent; color: var(--btn); border: 1px solid transparent; }
+.hero__image img { width: 100%; border-radius: 16px; object-fit: cover; }
+.hero__scroll {
+  pointer-events: none;
+  position: absolute;
+  inset: auto 0 20px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+.hero__scroll span {
+  display: block;
+  width: 20px;
+  height: 32px;
+  /*
+    The React hero drew this ring as a 2px border at 55% alpha, not as a
+    fully opaque border on a 55%-opaque element. Those look the same on a
+    ring and measure differently, and the parity probe reads the measurement
+    — so the border carries the alpha, as it always did.
+  */
+  border: 2px solid var(--hero-ring);
+  border-radius: 3.40282e38px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scroll span { animation: bounce 1s infinite; }
+}
+@keyframes bounce {
+  0%, 100% { translate: 0 -25%; animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { translate: 0 0; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "hero",
+  "name": "Hero",
+  "category": "content",
+  "icon": "star",
+  "supports_typography_overrides": false,
+  "version": "1.0.0",
+  "description": "Full-width hero with heading, subheading, two buttons and a flexible background",
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "placeholder": "New arrivals" },
+    { "type": "text", "id": "heading", "label": "Heading", "placeholder": "Welcome to our store" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "placeholder": "Discover premium products crafted for you." },
+    { "type": "text", "id": "badge_text", "label": "Badge text", "placeholder": "Limited time offer" },
+    { "type": "toggle", "id": "animate_heading", "label": "Animate heading on load", "default": false },
+
+    { "type": "header", "id": "hdr_cta1", "label": "Primary button" },
+    { "type": "text", "id": "button_text", "label": "Button text", "placeholder": "Shop Now" },
+    { "type": "url", "id": "button_url", "label": "Button link" },
+    { "type": "radio", "id": "button_style", "label": "Button style", "default": "filled", "options": [
+      { "label": "Filled", "value": "filled" }, { "label": "Outline", "value": "outline" }, { "label": "Ghost", "value": "ghost" }
+    ] },
+    { "type": "color", "id": "button_color", "label": "Button colour", "default": "" },
+    { "type": "color", "id": "button_text_color", "label": "Button text colour", "default": "" },
+    { "type": "range", "id": "button_border_radius", "label": "Button radius", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 8 },
+
+    { "type": "header", "id": "hdr_cta2", "label": "Secondary button" },
+    { "type": "text", "id": "button2_text", "label": "Button text", "placeholder": "Learn more" },
+    { "type": "url", "id": "button2_url", "label": "Button link" },
+    { "type": "radio", "id": "button2_style", "label": "Button style", "default": "outline", "options": [
+      { "label": "Filled", "value": "filled" }, { "label": "Outline", "value": "outline" }, { "label": "Ghost", "value": "ghost" }
+    ] },
+
+    { "type": "header", "id": "hdr_bg", "label": "Background" },
+    { "type": "select", "id": "bg_type", "label": "Background type", "default": "color", "options": [
+      { "label": "Colour", "value": "color" }, { "label": "Gradient", "value": "gradient" }, { "label": "Image", "value": "image" }, { "label": "Video", "value": "video" }
+    ] },
+    { "type": "color", "id": "bg_color", "label": "Background colour", "default": "", "info": "Leave empty to use the theme's background." },
+    { "type": "text", "id": "bg_gradient", "label": "Gradient", "placeholder": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "video_picker", "id": "bg_video", "label": "Background video" },
+    { "type": "color", "id": "bg_overlay_color", "label": "Overlay colour", "default": "#000000" },
+    { "type": "range", "id": "bg_overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 40 },
+
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "", "info": "Leave empty to use the scheme's text colour." },
+    { "type": "range", "id": "font_size_heading", "label": "Heading size", "min": 24, "max": 96, "step": 2, "unit": "px", "default": 56 },
+    { "type": "image_picker", "id": "hero_image", "label": "Side image", "info": "Shown in the split layout." },
+
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    { "type": "radio", "id": "layout", "label": "Layout", "default": "center", "options": [
+      { "label": "Centre", "value": "center" }, { "label": "Left", "value": "left" }, { "label": "Right", "value": "right" }, { "label": "Split", "value": "split" }
+    ] },
+    { "type": "select", "id": "max_width", "label": "Width", "default": "wide", "options": [
+      { "label": "Narrow", "value": "narrow" }, { "label": "Medium", "value": "medium" }, { "label": "Wide", "value": "wide" }, { "label": "Full", "value": "full" }
+    ] },
+    { "type": "toggle", "id": "full_height", "label": "Fill the screen", "default": false },
+    { "type": "toggle", "id": "scroll_indicator", "label": "Scroll indicator", "default": false },
+
+    { "type": "header", "id": "hdr_padding", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 60 }
+  ],
+  "presets": [
+      {
+          "name": "Dark centered hero",
+          "settings": {
+              "eyebrow": "New collection",
+              "heading": "Build Something Great",
+              "subheading": "Premium digital products for creators and businesses.",
+              "button_text": "Shop Now",
+              "button_url": "/products",
+              "button_style": "filled",
+              "button_color": "#6366f1",
+              "button_text_color": "#ffffff",
+              "button2_text": "Learn More",
+              "button2_url": "/about",
+              "button2_style": "outline",
+              "bg_type": "color",
+              "bg_color": "#0f172a",
+              "text_color": "#ffffff",
+              "layout": "center",
+              "full_height": false,
+              "scroll_indicator": true,
+              "padding_top": 80,
+              "padding_bottom": 80
+          }
+      },
+      {
+          "name": "Light split hero",
+          "settings": {
+              "eyebrow": "Introducing",
+              "heading": "Crafted for the Modern Creator",
+              "subheading": "Everything you need to build, launch, and grow.",
+              "button_text": "Get Started",
+              "button_url": "/products",
+              "button_style": "filled",
+              "button_color": "#0f172a",
+              "button_text_color": "#ffffff",
+              "button2_text": "View Demo",
+              "button2_url": "/demo",
+              "button2_style": "ghost",
+              "bg_type": "color",
+              "bg_color": "#f8fafc",
+              "text_color": "#0f172a",
+              "layout": "split",
+              "full_height": false,
+              "padding_top": 60,
+              "padding_bottom": 60
+          }
+      },
+      {
+          "name": "Gradient hero",
+          "settings": {
+              "heading": "Your Vision, Delivered",
+              "subheading": "Powerful tools built around you.",
+              "button_text": "Explore Now",
+              "button_url": "/products",
+              "button_style": "filled",
+              "button_color": "#ffffff",
+              "button_text_color": "#6366f1",
+              "bg_type": "gradient",
+              "bg_gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+              "text_color": "#ffffff",
+              "layout": "center",
+              "full_height": true,
+              "scroll_indicator": true,
+              "padding_top": 60,
+              "padding_bottom": 60
+          }
+      }
+  ]
+}
+</schema>

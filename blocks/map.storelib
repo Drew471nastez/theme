@@ -1,0 +1,35 @@
+{# ===========================================================================
+   Map: a theme block
+
+   A Google map of an address typed in the sidebar, or of a pasted Google
+   Maps link. The `map` filter writes Google's keyless embed address and
+   `embed` keeps the frame on Google, which is why this block declares
+   "embed".
+   =========================================================================== #}
+<template>
+<div class="sl-map" style="--map-h: {{ block.settings.height }}px;">
+  {% if block.settings.address %}
+    <iframe src="{{ block.settings.address | map | embed }}" title="{{ block.settings.address }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  {% elsif page.in_editor %}<span class="sl-map__empty">Type an address in the sidebar</span>{% endif %}
+</div>
+</template>
+
+<style>
+.sl-map { position: relative; width: 100%; height: var(--map-h, 360px); overflow: hidden; border-radius: var(--s-radius, 8px); background: rgba(0, 0, 0, 0.06); }
+.sl-map iframe { display: block; width: 100%; height: 100%; border: 0; }
+.sl-map__empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--s-para, inherit); opacity: 0.7; }
+</style>
+
+<schema>
+{
+  "name": "Map",
+  "capabilities": ["embed"],
+  "settings": [
+    { "type": "text", "id": "address", "label": "Address", "default": "", "placeholder": "12 Rue Oberkampf, Paris", "info": "A street address or a place name. A Google Maps link works too." },
+    { "type": "range", "id": "height", "label": "Height", "default": 360, "min": 200, "max": 720, "step": 20, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Map" }
+  ]
+}
+</schema>

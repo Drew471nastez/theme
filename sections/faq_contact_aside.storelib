@@ -1,0 +1,186 @@
+<template>
+<section class="fq" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ settings.text_color }}; --s-heading: {{ settings.heading_color }}; --s-border: {{ settings.border_color }}; --s-accent: {{ settings.accent_color }}; --s-btn: {{ settings.button_color }}; --s-btn-text: {{ settings.button_text_color }}; --s-radius: {{ theme.radius.medium }}px; --s-pt-d: {{ settings.padding_top.desktop }}px; --s-pt-t: {{ settings.padding_top.tablet }}px; --s-pt-m: {{ settings.padding_top.mobile }}px; --s-pb-d: {{ settings.padding_bottom.desktop }}px; --s-pb-t: {{ settings.padding_bottom.tablet }}px; --s-pb-m: {{ settings.padding_bottom.mobile }}px;">
+  <div class="fq__in fq__in--{{ settings.max_width }} fq__in--{{ settings.layout }} fq__align--{{ settings.align }}">
+
+    <div class="fq__head">
+      {% if settings.heading %}<h2 class="fq__h">{{ settings.heading | raw }}</h2>{% endif %}
+      {% if settings.intro %}<div class="fq__intro">{{ settings.intro | raw }}</div>{% endif %}
+    </div>
+
+    <div class="fq__list fq__list--{{ settings.list_style }} fq__mk--{{ settings.marker }}">
+      {% for block in blocks %}
+        <details class="qa" data-block-id="{{ block.id }}"{% if settings.single_open %} name="{{ section.id }}-faq"{% endif %}{% if block.settings.open or forloop.first and settings.open_first %} open{% endif %}>
+          <summary class="qa__q">
+            <span class="qa__t">{{ block.settings.question }}</span>
+            <span class="qa__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="qa__a">{{ block.settings.answer | raw }}</div>
+        </details>
+      {% else %}
+        {% if page.in_editor %}<p class="fq__empty">Add your first question in the sidebar.</p>{% endif %}
+      {% endfor %}
+    </div>
+
+    {% if settings.contact_line or settings.button_text or settings.email %}
+      <aside class="fq__aside">
+        {% if settings.contact_line %}<p class="fq__line">{{ settings.contact_line }}</p>{% endif %}
+        <div class="fq__actions">
+          {% if settings.button_text %}<a class="fq__btn" href="{{ settings.button_url | default: '#' | url }}">{{ settings.button_text }}</a>{% endif %}
+          {% if settings.email %}<a class="fq__mail" href="{{ settings.email | prepend: 'mailto:' | url }}">{{ settings.email }}</a>{% endif %}
+        </div>
+      </aside>
+    {% endif %}
+
+  </div>
+</section>
+</template>
+
+<style scoped>
+.fq { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.fq__in { margin: 0 auto; display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); padding: calc(var(--s-pt-m) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb-m) * var(--theme-spacing-scale, 1)); }
+.fq__in--narrow { max-width: 720px; }
+.fq__in--medium { max-width: 960px; }
+.fq__in--wide { max-width: var(--theme-page-width, 1280px); }
+.fq__in--full { max-width: none; }
+
+.fq__head { display: grid; gap: 16px; align-content: start; }
+.fq__h { margin: 0; color: var(--s-heading); font-size: var(--section-heading-size, 30px); line-height: var(--section-heading-line-height, 1.15); font-weight: var(--section-heading-weight, 700); letter-spacing: var(--section-heading-tracking, -0.01em); text-transform: var(--section-heading-transform, none); font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif); text-wrap: balance; }
+.fq__intro { max-width: 36rem; font-size: var(--section-text-size, 16px); line-height: var(--section-text-line-height, 1.6); color: var(--s-text); }
+.fq__intro > :first-child { margin-top: 0; }
+.fq__intro > :last-child { margin-bottom: 0; }
+
+.fq__list { min-width: 0; }
+.fq__list--rows { border-top: 1px solid var(--s-border); }
+.fq__list--cards { display: grid; gap: 12px; }
+.qa { border-bottom: 1px solid var(--s-border); }
+.fq__list--cards .qa { border: 1px solid var(--s-border); border-radius: var(--theme-card-radius, 12px); padding: 0 20px; background: var(--s-bg); }
+.qa__q { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 16px 2px; cursor: pointer; list-style: none; font-size: 17px; font-weight: 600; line-height: 1.35; color: var(--s-heading); transition: color 200ms ease; }
+.fq__list--cards .qa__q { padding-left: 0; padding-right: 0; }
+.qa__q::-webkit-details-marker { display: none; }
+.qa__q::marker { content: ""; }
+.qa__q:hover { color: var(--s-accent); }
+.qa__q:focus-visible, .fq__btn:focus-visible, .fq__mail:focus-visible { outline: 2px solid var(--s-accent); outline-offset: 3px; }
+.qa__a { max-width: 40rem; padding: 0 2px 20px; font-size: 16px; line-height: 1.65; color: var(--s-text); }
+.fq__list--cards .qa__a { padding-left: 0; padding-right: 0; }
+.qa__a > :first-child { margin-top: 0; }
+.qa__a > :last-child { margin-bottom: 0; }
+
+.qa__mark { position: relative; flex: none; width: 16px; height: 16px; }
+.qa__mark::before, .qa__mark::after { content: ""; position: absolute; inset: 0; margin: auto; transition: transform 200ms ease, opacity 200ms ease; }
+.fq__mk--plus .qa__mark::before { width: 16px; height: 2px; background: currentColor; }
+.fq__mk--plus .qa__mark::after { width: 2px; height: 16px; background: currentColor; }
+.fq__mk--plus .qa[open] .qa__mark::after { transform: rotate(90deg); opacity: 0; }
+.fq__mk--chevron .qa__mark::before { width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.fq__mk--chevron .qa[open] .qa__mark::before { transform: translateY(2px) rotate(225deg); }
+
+.fq__empty { margin: 0; padding: 24px; text-align: center; font-size: 14px; border: 1px dashed var(--s-border); border-radius: var(--s-radius); opacity: 0.7; }
+
+.fq__aside { display: grid; gap: 16px; align-content: start; padding-top: 24px; border-top: 1px solid var(--s-border); }
+.fq__line { margin: 0; max-width: 30rem; font-size: 16px; line-height: 1.55; color: var(--s-heading); font-weight: 600; }
+.fq__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.fq__btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 24px; background: var(--s-btn); color: var(--s-btn-text); border: 1px solid var(--s-btn); border-radius: var(--s-radius); font-size: var(--sl-button-size, 15px); font-weight: var(--theme-button-weight, 600); text-decoration: none; transition: opacity 200ms ease; }
+.fq__btn:hover { opacity: 0.85; }
+.fq__mail { display: inline-flex; align-items: center; min-height: 44px; color: var(--s-heading); font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+.fq__mail:hover { color: var(--s-accent); }
+
+.fq__align--center.fq__in--stacked .fq__head { justify-items: center; text-align: center; }
+.fq__align--center.fq__in--stacked .fq__aside { justify-items: center; text-align: center; }
+.fq__align--center.fq__in--stacked .fq__actions { justify-content: center; }
+
+@container (min-width: 760px) {
+  .fq__in { padding-top: calc(var(--s-pt-t) * var(--theme-spacing-scale, 1)); padding-bottom: calc(var(--s-pb-t) * var(--theme-spacing-scale, 1)); }
+  .fq__h { font-size: var(--section-heading-size, 36px); }
+  .fq__in--split { grid-template-columns: 5fr 7fr; grid-template-rows: auto 1fr; column-gap: 64px; row-gap: 32px; }
+  .fq__in--split .fq__head { grid-column: 1; grid-row: 1; }
+  .fq__in--split .fq__list { grid-column: 2; grid-row: 1 / span 2; }
+  .fq__in--split .fq__aside { grid-column: 1; grid-row: 2; align-self: start; }
+  .fq__in--stacked { gap: 40px; }
+  .fq__in--stacked .fq__head, .fq__in--stacked .fq__list, .fq__in--stacked .fq__aside { max-width: 720px; width: 100%; margin-inline: auto; }
+}
+
+@container (min-width: 1024px) {
+  .fq__in { padding-top: calc(var(--s-pt-d) * var(--theme-spacing-scale, 1)); padding-bottom: calc(var(--s-pb-d) * var(--theme-spacing-scale, 1)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qa__q, .qa__mark::before, .qa__mark::after, .fq__btn { transition: none; }
+}
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "faq_contact_aside",
+  "name": "FAQ with contact aside",
+  "category": "faq",
+  "description": "Buyer questions that open one by one, with a contact line and button beside them.",
+  "settings": [
+    {"type":"header","id":"hdr_content","label":"Content"},
+    {"type":"inline_richtext","id":"heading","label":"Heading","default":"Questions buyers ask before they pay"},
+    {"type":"richtext","id":"intro","label":"Introduction","default":"<p>Delivery, refunds, what is included and who it is for. If your question is not here, write to us.</p>"},
+    {"type":"text","id":"contact_line","label":"Contact line","default":"Still not sure? Ask us before you order."},
+    {"type":"text","id":"button_text","label":"Button","default":"Contact us"},
+    {"type":"url","id":"button_url","label":"Button link","default":"/pages/contact"},
+    {"type":"text","id":"email","label":"Email address","default":""},
+
+    {"type":"header","id":"hdr_layout","label":"Layout"},
+    {"type":"select","id":"layout","label":"Layout","default":"split","options":[{"label":"Heading beside the list","value":"split"},{"label":"Heading above the list","value":"stacked"}]},
+    {"type":"radio","id":"align","label":"Heading sits","default":"left","options":[{"label":"Left","value":"left"},{"label":"Centre","value":"center"}],"visible_if":"{{ section.settings.layout == 'stacked' }}"},
+    {"type":"select","id":"list_style","label":"List style","default":"rows","options":[{"label":"Lines between rows","value":"rows"},{"label":"Boxed cards","value":"cards"}]},
+    {"type":"select","id":"marker","label":"Open and close marker","default":"plus","options":[{"label":"Plus and minus","value":"plus"},{"label":"Chevron","value":"chevron"}]},
+    {"type":"toggle","id":"open_first","label":"Open the first question","default":true},
+    {"type":"toggle","id":"single_open","label":"Keep only one answer open","default":true},
+    {"type":"select","id":"max_width","label":"Content width","default":"wide","options":[{"label":"Narrow","value":"narrow"},{"label":"Medium","value":"medium"},{"label":"Wide","value":"wide"},{"label":"Full","value":"full"}]},
+
+    {"type":"header","id":"hdr_style","label":"Style"},
+    {"type":"color_scheme","id":"color_scheme","label":"Colour scheme","default":"white"},
+    {"type":"color","id":"heading_color","label":"Heading and questions","default":"scheme.heading"},
+    {"type":"color","id":"text_color","label":"Text","default":"scheme.text"},
+    {"type":"color","id":"border_color","label":"Lines and borders","default":"scheme.border"},
+    {"type":"color","id":"accent_color","label":"Hover and focus","default":"scheme.accent"},
+    {"type":"color","id":"button_color","label":"Button","default":"scheme.primary_button_background"},
+    {"type":"color","id":"button_text_color","label":"Button text","default":"scheme.primary_button_text"},
+
+    {"type":"header","id":"hdr_spacing","label":"Spacing"},
+    {"type":"range","id":"padding_top","label":"Top padding","min":0,"max":160,"step":4,"unit":"px","responsive":true,"default":{"desktop":80,"tablet":64,"mobile":48}},
+    {"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":160,"step":4,"unit":"px","responsive":true,"default":{"desktop":80,"tablet":64,"mobile":48}}
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "limit": 20,
+      "settings": [
+        {"type":"text","id":"question","label":"Question","default":"What is your question?"},
+        {"type":"richtext","id":"answer","label":"Answer","default":"<p>Write the answer in two or three sentences.</p>"},
+        {"type":"checkbox","id":"open","label":"Open by default","default":false}
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "FAQ with contact aside",
+      "blocks": [
+        {"type":"question","settings":{"question":"How long does delivery take?","answer":"<p>The estimated delivery time is shown on each product page and again at checkout. You will get a confirmation email as soon as your order ships.</p>"}},
+        {"type":"question","settings":{"question":"What happens if I want a refund?","answer":"<p>If something is not right, write to us and we will tell you what we can do. Our refund terms are on the policy page, so you can read them before you buy.</p>"}},
+        {"type":"question","settings":{"question":"What is included in my purchase?","answer":"<p>Each product page lists exactly what you receive. If anything is unclear, ask us before ordering and we will answer in plain words.</p>"}},
+        {"type":"question","settings":{"question":"Who is this for?","answer":"<p>Every product page says who it was made for and who might prefer something else. We would rather you pick the right one than the most expensive one.</p>"}},
+        {"type":"question","settings":{"question":"Can I change or cancel my order?","answer":"<p>Reply to your confirmation email as soon as you can. If the order has not shipped yet, we will update or cancel it for you.</p>"}},
+        {"type":"question","settings":{"question":"How do I get help after I buy?","answer":"<p>Use the contact button on this page and include your order number. A real person reads every message.</p>"}}
+      ]
+    },
+    {
+      "name": "FAQ with contact aside on dark",
+      "settings": {"color_scheme": "dark", "list_style": "cards"},
+      "blocks": [
+        {"type":"question","settings":{"question":"How long does delivery take?","answer":"<p>The estimated delivery time is shown on each product page and again at checkout. You will get a confirmation email as soon as your order ships.</p>"}},
+        {"type":"question","settings":{"question":"What happens if I want a refund?","answer":"<p>If something is not right, write to us and we will tell you what we can do. Our refund terms are on the policy page, so you can read them before you buy.</p>"}},
+        {"type":"question","settings":{"question":"What is included in my purchase?","answer":"<p>Each product page lists exactly what you receive. If anything is unclear, ask us before ordering and we will answer in plain words.</p>"}},
+        {"type":"question","settings":{"question":"Who is this for?","answer":"<p>Every product page says who it was made for and who might prefer something else. We would rather you pick the right one than the most expensive one.</p>"}},
+        {"type":"question","settings":{"question":"How do I get help after I buy?","answer":"<p>Use the contact button on this page and include your order number. A real person reads every message.</p>"}}
+      ]
+    }
+  ]
+}
+</schema>

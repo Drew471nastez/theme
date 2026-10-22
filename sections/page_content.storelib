@@ -1,0 +1,109 @@
+{# ===========================================================================
+   Page content: a page's title and its words
+
+   Shopify's main-page section, the body of the default page template. A
+   page the creator adds starts with this between the header and the
+   footer: the title they typed, and a text area to write the page in, so a
+   new page is a page and not an empty gap. Like every section, it can be
+   moved, hidden, removed, or added again from the library.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in s__in--{{ settings.width }} {% if settings.align == 'center' %}s__in--center{% endif %}">
+    {% if settings.heading %}<h1 class="s__h">{{ settings.heading }}</h1>{% endif %}
+    {% if settings.content %}
+      <div class="rte">{{ settings.content | raw }}</div>
+    {% else %}
+      {% if page.in_editor %}<p class="empty">Write this page in the sidebar</p>{% endif %}
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--center { text-align: center; }
+.s__h {
+  margin: 0 0 24px;
+  font-size: var(--section-heading-size, 40px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.rte { font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.7); color: var(--s-para); }
+.rte > :first-child { margin-top: 0; }
+.rte > :last-child { margin-bottom: 0; }
+.rte p { margin: 0 0 1em; }
+.rte h2, .rte h3, .rte h4 { margin: 1.6em 0 0.5em; line-height: 1.25; color: var(--s-heading); }
+.rte h2 { font-size: 1.5em; }
+.rte h3 { font-size: 1.25em; }
+.rte h4 { font-size: 1.05em; }
+.rte ul, .rte ol { margin: 0 0 1em; padding-inline-start: 1.4em; }
+.rte li { margin: 0.3em 0; }
+.rte a { color: var(--s-accent); text-decoration: underline; text-underline-offset: 2px; }
+.rte blockquote { margin: 1.2em 0; padding-inline-start: 1em; border-inline-start: 3px solid var(--s-border); }
+.rte img { max-width: 100%; height: auto; border-radius: 8px; }
+.empty { margin: 0; font-size: 14px; color: var(--s-para); opacity: 0.6; }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "page_content",
+  "name": "Page content",
+  "category": "content",
+  "description": "A page's title and its words, the body of a page you add.",
+  "version": "1.0.0",
+  "icon": "type",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Title", "default": "" },
+    { "type": "richtext", "id": "content", "label": "Content", "default": "" },
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "narrow",
+      "options": [
+        { "label": "Narrow", "value": "narrow" },
+        { "label": "Medium", "value": "medium" }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "align",
+      "label": "Text sits",
+      "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" }
+      ]
+    },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [
+    { "name": "Page content", "settings": { "heading": "About this page", "content": "<p>Write what this page is for.</p>" } }
+  ]
+}
+</schema>

@@ -1,0 +1,112 @@
+{
+  "type": "image_section",
+  "name": "Image",
+  "description": "Display a single image with optional caption",
+  "icon": "image",
+  "category": "media",
+  "fields": [
+    {
+      "id": "image_url",
+      "label": "Image",
+      "type": "image"
+    },
+    {
+      "id": "caption",
+      "label": "Caption",
+      "type": "text",
+      "placeholder": "Image caption"
+    },
+    {
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "type": "select",
+      "default": "auto",
+      "options": [
+        {
+          "label": "Auto",
+          "value": "auto"
+        },
+        {
+          "label": "16:9",
+          "value": "16:9"
+        },
+        {
+          "label": "4:3",
+          "value": "4:3"
+        },
+        {
+          "label": "1:1",
+          "value": "1:1"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default image",
+      "settings": {
+        "image_url": "",
+        "caption": "",
+        "aspect_ratio": "auto",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

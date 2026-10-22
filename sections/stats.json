@@ -1,0 +1,249 @@
+{
+  "type": "stats",
+  "name": "Stats / numbers",
+  "description": "Highlight key metrics and achievements with animated counters.",
+  "supports_typography_overrides": false,
+  "icon": "bar-chart-2",
+  "category": "content",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "By the numbers",
+      "placeholder": "Optional section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "",
+      "placeholder": "Optional supporting text"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "grid",
+      "options": [
+        {
+          "label": "Grid",
+          "value": "grid"
+        },
+        {
+          "label": "Row / inline",
+          "value": "row"
+        },
+        {
+          "label": "Cards",
+          "value": "cards"
+        }
+      ]
+    },
+    {
+      "id": "show_icon",
+      "label": "Show icons",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "animate_numbers",
+      "label": "Animate numbers on scroll",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "divider_color",
+      "label": "Divider color",
+      "type": "color",
+      "default": "#e5e7eb"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "fields": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "text",
+          "default": "10,000",
+          "placeholder": "e.g. 10,000 or 99"
+        },
+        {
+          "id": "prefix",
+          "label": "Prefix",
+          "type": "text",
+          "default": "",
+          "placeholder": "e.g. $, £"
+        },
+        {
+          "id": "suffix",
+          "label": "Suffix",
+          "type": "text",
+          "default": "+",
+          "placeholder": "e.g. +, %, k"
+        },
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "default": "Happy customers",
+          "placeholder": "Metric label"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "",
+          "placeholder": "Optional brief description"
+        },
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "icon",
+          "default": "users"
+        },
+        {
+          "id": "color",
+          "label": "Accent color",
+          "type": "color",
+          "default": "#4f46e5"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Four key metrics",
+      "settings": {
+        "heading": "Trusted by thousands",
+        "layout": "grid",
+        "show_icon": true,
+        "animate_numbers": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "s1",
+          "type": "stat",
+          "settings": {
+            "value": "10,000",
+            "prefix": "",
+            "suffix": "+",
+            "label": "Happy customers",
+            "icon": "users",
+            "color": "#4f46e5"
+          }
+        },
+        {
+          "id": "s2",
+          "type": "stat",
+          "settings": {
+            "value": "98",
+            "prefix": "",
+            "suffix": "%",
+            "label": "Satisfaction rate",
+            "icon": "heart",
+            "color": "#10b981"
+          }
+        },
+        {
+          "id": "s3",
+          "type": "stat",
+          "settings": {
+            "value": "5",
+            "prefix": "",
+            "suffix": "M+",
+            "label": "Tasks completed",
+            "icon": "check-circle",
+            "color": "#f59e0b"
+          }
+        },
+        {
+          "id": "s4",
+          "type": "stat",
+          "settings": {
+            "value": "24",
+            "prefix": "",
+            "suffix": "/7",
+            "label": "Customer support",
+            "icon": "headphones",
+            "color": "#ef4444"
+          }
+        }
+      ]
+    }
+  ]
+}

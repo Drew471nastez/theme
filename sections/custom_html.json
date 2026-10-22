@@ -1,0 +1,105 @@
+{
+  "type": "custom_html",
+  "name": "Custom HTML",
+  "description": "Insert custom HTML, CSS, or JavaScript code into the page.",
+  "icon": "code",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Custom Code",
+      "type": "header"
+    },
+    {
+      "id": "html_content",
+      "label": "HTML Content",
+      "type": "richtext",
+      "default": "",
+      "placeholder": "Paste your custom HTML here"
+    },
+    {
+      "id": "info_note",
+      "label": "Use this block to add custom HTML, CSS, or JS.",
+      "type": "paragraph",
+      "info": "Custom code is rendered as-is. Use <style> tags for CSS and <script> tags for JavaScript. Changes take effect on save and preview. Note: some scripts may conflict with the editor, so test in preview mode."
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom HTML",
+      "settings": {
+        "html_content": "",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

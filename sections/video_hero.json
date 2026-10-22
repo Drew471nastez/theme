@@ -1,0 +1,302 @@
+{
+  "type": "video_hero",
+  "name": "Video hero",
+  "description": "Full-width hero with background video and text overlay",
+  "supports_typography_overrides": false,
+  "icon": "play-circle",
+  "category": "media",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Experience the Difference"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "placeholder": "Watch our story unfold."
+    },
+    {
+      "id": "hdr_button",
+      "label": "Button",
+      "type": "header"
+    },
+    {
+      "id": "button_text",
+      "label": "Button text",
+      "type": "text",
+      "placeholder": "Watch Now"
+    },
+    {
+      "id": "button_url",
+      "label": "Button URL",
+      "type": "link"
+    },
+    {
+      "id": "button_style",
+      "label": "Button style",
+      "type": "radio",
+      "default": "outline",
+      "options": [
+        {
+          "label": "Filled",
+          "value": "filled"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Ghost",
+          "value": "ghost"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "button_color",
+      "label": "Button color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "button_text_color",
+      "label": "Button text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "button_border_radius",
+      "label": "Button radius",
+      "type": "range",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "id": "hdr_video",
+      "label": "Video",
+      "type": "header"
+    },
+    {
+      "id": "video_url",
+      "label": "Video file",
+      "type": "video"
+    },
+    {
+      "id": "video_poster",
+      "label": "Poster / fallback image",
+      "type": "image"
+    },
+    {
+      "id": "autoplay",
+      "label": "Autoplay",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "loop_video",
+      "label": "Loop video",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "mute_video",
+      "label": "Mute video",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_controls",
+      "label": "Show video controls",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "type": "color",
+      "default": "#000000"
+    },
+    {
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Shown behind the media, and on its own before an image is chosen. Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "font_size_heading",
+      "label": "Heading font size",
+      "type": "range",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "alignment",
+      "label": "Text alignment",
+      "type": "radio",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "full_height",
+      "label": "Full screen height",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "medium",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Autoplay video hero",
+      "settings": {
+        "heading": "Experience the Difference",
+        "subheading": "Our story, told in motion.",
+        "button_text": "Shop the Collection",
+        "button_url": "/products",
+        "button_style": "outline",
+        "autoplay": true,
+        "loop_video": true,
+        "mute_video": true,
+        "show_controls": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 45,
+        "text_color": "#ffffff",
+        "alignment": "center",
+        "full_height": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "type": "banner_packery",
+  "name": "Banner packery",
+  "description": "Masonry-style mosaic of 3–5 image banners with text overlays.",
+  "supports_typography_overrides": false,
+  "icon": "layout-dashboard",
+  "category": "media",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Our banners"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea"
+    },
+    {
+      "id": "show_view_all_button",
+      "label": "Show view-all button",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "view_all_url",
+      "label": "View all URL",
+      "type": "link"
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "column_gap",
+      "label": "Gap",
+      "type": "range",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_with_text_overlay",
+      "name": "Image with overlay",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Image",
+          "type": "image"
+        },
+        {
+          "id": "image_link",
+          "label": "Image link",
+          "type": "link"
+        },
+        {
+          "id": "image_overlay_opacity",
+          "label": "Overlay opacity",
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 20
+        },
+        {
+          "id": "subheading",
+          "label": "Subheading",
+          "type": "text",
+          "default": "Subheading"
+        },
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "textarea",
+          "default": "Text overlay"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Description"
+        },
+        {
+          "id": "first_button_label",
+          "label": "Button label",
+          "type": "text",
+          "default": "Shop now"
+        },
+        {
+          "id": "first_button_link",
+          "label": "Button URL",
+          "type": "link"
+        },
+        {
+          "id": "content_alignment",
+          "label": "Content alignment",
+          "type": "select",
+          "default": "left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "id": "content_position",
+          "label": "Content position",
+          "type": "select",
+          "default": "bottom-left",
+          "options": [
+            {
+              "label": "Top left",
+              "value": "top-left"
+            },
+            {
+              "label": "Top center",
+              "value": "top-center"
+            },
+            {
+              "label": "Top right",
+              "value": "top-right"
+            },
+            {
+              "label": "Middle left",
+              "value": "middle-left"
+            },
+            {
+              "label": "Middle center",
+              "value": "middle-center"
+            },
+            {
+              "label": "Middle right",
+              "value": "middle-right"
+            },
+            {
+              "label": "Bottom left",
+              "value": "bottom-left"
+            },
+            {
+              "label": "Bottom center",
+              "value": "bottom-center"
+            },
+            {
+              "label": "Bottom right",
+              "value": "bottom-right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Four-banner mosaic",
+      "settings": {
+        "heading": "Shop our collections",
+        "column_gap": 16,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "p1",
+          "type": "image_with_text_overlay",
+          "settings": {
+            "heading": "New arrivals",
+            "subheading": "Spring 2025",
+            "first_button_label": "Shop",
+            "content_position": "bottom-left",
+            "image_overlay_opacity": 20
+          }
+        },
+        {
+          "id": "p2",
+          "type": "image_with_text_overlay",
+          "settings": {
+            "heading": "Accessories",
+            "subheading": "Essentials",
+            "first_button_label": "Shop",
+            "content_position": "bottom-left",
+            "image_overlay_opacity": 20
+          }
+        },
+        {
+          "id": "p3",
+          "type": "image_with_text_overlay",
+          "settings": {
+            "heading": "Best sellers",
+            "subheading": "Top rated",
+            "first_button_label": "Shop",
+            "content_position": "bottom-left",
+            "image_overlay_opacity": 20
+          }
+        },
+        {
+          "id": "p4",
+          "type": "image_with_text_overlay",
+          "settings": {
+            "heading": "Sale",
+            "subheading": "Up to 50% off",
+            "first_button_label": "Shop",
+            "content_position": "bottom-left",
+            "image_overlay_opacity": 20
+          }
+        }
+      ]
+    }
+  ]
+}

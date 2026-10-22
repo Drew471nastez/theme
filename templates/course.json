@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "course-hero": {
+      "name": "Hero Centered",
+      "type": "hero_centered",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "LEARN WITH US",
+        "heading": "Your next chapter starts here.",
+        "subheading": "Explore the lessons at your own pace.",
+        "button_text": "",
+        "padding_top": 80,
+        "button2_text": "",
+        "color_scheme": "light",
+        "padding_bottom": 64
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "course-lessons": {
+      "name": "Course Curriculum",
+      "type": "course_curriculum",
+      "hidden": false,
+      "settings": {
+        "padding_top": 64,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "course-hero",
+    "course-lessons"
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "type": "collection_list",
+  "name": "Collection list",
+  "description": "Grid of collection cards with image, title, and product count.",
+  "supports_typography_overrides": false,
+  "icon": "grid",
+  "category": "commerce",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Shop by collection"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea"
+    },
+    {
+      "id": "show_view_all_button",
+      "label": "Show view-all button",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_collection",
+      "label": "Collection",
+      "type": "header"
+    },
+    {
+      "id": "display_mode",
+      "label": "Display mode",
+      "type": "select",
+      "default": "grid",
+      "options": [
+        {
+          "label": "Grid",
+          "value": "grid"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        }
+      ]
+    },
+    {
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "type": "select",
+      "default": "square",
+      "options": [
+        {
+          "label": "Adapt",
+          "value": "adapt"
+        },
+        {
+          "label": "Square",
+          "value": "square"
+        },
+        {
+          "label": "Portrait",
+          "value": "portrait"
+        },
+        {
+          "label": "Landscape",
+          "value": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "items_per_row",
+      "label": "Items per row",
+      "type": "range",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "column_gap",
+      "label": "Column gap",
+      "type": "range",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "id": "show_product_count",
+      "label": "Show product count",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "fields": [
+        {
+          "id": "collection_image",
+          "label": "Image",
+          "type": "image"
+        },
+        {
+          "id": "collection_title",
+          "label": "Title",
+          "type": "text",
+          "default": "Collection title"
+        },
+        {
+          "id": "product_count",
+          "label": "Product count",
+          "type": "number",
+          "default": 12
+        },
+        {
+          "id": "url",
+          "label": "URL",
+          "type": "link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Four collections",
+      "settings": {
+        "heading": "Shop by collection",
+        "items_per_row": 4,
+        "image_ratio": "square",
+        "show_product_count": true,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "c1",
+          "type": "collection",
+          "settings": {
+            "collection_title": "New arrivals",
+            "product_count": 24
+          }
+        },
+        {
+          "id": "c2",
+          "type": "collection",
+          "settings": {
+            "collection_title": "Best sellers",
+            "product_count": 18
+          }
+        },
+        {
+          "id": "c3",
+          "type": "collection",
+          "settings": {
+            "collection_title": "Accessories",
+            "product_count": 12
+          }
+        },
+        {
+          "id": "c4",
+          "type": "collection",
+          "settings": {
+            "collection_title": "Sale",
+            "product_count": 32
+          }
+        }
+      ]
+    }
+  ]
+}

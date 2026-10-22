@@ -1,0 +1,385 @@
+{
+  "type": "tabs_content",
+  "name": "Tabs content",
+  "description": "Tabbed content sections for organising information into switchable panels",
+  "supports_typography_overrides": false,
+  "icon": "layout-list",
+  "category": "interactive",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Section heading",
+      "type": "text",
+      "placeholder": "Explore our features"
+    },
+    {
+      "id": "subheading",
+      "label": "Section subheading",
+      "type": "text",
+      "placeholder": "Everything you need in one place"
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "tab_position",
+      "label": "Tab bar position",
+      "type": "select",
+      "default": "top",
+      "options": [
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Left sidebar",
+          "value": "left"
+        },
+        {
+          "label": "Right sidebar",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "tab_style",
+      "label": "Tab style",
+      "type": "select",
+      "default": "underline",
+      "options": [
+        {
+          "label": "Underline",
+          "value": "underline"
+        },
+        {
+          "label": "Pill",
+          "value": "pill"
+        },
+        {
+          "label": "Box",
+          "value": "box"
+        },
+        {
+          "label": "Minimal",
+          "value": "minimal"
+        }
+      ]
+    },
+    {
+      "id": "alignment",
+      "label": "Tab alignment",
+      "type": "radio",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "tab_active_color",
+      "label": "Active tab color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "tab_inactive_color",
+      "label": "Inactive tab color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "tab_bg_color",
+      "label": "Tab bar background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "content_bg_color",
+      "label": "Content panel background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_color",
+      "label": "Border color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_radius",
+      "label": "Border radius",
+      "type": "range",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "id": "hdr_animation",
+      "label": "Animation",
+      "type": "header"
+    },
+    {
+      "id": "tab_animation",
+      "label": "Tab switch animation",
+      "type": "select",
+      "default": "fade",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Fade",
+          "value": "fade"
+        },
+        {
+          "label": "Slide",
+          "value": "slide"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "fields": [
+        {
+          "id": "title",
+          "label": "Tab title",
+          "type": "text",
+          "placeholder": "Features"
+        },
+        {
+          "id": "icon",
+          "label": "Tab icon",
+          "type": "icon"
+        },
+        {
+          "id": "badge",
+          "label": "Badge text",
+          "type": "text",
+          "placeholder": "New"
+        },
+        {
+          "id": "content",
+          "label": "Content",
+          "type": "richtext",
+          "placeholder": "Tab panel content goes here..."
+        },
+        {
+          "id": "image",
+          "label": "Content image",
+          "type": "image"
+        },
+        {
+          "id": "image_position",
+          "label": "Image position",
+          "type": "select",
+          "default": "right",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "Top",
+              "value": "top"
+            },
+            {
+              "label": "Background",
+              "value": "background"
+            }
+          ]
+        },
+        {
+          "id": "cta_text",
+          "label": "CTA button text",
+          "type": "text",
+          "placeholder": "Learn more"
+        },
+        {
+          "id": "cta_url",
+          "label": "CTA button URL",
+          "type": "link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "3 tabs with content",
+      "settings": {
+        "heading": "Everything you need",
+        "tab_position": "top",
+        "tab_style": "underline",
+        "alignment": "left",
+        "tab_animation": "fade",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "tab-1",
+          "type": "tab",
+          "settings": {
+            "title": "Features",
+            "icon": "zap",
+            "content": "<p>Discover all the powerful features built to help you succeed. From automation to analytics, everything works together seamlessly.</p>",
+            "cta_text": "Explore features",
+            "cta_url": "/features"
+          }
+        },
+        {
+          "id": "tab-2",
+          "type": "tab",
+          "settings": {
+            "title": "Pricing",
+            "icon": "dollar-sign",
+            "content": "<p>Simple, transparent pricing with no hidden fees. Choose the plan that works best for you and upgrade at any time.</p>",
+            "cta_text": "View pricing",
+            "cta_url": "/pricing"
+          }
+        },
+        {
+          "id": "tab-3",
+          "type": "tab",
+          "settings": {
+            "title": "Support",
+            "icon": "headphones",
+            "badge": "24/7",
+            "content": "<p>Our dedicated support team is available around the clock to help you with any questions or issues.</p>",
+            "cta_text": "Contact support",
+            "cta_url": "/contact"
+          }
+        }
+      ]
+    }
+  ]
+}

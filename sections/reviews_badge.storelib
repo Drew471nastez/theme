@@ -1,0 +1,84 @@
+{# ===========================================================================
+   Star rating (Storelib Reviews)
+
+   The stars, the average and how many reviews, as one line that jumps to
+   the reviews: under a product's name on its page, or the shop's rating
+   anywhere else. From `reviews.here` (lib/reviews/storefront.ts). With no
+   reviews, or Storelib Reviews off, it draws nothing on a live page.
+   =========================================================================== #}
+<template>
+{% if reviews.enabled %}
+{% if reviews.here.summary.count > 0 or page.in_editor %}
+<div class="s rb" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-accent: {{ scheme.accent }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --rv-star: {{ settings.star_color | default: reviews.star_color }}; --rb-size: {{ settings.size }}px;">
+  <div class="s__in s__in--{{ settings.max_width }} rb__in rb__in--{{ settings.align }}">
+    {% if reviews.here.summary.count > 0 %}
+      <a class="rb__link" href="{{ settings.link | default: '#reviews' }}">
+        <span class="rv-stars" style="--rv: {{ reviews.here.summary.percent }}%;" role="img" aria-label="{{ reviews.here.summary.average_label }} {{ words.out_of_five_stars }}"></span>
+        {% if settings.show_average %}<span class="rb__avg">{{ reviews.here.summary.average_label }}</span>{% endif %}
+        {% if settings.show_count %}<span class="rb__count">({{ reviews.here.summary.count }} {% if reviews.here.summary.count == 1 %}{{ words.review }}{% else %}{{ words.reviews }}{% endif %})</span>{% endif %}
+      </a>
+    {% else %}
+      <span class="rb__link rb__link--empty"><span class="rv-stars" style="--rv: 0%;"></span><span class="rb__count">{{ words.no_reviews_yet }}</span></span>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endif %}
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in { margin: 0 auto; padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1)); }
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.rb__in { display: flex; }
+.rb__in--center { justify-content: center; }
+.rb__in--right { justify-content: flex-end; }
+.rb__link { display: inline-flex; align-items: center; gap: 8px; font-size: calc(var(--rb-size) * 0.85); color: var(--s-para); text-decoration: none; }
+a.rb__link:hover .rb__count { text-decoration: underline; text-underline-offset: 3px; }
+.rb__link--empty { opacity: 0.6; }
+.rb__avg { font-weight: 700; color: var(--s-heading); font-variant-numeric: tabular-nums; }
+.rv-stars { position: relative; display: inline-block; font-size: var(--rb-size); line-height: 1; letter-spacing: 2px; color: color-mix(in srgb, var(--s-para) 22%, transparent); }
+.rv-stars::before { content: "\2605\2605\2605\2605\2605"; }
+.rv-stars::after { content: "\2605\2605\2605\2605\2605"; position: absolute; inset: 0 auto 0 0; width: var(--rv, 0%); overflow: hidden; white-space: nowrap; color: var(--rv-star, var(--s-accent)); }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "reviews_badge",
+  "name": "Star rating",
+  "category": "reviews",
+  "description": "Storelib Reviews: the stars and how many reviews, linking to them.",
+  "version": "1.0.0",
+  "icon": "star",
+  "supports_typography_overrides": false,
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "toggle", "id": "show_average", "label": "Show the average", "default": true },
+    { "type": "toggle", "id": "show_count", "label": "Show how many reviews", "default": true },
+    { "type": "text", "id": "link", "label": "Link", "default": "#reviews", "info": "#reviews jumps to the Product reviews section on the same page." },
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    { "type": "radio", "id": "align", "label": "Align", "default": "left", "options": [{ "label": "Left", "value": "left" }, { "label": "Centre", "value": "center" }, { "label": "Right", "value": "right" }] },
+    { "type": "range", "id": "size", "label": "Star size", "default": 18, "min": 12, "max": 32, "step": 1, "unit": "px" },
+    { "type": "select", "id": "max_width", "label": "Content width", "default": "wide", "options": [{ "label": "Narrow", "value": "narrow" }, { "label": "Medium", "value": "medium" }, { "label": "Wide", "value": "wide" }, { "label": "Full", "value": "full" }] },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "color", "id": "star_color", "label": "Star colour", "default": "", "info": "Empty uses the colour set in Storelib Reviews." },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 8, "min": 0, "max": 80, "step": 2, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 8, "min": 0, "max": 80, "step": 2, "unit": "px" }
+  ],
+  "presets": [{ "name": "Star rating", "settings": {} }]
+}
+</schema>

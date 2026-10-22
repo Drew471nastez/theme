@@ -1,0 +1,37 @@
+{
+  "sections": {
+    "collections-intro": {
+      "name": "Hero Centered",
+      "type": "hero_centered",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "DISCOVER",
+        "heading": "Our collections",
+        "subheading": "Explore everything in one place.",
+        "button_text": "",
+        "padding_top": 76,
+        "button2_text": "",
+        "color_scheme": "light",
+        "padding_bottom": 76
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "collections": {
+      "name": "Collections Grid",
+      "type": "collections_grid",
+      "hidden": false,
+      "settings": {
+        "padding_top": 64,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "collections-intro",
+    "collections"
+  ]
+}

@@ -1,0 +1,431 @@
+{# ===========================================================================
+   Reviews widget (Storelib Reviews)
+
+   One of the store's review widgets (lib/reviews/widgets): the product's
+   reviews, the stars under a title, a grid, a carousel, testimonials, a
+   photo wall, a strip that scrolls by, a trust badge or a rating summary.
+   Which one is `widget`; its look is the saved configuration it names
+   (`review_config`, made in Storelib Reviews › Widgets) with the few things
+   this page changes laid over it. Drawn by `review_widget`, the same
+   function the gallery and an imported theme use, from `reviews`
+   (lib/reviews/storefront.ts): published reviews only, never sample ones
+   on a live page. With Storelib Reviews off it draws nothing.
+   =========================================================================== #}
+<template>
+{% if reviews.enabled %}
+<section class="s rw" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+{{ settings | review_widget }}
+</section>
+{% endif %}
+</template>
+
+<style scoped>
+{{ settings | review_widget_css }}
+.s { background: var(--s-bg); color: var(--s-text); padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) 0 calc(var(--s-pb) * var(--theme-spacing-scale, 1)); --slw-theme-hs: var(--section-heading-size, 32px); }
+/* The theme's heading style (Theme settings › Typography, the section's heading style), unless the saved look picks its own font or size. */
+.s .slw__h {
+  font-family: var(--slw-font, var(--section-heading-font, var(--theme-font-heading, inherit)));
+  font-weight: var(--section-heading-weight, 700);
+  line-height: var(--section-heading-line-height, 1.15);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "reviews_widget",
+  "name": "Reviews widget",
+  "category": "reviews",
+  "description": "Storelib Reviews: one of your review widgets, with the look you saved in Storelib Reviews › Widgets.",
+  "version": "1.0.0",
+  "icon": "star",
+  "supports_typography_overrides": false,
+  "settings": [
+    {
+      "type": "header",
+      "id": "hdr_widget",
+      "label": "Widget"
+    },
+    {
+      "type": "select",
+      "id": "widget",
+      "label": "Widget",
+      "default": "product_reviews",
+      "options": [
+        {
+          "label": "Product reviews",
+          "value": "product_reviews"
+        },
+        {
+          "label": "Star rating",
+          "value": "star_badge"
+        },
+        {
+          "label": "Rating summary",
+          "value": "rating_summary"
+        },
+        {
+          "label": "Reviews grid",
+          "value": "grid"
+        },
+        {
+          "label": "Reviews carousel",
+          "value": "carousel"
+        },
+        {
+          "label": "Testimonials",
+          "value": "testimonials"
+        },
+        {
+          "label": "Photo reviews",
+          "value": "media_wall"
+        },
+        {
+          "label": "Review strip",
+          "value": "marquee"
+        },
+        {
+          "label": "Trust badge",
+          "value": "trust_badge"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "review_config",
+      "label": "Saved look",
+      "default": "",
+      "info": "Made in Storelib Reviews › Widgets. Empty uses the widget's own look."
+    },
+    {
+      "type": "header",
+      "id": "hdr_page",
+      "label": "On this page only"
+    },
+    {
+      "type": "paragraph",
+      "id": "note_page",
+      "content": "Anything left as saved follows the saved look, so changing the look in Storelib Reviews changes it here too."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "",
+      "placeholder": "As saved"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Supporting line",
+      "default": "",
+      "placeholder": "As saved"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Align",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Centre",
+          "value": "center"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns on a computer",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        },
+        {
+          "label": "5",
+          "value": "5"
+        },
+        {
+          "label": "6",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "limit",
+      "label": "How many reviews",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        },
+        {
+          "label": "6",
+          "value": "6"
+        },
+        {
+          "label": "8",
+          "value": "8"
+        },
+        {
+          "label": "9",
+          "value": "9"
+        },
+        {
+          "label": "10",
+          "value": "10"
+        },
+        {
+          "label": "12",
+          "value": "12"
+        },
+        {
+          "label": "16",
+          "value": "16"
+        },
+        {
+          "label": "20",
+          "value": "20"
+        },
+        {
+          "label": "24",
+          "value": "24"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "label": "Order",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "Featured first",
+          "value": "featured"
+        },
+        {
+          "label": "Newest",
+          "value": "newest"
+        },
+        {
+          "label": "Highest rated",
+          "value": "highest"
+        },
+        {
+          "label": "Lowest rated",
+          "value": "lowest"
+        },
+        {
+          "label": "With photos first",
+          "value": "photos"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "scope",
+      "label": "Whose reviews",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "The product's on its page, else the shop's",
+          "value": "auto"
+        },
+        {
+          "label": "The whole shop's",
+          "value": "shop"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "min_rating",
+      "label": "Lowest rating shown",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "Every rating",
+          "value": "1"
+        },
+        {
+          "label": "2 stars and up",
+          "value": "2"
+        },
+        {
+          "label": "3 stars and up",
+          "value": "3"
+        },
+        {
+          "label": "4 stars and up",
+          "value": "4"
+        },
+        {
+          "label": "5 stars and up",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "hide_when_empty",
+      "label": "With no reviews",
+      "default": "",
+      "options": [
+        {
+          "label": "As saved",
+          "value": ""
+        },
+        {
+          "label": "Hide it",
+          "value": "true"
+        },
+        {
+          "label": "Show it anyway",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star colour",
+      "default": "",
+      "info": "Empty uses the saved look."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "",
+      "info": "Empty uses the saved look."
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Section"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    { "type": "range", "id": "padding_top", "label": "Extra space above", "default": 0, "min": 0, "max": 120, "step": 4, "unit": "px", "info": "Around the widget on this page. The widget's own spacing is in its saved look." },
+    { "type": "range", "id": "padding_bottom", "label": "Extra space below", "default": 0, "min": 0, "max": 120, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    {
+      "name": "Product reviews",
+      "settings": {
+        "widget": "product_reviews"
+      }
+    },
+    {
+      "name": "Star rating",
+      "settings": {
+        "widget": "star_badge"
+      }
+    },
+    {
+      "name": "Rating summary",
+      "settings": {
+        "widget": "rating_summary"
+      }
+    },
+    {
+      "name": "Reviews grid",
+      "settings": {
+        "widget": "grid"
+      }
+    },
+    {
+      "name": "Reviews carousel",
+      "settings": {
+        "widget": "carousel"
+      }
+    },
+    {
+      "name": "Testimonials",
+      "settings": {
+        "widget": "testimonials"
+      }
+    },
+    {
+      "name": "Photo reviews",
+      "settings": {
+        "widget": "media_wall"
+      }
+    },
+    {
+      "name": "Review strip",
+      "settings": {
+        "widget": "marquee"
+      }
+    },
+    {
+      "name": "Trust badge",
+      "settings": {
+        "widget": "trust_badge"
+      }
+    }
+  ]
+}
+</schema>

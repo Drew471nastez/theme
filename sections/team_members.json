@@ -1,0 +1,238 @@
+{
+  "type": "team_members",
+  "name": "Team members",
+  "description": "Introduce your team with photos, bios, and social links.",
+  "supports_typography_overrides": false,
+  "icon": "users",
+  "category": "about",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Meet the team",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "The passionate people behind our product.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "grid",
+      "options": [
+        {
+          "label": "Grid",
+          "value": "grid"
+        },
+        {
+          "label": "List",
+          "value": "list"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        }
+      ]
+    },
+    {
+      "id": "columns",
+      "label": "Columns",
+      "type": "select",
+      "default": "3",
+      "options": [
+        {
+          "label": "2 columns",
+          "value": "2"
+        },
+        {
+          "label": "3 columns",
+          "value": "3"
+        },
+        {
+          "label": "4 columns",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team member",
+      "fields": [
+        {
+          "id": "photo",
+          "label": "Photo",
+          "type": "image",
+          "default": ""
+        },
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+          "default": "Alex Rivera",
+          "placeholder": "Full name"
+        },
+        {
+          "id": "role",
+          "label": "Role / title",
+          "type": "text",
+          "default": "Co-founder & CEO",
+          "placeholder": "Job title"
+        },
+        {
+          "id": "bio",
+          "label": "Bio",
+          "type": "textarea",
+          "default": "Alex has over a decade of experience building products people love.",
+          "placeholder": "Short bio"
+        },
+        {
+          "id": "social_twitter",
+          "label": "Twitter / X URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "https://twitter.com/…"
+        },
+        {
+          "id": "social_linkedin",
+          "label": "LinkedIn URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "https://linkedin.com/in/…"
+        },
+        {
+          "id": "social_instagram",
+          "label": "Instagram URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "https://instagram.com/…"
+        },
+        {
+          "id": "social_url",
+          "label": "Personal website URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "https://…"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Three-person grid",
+      "settings": {
+        "heading": "Meet the team",
+        "subheading": "The passionate people behind our product.",
+        "layout": "grid",
+        "columns": "3",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "tm1",
+          "type": "team_member",
+          "settings": {
+            "name": "Alex Rivera",
+            "role": "Co-founder & CEO",
+            "bio": "Alex has over a decade of experience building products people love."
+          }
+        },
+        {
+          "id": "tm2",
+          "type": "team_member",
+          "settings": {
+            "name": "Jordan Kim",
+            "role": "Head of Design",
+            "bio": "Jordan brings a human-centred design approach to every project."
+          }
+        },
+        {
+          "id": "tm3",
+          "type": "team_member",
+          "settings": {
+            "name": "Sam Torres",
+            "role": "Lead Engineer",
+            "bio": "Sam turns complex problems into elegant technical solutions."
+          }
+        }
+      ]
+    }
+  ]
+}

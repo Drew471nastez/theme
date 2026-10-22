@@ -1,0 +1,236 @@
+{
+  "type": "trust_badges",
+  "name": "Trust badges",
+  "description": "Reassure visitors with security, shipping, and quality badges.",
+  "supports_typography_overrides": false,
+  "icon": "shield",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Shop with confidence",
+      "placeholder": "Optional heading"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "row",
+      "options": [
+        {
+          "label": "Row",
+          "value": "row"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "id": "style",
+      "label": "Badge style",
+      "type": "select",
+      "default": "icon-text",
+      "options": [
+        {
+          "label": "Icon + text",
+          "value": "icon-text"
+        },
+        {
+          "label": "Icon only",
+          "value": "icon-only"
+        },
+        {
+          "label": "Full (icon + title + description)",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "fields": [
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "select",
+          "default": "shield",
+          "options": [
+            {
+              "label": "Shield (secure)",
+              "value": "shield"
+            },
+            {
+              "label": "Lock (encrypted)",
+              "value": "lock"
+            },
+            {
+              "label": "Checkmark",
+              "value": "check"
+            },
+            {
+              "label": "Star (quality)",
+              "value": "star"
+            },
+            {
+              "label": "Truck (shipping)",
+              "value": "truck"
+            },
+            {
+              "label": "Refresh (returns)",
+              "value": "refresh"
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "label": "Title",
+          "type": "text",
+          "default": "Secure checkout",
+          "placeholder": "Badge title"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Your data is always protected.",
+          "placeholder": "Short description"
+        },
+        {
+          "id": "color",
+          "label": "Icon color",
+          "type": "color",
+          "default": "#4f46e5"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Four trust badges",
+      "settings": {
+        "heading": "Shop with confidence",
+        "layout": "row",
+        "style": "icon-text",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "b1",
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "title": "Secure checkout",
+            "description": "256-bit SSL encryption on all transactions.",
+            "color": "#4f46e5"
+          }
+        },
+        {
+          "id": "b2",
+          "type": "badge",
+          "settings": {
+            "icon": "truck",
+            "title": "Free shipping",
+            "description": "Free standard delivery on orders over $50.",
+            "color": "#10b981"
+          }
+        },
+        {
+          "id": "b3",
+          "type": "badge",
+          "settings": {
+            "icon": "refresh",
+            "title": "Easy returns",
+            "description": "30-day no-questions-asked return policy.",
+            "color": "#f59e0b"
+          }
+        },
+        {
+          "id": "b4",
+          "type": "badge",
+          "settings": {
+            "icon": "star",
+            "title": "Quality guaranteed",
+            "description": "Every product backed by our quality promise.",
+            "color": "#ef4444"
+          }
+        }
+      ]
+    }
+  ]
+}

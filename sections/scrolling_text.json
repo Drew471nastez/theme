@@ -1,0 +1,246 @@
+{
+  "type": "scrolling_text",
+  "name": "Scrolling text",
+  "description": "Horizontal marquee of repeating text blocks with optional separator icons.",
+  "icon": "move-horizontal",
+  "category": "content",
+  "fields": [
+    {
+      "id": "hdr_scroll",
+      "label": "Scrolling",
+      "type": "header"
+    },
+    {
+      "id": "direction",
+      "label": "Direction",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "icon_between_item",
+      "label": "Icon between items",
+      "type": "select",
+      "default": "unset",
+      "options": [
+        {
+          "label": "None",
+          "value": "unset"
+        },
+        {
+          "label": "Dot",
+          "value": "dot"
+        },
+        {
+          "label": "Star",
+          "value": "star"
+        },
+        {
+          "label": "Wireless",
+          "value": "wireless"
+        },
+        {
+          "label": "Flower",
+          "value": "flower"
+        },
+        {
+          "label": "Petal",
+          "value": "petal"
+        }
+      ]
+    },
+    {
+      "id": "speed",
+      "label": "Speed",
+      "type": "range",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "default": 20
+    },
+    {
+      "id": "space_between_text",
+      "label": "Space between items",
+      "type": "range",
+      "min": 30,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "font_size",
+      "label": "Font size",
+      "type": "range",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "id": "font_weight",
+      "label": "Font weight",
+      "type": "select",
+      "default": "body_weight",
+      "options": [
+        {
+          "label": "Body",
+          "value": "body_weight"
+        },
+        {
+          "label": "Subheading",
+          "value": "subheading_weight"
+        },
+        {
+          "label": "Heading",
+          "value": "heading_weight"
+        }
+      ]
+    },
+    {
+      "id": "uppercase",
+      "label": "Uppercase",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "use_heading_font",
+      "label": "Use heading font",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scrolling_text",
+      "name": "Scrolling item",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Image",
+          "type": "image"
+        },
+        {
+          "id": "content",
+          "label": "Content",
+          "type": "text",
+          "default": "Free delivery and returns from $120"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Default scrolling text",
+      "settings": {
+        "direction": "left",
+        "icon_between_item": "star",
+        "speed": 20,
+        "space_between_text": 60,
+        "font_size": 14,
+        "uppercase": true,
+        "color_scheme": "black"
+      },
+      "blocks": [
+        {
+          "id": "s1",
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Free delivery from $120"
+          }
+        },
+        {
+          "id": "s2",
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Sign up for 10% off your first order"
+          }
+        },
+        {
+          "id": "s3",
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Hand crafted in small batches"
+          }
+        },
+        {
+          "id": "s4",
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Free returns within 30 days"
+          }
+        }
+      ]
+    }
+  ]
+}

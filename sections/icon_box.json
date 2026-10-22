@@ -1,0 +1,337 @@
+{
+  "type": "icon_box",
+  "name": "Icon box",
+  "description": "Feature grid of icon + title + description cards.",
+  "supports_typography_overrides": false,
+  "icon": "layout-grid",
+  "category": "content",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea"
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_icon",
+      "label": "Icon settings",
+      "type": "header"
+    },
+    {
+      "id": "type",
+      "label": "Layout",
+      "type": "select",
+      "default": "grid",
+      "options": [
+        {
+          "label": "Grid",
+          "value": "grid"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        }
+      ]
+    },
+    {
+      "id": "items_per_row",
+      "label": "Items per row",
+      "type": "range",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "column_gap",
+      "label": "Column gap",
+      "type": "range",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "id": "icon_position",
+      "label": "Icon position",
+      "type": "select",
+      "default": "top",
+      "options": [
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Left",
+          "value": "left"
+        }
+      ]
+    },
+    {
+      "id": "icon_size",
+      "label": "Icon size",
+      "type": "range",
+      "min": 16,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "id": "show_border",
+      "label": "Show border",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "enable_background",
+      "label": "Enable background",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_box",
+      "name": "Icon box",
+      "fields": [
+        {
+          "id": "icon_svg",
+          "label": "Icon",
+          "type": "select",
+          "default": "truck",
+          "options": [
+            {
+              "label": "None",
+              "value": "none"
+            },
+            {
+              "label": "Free shipping",
+              "value": "free_shipping"
+            },
+            {
+              "label": "Check badge",
+              "value": "check_badge"
+            },
+            {
+              "label": "Message",
+              "value": "message_communications"
+            },
+            {
+              "label": "Payment",
+              "value": "payment"
+            },
+            {
+              "label": "Boat",
+              "value": "boat"
+            },
+            {
+              "label": "Truck",
+              "value": "truck"
+            },
+            {
+              "label": "Location",
+              "value": "location"
+            },
+            {
+              "label": "Leaf",
+              "value": "leaf"
+            },
+            {
+              "label": "Phone",
+              "value": "phone"
+            },
+            {
+              "label": "Email",
+              "value": "email"
+            },
+            {
+              "label": "Chat",
+              "value": "chat"
+            },
+            {
+              "label": "Bag",
+              "value": "bag"
+            },
+            {
+              "label": "Support",
+              "value": "support"
+            }
+          ]
+        },
+        {
+          "id": "icon_image",
+          "label": "Custom icon image",
+          "type": "image"
+        },
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "This is heading text"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Tell about your service."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Four icon boxes",
+      "settings": {
+        "heading": "Why shop with us",
+        "description": "",
+        "items_per_row": 4,
+        "icon_position": "top",
+        "content_alignment": "center",
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "i1",
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "truck",
+            "heading": "Free shipping",
+            "description": "On orders over $120."
+          }
+        },
+        {
+          "id": "i2",
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "check_badge",
+            "heading": "Quality guarantee",
+            "description": "30-day free returns."
+          }
+        },
+        {
+          "id": "i3",
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "support",
+            "heading": "24/7 support",
+            "description": "Chat with our team anytime."
+          }
+        },
+        {
+          "id": "i4",
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "payment",
+            "heading": "Secure payment",
+            "description": "Protected by 256-bit SSL."
+          }
+        }
+      ]
+    }
+  ]
+}

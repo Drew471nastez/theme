@@ -1,0 +1,445 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "description": "Site footer with logo, menus, policies, newsletter, social and payment icons",
+  "supports_typography_overrides": false,
+  "icon": "layout-template",
+  "category": "structure",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "logo_text",
+      "label": "Logo text",
+      "type": "text",
+      "placeholder": "My Store"
+    },
+    {
+      "id": "logo_url",
+      "label": "Logo image",
+      "type": "image"
+    },
+    {
+      "id": "tagline",
+      "label": "Tagline",
+      "type": "text",
+      "placeholder": "Quality products for modern life."
+    },
+    {
+      "id": "copyright",
+      "label": "Copyright text",
+      "type": "text",
+      "placeholder": "© {{ date.year }} {{ shop.name }}. All rights reserved.",
+      "info": "Write {{ date.year }} and {{ shop.name }} to keep the year and the name current. Empty shows © year and the store name."
+    },
+    {
+      "id": "hdr_menus",
+      "label": "Menus",
+      "type": "header"
+    },
+    {
+      "id": "menu",
+      "label": "First menu",
+      "type": "link_list",
+      "default": "",
+      "info": "A menu from Theme settings › Menus, shown as a column. Empty shows only the footer's own links."
+    },
+    {
+      "id": "menu_heading",
+      "label": "First menu heading",
+      "type": "text",
+      "placeholder": "Shop",
+      "info": "Empty uses the menu's name."
+    },
+    {
+      "id": "menu_2",
+      "label": "Second menu",
+      "type": "link_list",
+      "default": ""
+    },
+    {
+      "id": "menu_2_heading",
+      "label": "Second menu heading",
+      "type": "text",
+      "placeholder": "Info",
+      "info": "Empty uses the menu's name."
+    },
+    {
+      "id": "show_default_links",
+      "label": "Show Shop and Help links",
+      "type": "toggle",
+      "default": true,
+      "info": "Used when the footer has no menu and no links of its own: all products, search, contact and account."
+    },
+    {
+      "id": "hdr_policies",
+      "label": "Policies",
+      "type": "header"
+    },
+    {
+      "id": "show_policies",
+      "label": "Show policy links",
+      "type": "toggle",
+      "default": true,
+      "info": "Refund, privacy, terms and shipping pages, listed automatically when the site has them."
+    },
+    {
+      "id": "show_contact_link",
+      "label": "Include Contact",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_contact",
+      "label": "Contact",
+      "type": "header"
+    },
+    {
+      "id": "contact_email",
+      "label": "Email",
+      "type": "text",
+      "placeholder": "hello@example.com",
+      "info": "Shown in a Contact column, with the phone number."
+    },
+    {
+      "id": "contact_phone",
+      "label": "Phone",
+      "type": "text",
+      "placeholder": "+1 555 123 4567"
+    },
+    {
+      "id": "hdr_newsletter",
+      "label": "Newsletter",
+      "type": "header"
+    },
+    {
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "type": "toggle",
+      "default": true,
+      "info": "Sign-ups go to Subscribers."
+    },
+    {
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "type": "text",
+      "placeholder": "Stay in the loop"
+    },
+    {
+      "id": "newsletter_subtext",
+      "label": "Newsletter subtext",
+      "type": "text",
+      "placeholder": "Get updates on new arrivals and exclusive offers."
+    },
+    {
+      "id": "newsletter_button_text",
+      "label": "Subscribe button text",
+      "type": "text",
+      "placeholder": "Subscribe"
+    },
+    {
+      "id": "hdr_social",
+      "label": "Social Links",
+      "type": "header"
+    },
+    {
+      "id": "show_social",
+      "label": "Show social icons",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "social_instagram",
+      "label": "Instagram URL",
+      "type": "link"
+    },
+    {
+      "id": "social_twitter",
+      "label": "Twitter / X URL",
+      "type": "link"
+    },
+    {
+      "id": "social_facebook",
+      "label": "Facebook URL",
+      "type": "link"
+    },
+    {
+      "id": "social_tiktok",
+      "label": "TikTok URL",
+      "type": "link"
+    },
+    {
+      "id": "social_youtube",
+      "label": "YouTube URL",
+      "type": "link"
+    },
+    {
+      "id": "hdr_payments",
+      "label": "Payment icons",
+      "type": "header"
+    },
+    {
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "type": "toggle",
+      "default": false,
+      "info": "Visa, Mastercard, American Express, Apple Pay and Google Pay."
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "heading_color",
+      "label": "Column heading color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent / link hover color",
+      "type": "color",
+      "default": ""
+    },
+    {
+      "id": "divider_color",
+      "label": "Divider color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "columns",
+      "options": [
+        {
+          "label": "Logo left, links right",
+          "value": "columns"
+        },
+        {
+          "label": "Centered",
+          "value": "centered"
+        }
+      ]
+    },
+    {
+      "id": "columns",
+      "label": "Link columns",
+      "type": "select",
+      "default": "3",
+      "options": [
+        {
+          "label": "1 column",
+          "value": "1"
+        },
+        {
+          "label": "2 columns",
+          "value": "2"
+        },
+        {
+          "label": "3 columns",
+          "value": "3"
+        },
+        {
+          "label": "4 columns",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer_column",
+      "name": "Link column",
+      "fields": [
+        {
+          "id": "heading",
+          "label": "Column heading",
+          "type": "text",
+          "placeholder": "Company"
+        }
+      ]
+    },
+    {
+      "type": "footer_link",
+      "name": "Footer link",
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "placeholder": "About us"
+        },
+        {
+          "id": "url",
+          "label": "URL",
+          "type": "link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Dark footer with 3 columns",
+      "settings": {
+        "logo_text": "My Store",
+        "tagline": "Quality products for modern life.",
+        "copyright": "© {{ date.year }} {{ shop.name }}. All rights reserved.",
+        "show_newsletter": true,
+        "show_social": true,
+        "columns": "3",
+        "padding_top": 60,
+        "padding_bottom": 40,
+        "color_scheme": "dark",
+        "show_policies": true,
+        "show_default_links": true,
+        "show_payment_icons": false,
+        "layout": "columns"
+      },
+      "blocks": [
+        {
+          "id": "col-1",
+          "type": "footer_column",
+          "settings": {
+            "heading": "Shop"
+          }
+        },
+        {
+          "id": "fl-1",
+          "type": "footer_link",
+          "settings": {
+            "label": "All products",
+            "url": "/products"
+          }
+        },
+        {
+          "id": "col-2",
+          "type": "footer_column",
+          "settings": {
+            "heading": "Company"
+          }
+        },
+        {
+          "id": "fl-2",
+          "type": "footer_link",
+          "settings": {
+            "label": "About",
+            "url": "/about"
+          }
+        },
+        {
+          "id": "fl-3",
+          "type": "footer_link",
+          "settings": {
+            "label": "Contact",
+            "url": "/contact"
+          }
+        }
+      ]
+    }
+  ]
+}

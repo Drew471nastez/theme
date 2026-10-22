@@ -1,0 +1,263 @@
+{
+  "type": "counter",
+  "name": "Counter",
+  "description": "Grid of animated counting numbers with heading and description.",
+  "supports_typography_overrides": false,
+  "icon": "hash",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Our achievements"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Numbers that tell our story."
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_counter",
+      "label": "Counter",
+      "type": "header"
+    },
+    {
+      "id": "speed",
+      "label": "Animation speed",
+      "type": "range",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "id": "items_per_row",
+      "label": "Items per row",
+      "type": "range",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "id": "column_gap",
+      "label": "Column gap",
+      "type": "range",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "number_font_size",
+      "label": "Number font size",
+      "type": "range",
+      "min": 20,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "type": "range",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "counter",
+      "name": "Counter item",
+      "fields": [
+        {
+          "id": "starting_number",
+          "label": "Starting number",
+          "type": "number",
+          "default": 0
+        },
+        {
+          "id": "ending_number",
+          "label": "Ending number",
+          "type": "number",
+          "default": 50
+        },
+        {
+          "id": "unit",
+          "label": "Unit (k, %, +, etc.)",
+          "type": "text",
+          "default": ""
+        },
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Products for sale"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "A diverse range of products for every style."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Three stat counters",
+      "settings": {
+        "heading": "Our achievements",
+        "description": "Numbers that tell our story.",
+        "items_per_row": 3,
+        "speed": 5,
+        "content_alignment": "center",
+        "color_scheme": "white",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": [
+        {
+          "id": "c1",
+          "type": "counter",
+          "settings": {
+            "starting_number": 0,
+            "ending_number": 53,
+            "unit": "k",
+            "heading": "Products for sale",
+            "description": "A diverse range of products for every style."
+          }
+        },
+        {
+          "id": "c2",
+          "type": "counter",
+          "settings": {
+            "starting_number": 0,
+            "ending_number": 8,
+            "unit": "k",
+            "heading": "Happy customers",
+            "description": "We pride ourselves on great products and experiences."
+          }
+        },
+        {
+          "id": "c3",
+          "type": "counter",
+          "settings": {
+            "starting_number": 0,
+            "ending_number": 120,
+            "unit": "+",
+            "heading": "Countries served",
+            "description": "Shipping worldwide with trusted partners."
+          }
+        }
+      ]
+    }
+  ]
+}

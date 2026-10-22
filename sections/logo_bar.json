@@ -1,0 +1,247 @@
+{
+  "type": "logo_bar",
+  "name": "Logo bar",
+  "description": "Showcase partner, client, or integration logos.",
+  "supports_typography_overrides": false,
+  "icon": "grid",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Trusted by leading companies",
+      "placeholder": "Optional heading above logos"
+    },
+    {
+      "id": "style",
+      "label": "Style",
+      "type": "select",
+      "default": "scroll",
+      "options": [
+        {
+          "label": "Row (static)",
+          "value": "row"
+        },
+        {
+          "label": "Auto-scroll",
+          "value": "scroll"
+        },
+        {
+          "label": "Grid",
+          "value": "grid"
+        }
+      ]
+    },
+    {
+      "id": "speed",
+      "label": "Scroll speed (s)",
+      "type": "range",
+      "default": 30,
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "info": "Duration for one full scroll loop"
+    },
+    {
+      "id": "logo_height",
+      "label": "Logo height",
+      "type": "range",
+      "default": 40,
+      "min": 30,
+      "max": 80,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "id": "opacity",
+      "label": "Logo opacity",
+      "type": "range",
+      "default": 70,
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "id": "grayscale",
+      "label": "Grayscale logos",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_label",
+      "label": "Show company label",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "hdr_colors",
+      "label": "Colors",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 40,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Logo image",
+          "type": "image",
+          "default": ""
+        },
+        {
+          "id": "alt",
+          "label": "Alt text",
+          "type": "text",
+          "default": "",
+          "placeholder": "Company name"
+        },
+        {
+          "id": "url",
+          "label": "Link URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "Optional link"
+        },
+        {
+          "id": "label",
+          "label": "Company label",
+          "type": "text",
+          "default": "",
+          "placeholder": "Shown if labels enabled"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Scrolling logo bar",
+      "settings": {
+        "heading": "Trusted by leading companies",
+        "style": "scroll",
+        "speed": 30,
+        "logo_height": 40,
+        "opacity": 70,
+        "grayscale": true,
+        "show_label": false,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "l1",
+          "type": "logo",
+          "settings": {
+            "alt": "Acme Corp",
+            "label": "Acme Corp"
+          }
+        },
+        {
+          "id": "l2",
+          "type": "logo",
+          "settings": {
+            "alt": "Globex",
+            "label": "Globex"
+          }
+        },
+        {
+          "id": "l3",
+          "type": "logo",
+          "settings": {
+            "alt": "Initech",
+            "label": "Initech"
+          }
+        },
+        {
+          "id": "l4",
+          "type": "logo",
+          "settings": {
+            "alt": "Umbrella",
+            "label": "Umbrella"
+          }
+        },
+        {
+          "id": "l5",
+          "type": "logo",
+          "settings": {
+            "alt": "Hooli",
+            "label": "Hooli"
+          }
+        }
+      ]
+    }
+  ]
+}

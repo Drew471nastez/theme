@@ -1,0 +1,242 @@
+{
+  "type": "promotion_banner",
+  "name": "Promotion banner",
+  "description": "Large side-by-side image + text with call-to-action buttons.",
+  "supports_typography_overrides": false,
+  "icon": "megaphone",
+  "category": "marketing",
+  "fields": [
+    {
+      "id": "hdr_image",
+      "label": "Image",
+      "type": "header"
+    },
+    {
+      "id": "background_image",
+      "label": "Background image",
+      "type": "image"
+    },
+    {
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "type": "image"
+    },
+    {
+      "id": "content_position",
+      "label": "Content position",
+      "type": "select",
+      "default": "middle-left",
+      "options": [
+        {
+          "label": "Top left",
+          "value": "top-left"
+        },
+        {
+          "label": "Top center",
+          "value": "top-center"
+        },
+        {
+          "label": "Top right",
+          "value": "top-right"
+        },
+        {
+          "label": "Middle left",
+          "value": "middle-left"
+        },
+        {
+          "label": "Middle center",
+          "value": "middle-center"
+        },
+        {
+          "label": "Middle right",
+          "value": "middle-right"
+        },
+        {
+          "label": "Bottom left",
+          "value": "bottom-left"
+        },
+        {
+          "label": "Bottom center",
+          "value": "bottom-center"
+        },
+        {
+          "label": "Bottom right",
+          "value": "bottom-right"
+        }
+      ]
+    },
+    {
+      "id": "image_overlay_opacity",
+      "label": "Image overlay opacity",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "id": "min_height",
+      "label": "Min height",
+      "type": "range",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "default": "Limited time"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "textarea",
+      "default": "Big summer sale"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Up to 50% off selected items. Shop now while stocks last."
+    },
+    {
+      "id": "first_button_label",
+      "label": "First button label",
+      "type": "text",
+      "default": "Shop now"
+    },
+    {
+      "id": "first_button_link",
+      "label": "First button URL",
+      "type": "link"
+    },
+    {
+      "id": "first_button_type",
+      "label": "First button type",
+      "type": "select",
+      "default": "primary",
+      "options": [
+        {
+          "label": "Primary",
+          "value": "primary"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Link",
+          "value": "link"
+        }
+      ]
+    },
+    {
+      "id": "second_button_label",
+      "label": "Second button label",
+      "type": "text"
+    },
+    {
+      "id": "second_button_link",
+      "label": "Second button URL",
+      "type": "link"
+    },
+    {
+      "id": "second_button_type",
+      "label": "Second button type",
+      "type": "select",
+      "default": "outline",
+      "options": [
+        {
+          "label": "Primary",
+          "value": "primary"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Link",
+          "value": "link"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "dark",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default promotion",
+      "settings": {
+        "heading": "Big summer sale",
+        "subheading": "Limited time",
+        "description": "Up to 50% off selected items.",
+        "first_button_label": "Shop now",
+        "first_button_type": "primary",
+        "content_position": "middle-left",
+        "image_overlay_opacity": 25,
+        "min_height": 420,
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}

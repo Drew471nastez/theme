@@ -1,0 +1,177 @@
+<template>
+<section class="fw fw-itg" data-scheme="{{ settings.color_scheme }}" style="--fw-bg:{{ scheme.bg }};--fw-title:{{ scheme.heading }};--fw-text:{{ scheme.text }};--fw-muted:{{ scheme.paragraph }};--fw-line:{{ scheme.border }};--fw-accent:{{ scheme.heading }};--fw-button:{{ scheme.primary_btn_bg }};--fw-button-text:{{ scheme.primary_btn_text }};--fw-radius:{{ theme.radius.medium }}px;--fw-top:{{ settings.padding_top }}px;--fw-bottom:{{ settings.padding_bottom }}px;"><div class="fw__inner fw-itg__layout">
+ <div class="fw-itg__image">{% if settings.image %}<img src="{{ settings.image | asset }}" alt="{{ settings.image_alt }}" loading="lazy" decoding="async">{% else %}<div class="fw-itg__empty" aria-hidden="true"><span></span></div>{% endif %}</div>
+ <div class="fw-itg__copy">{% if settings.eyebrow %}<p class="fw__overline">{{ settings.eyebrow }}</p>{% endif %}<h2 class="fw__heading">{{ settings.heading }}</h2>{% if settings.intro %}<p class="fw__lede">{{ settings.intro }}</p>{% endif %}
+ <div class="fw-itg__list">{% for block in blocks %}<div class="fw-itg__item" data-block-id="{{ block.id }}"><span>✳</span><div><strong>{{ block.settings.title }}</strong><p>{{ block.settings.text }}</p></div></div>{% endfor %}</div>
+ {% if settings.button_label %}<a class="fw__action" data-sl-button href="{{ settings.button_url | default: '/products' | url }}">{{ settings.button_label }} ↗</a>{% endif %}</div>
+ </div></section>
+</template>
+
+<style scoped>
+.fw{background:var(--fw-bg);color:var(--fw-text);container-type:inline-size;font-family:var(--theme-font-body),sans-serif;}
+.fw,.fw *{box-sizing:border-box;}
+.fw *{min-width:0;}
+.fw img{display:block;max-width:100%;}
+.fw a{color:inherit;}
+.fw__inner{max-width:var(--theme-page-width,1280px);padding:calc(var(--fw-top) * var(--theme-spacing-scale,1)) var(--theme-padding-x,clamp(18px,4vw,48px)) calc(var(--fw-bottom) * var(--theme-spacing-scale,1));margin-inline:auto;}
+.fw__overline{margin:0 0 14px;font-family:var(--sl-caption-font,inherit);font-size:var(--sl-caption-size,11px);font-weight:var(--sl-caption-weight,800);letter-spacing:var(--sl-caption-tracking,.16em);text-transform:var(--sl-caption-transform,uppercase);color:var(--fw-accent);}
+.fw__heading{margin:0;color:var(--fw-title);font-family:var(--section-heading-font,var(--theme-font-heading)),sans-serif;font-size:var(--section-heading-size,clamp(30px,4.2cqi,56px));font-weight:var(--section-heading-weight,650);line-height:var(--section-heading-line-height,1.12);letter-spacing:var(--section-heading-tracking,-.044em);text-transform:var(--section-heading-transform,none);overflow-wrap:anywhere;}
+.fw__lede{max-width:57ch;margin:20px 0 0;font-family:var(--theme-font-body),sans-serif;font-size:var(--section-text-size,clamp(15px,1.45cqi,18px));line-height:var(--section-text-line-height,1.7);color:var(--fw-muted);}
+.fw__action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:var(--sl-button-padding,12px 21px);text-decoration:none;border-radius:var(--theme-button-radius,var(--fw-radius));font-family:var(--theme-font-body),sans-serif;font-weight:var(--theme-button-weight,var(--type-button-weight,650));font-size:var(--sl-button-size,var(--type-button-size,14px));line-height:var(--sl-button-line-height,1.2);letter-spacing:var(--type-button-tracking,0);text-transform:var(--type-button-transform,none);background:var(--fw-button);color:var(--fw-button-text)!important;border:1px solid var(--fw-button);box-shadow:var(--sl-btn-shadow,none);transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .25s cubic-bezier(.22,1,.36,1);}
+.fw__action:hover{background:var(--scheme-button-primary-hover,var(--fw-button));color:var(--scheme-button-primary-hover-text,var(--fw-button-text))!important;}
+.fw__action--secondary{background:transparent!important;color:var(--fw-title)!important;border-color:var(--fw-line);}
+.fw__action--secondary:hover{background:var(--scheme-button-secondary-hover,transparent)!important;color:var(--scheme-button-secondary-hover-text,var(--fw-title))!important;border-color:var(--scheme-button-secondary-border,var(--fw-line));}
+.fw a:focus-visible,.fw button:focus-visible,.fw summary:focus-visible,.fw input:focus-visible{outline:3px solid var(--fw-accent);outline-offset:4px;}
+@media(prefers-reduced-motion:reduce){.fw *, .fw *::before,.fw *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
+
+.fw-itg__layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,90px);align-items:center}.fw-itg__image{width:100%;aspect-ratio:.92;overflow:hidden;background:#bdcdbf;border-radius:18px}.fw-itg__image img{height:100%;width:100%;object-fit:cover}.fw-itg__empty{position:relative;height:100%;background:linear-gradient(145deg,#e5e7db,#a3b5a8)}.fw-itg__empty>span{position:absolute;width:55%;height:74%;background:linear-gradient(130deg,#597d68,#d6dfd2);border-radius:43% 43% 10% 10%;transform:rotate(-18deg);top:14%;left:22%;box-shadow:15px 30px 46px #0002}.fw-itg__list{margin:28px 0}.fw-itg__item{display:flex;gap:18px;border-top:1px solid var(--fw-line);padding:21px 0}.fw-itg__item>span{font-size:16px;color:var(--fw-title);flex:none}.fw-itg__item strong{display:block;font-size:16px;color:var(--fw-title)}.fw-itg__item p{margin:6px 0 0;color:var(--fw-muted);font-size:14px;line-height:1.65}
+@container(max-width:750px){.fw-itg__layout{grid-template-columns:1fr}.fw-itg__image{aspect-ratio:1.35}}
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "foundation_image_text_grid",
+  "name": "Foundation / Image and benefits",
+  "category": "images",
+  "description": "Large editorial image paired with an ordered list of useful features.",
+  "version": "1.0.0",
+  "icon": "image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Overline",
+      "default": "WHY IT MATTERS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Designed for the everyday."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Simple choices, considered from the start."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image description",
+      "default": "A close-up of the collection"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore the range"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link",
+      "default": "/products"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "light"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "default": 80,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "default": 80,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Scroll animation",
+      "default": "theme",
+      "options": [
+        {"value": "theme", "label": "Theme setting"},
+        {"value": "none", "label": "None"},
+        {"value": "fade", "label": "Fade"},
+        {"value": "fade_up", "label": "Fade up"},
+        {"value": "rise", "label": "Rise"},
+        {"value": "zoom", "label": "Zoom"},
+        {"value": "blur", "label": "Blur"},
+        {"value": "slide_left", "label": "From the right"},
+        {"value": "slide_right", "label": "From the left"}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image and benefits",
+      "blocks": [
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Good from the start",
+            "text": "A considered approach to everything we make."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Built around you",
+            "text": "Straightforward details and a better everyday experience."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "title": "Nothing unnecessary",
+            "text": "Just the essentials, done well."
+          }
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Benefit",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Thoughtful by design"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "A simple explanation of this benefit."
+        }
+      ]
+    }
+  ]
+}
+</schema>

@@ -1,0 +1,59 @@
+{
+  "type": "overlay",
+  "name": "Overlay group",
+  "sections": {
+    "mobile_bottom_bar-1792591174004": {
+      "name": "Phone tab bar",
+      "type": "mobile_bottom_bar",
+      "hidden": false,
+      "settings": {},
+      "blocks": {
+        "block-mvi6i25w-1-zryxt": {
+          "type": "item",
+          "settings": {
+            "url": "/",
+            "does": "link",
+            "icon": "home",
+            "label": "Home"
+          }
+        },
+        "block-mvi6i25w-2-nx6hq": {
+          "type": "item",
+          "settings": {
+            "url": "/products",
+            "does": "link",
+            "icon": "shop",
+            "label": "Shop"
+          }
+        },
+        "block-mvi6i25w-3-id58h": {
+          "type": "item",
+          "settings": {
+            "url": "",
+            "does": "search",
+            "icon": "search",
+            "label": "Search"
+          }
+        },
+        "block-mvi6i25w-4-8awdj": {
+          "type": "item",
+          "settings": {
+            "url": "",
+            "does": "cart",
+            "icon": "cart",
+            "label": "Cart"
+          }
+        }
+      },
+      "block_order": [
+        "block-mvi6i25w-1-zryxt",
+        "block-mvi6i25w-2-nx6hq",
+        "block-mvi6i25w-3-id58h",
+        "block-mvi6i25w-4-8awdj"
+      ]
+    }
+  },
+  "order": [
+    "mobile_bottom_bar-1792591174004"
+  ]
+}

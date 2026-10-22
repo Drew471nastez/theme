@@ -1,0 +1,310 @@
+{
+  "type": "social_proof_bar",
+  "name": "Social proof bar",
+  "description": "A compact bar showcasing star ratings, review counts, customer numbers, and trust signals",
+  "icon": "bar-chart",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "show_rating",
+      "label": "Show star rating",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "rating_value",
+      "label": "Rating value",
+      "type": "range",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "default": 4.9
+    },
+    {
+      "id": "review_count",
+      "label": "Review count",
+      "type": "text",
+      "placeholder": "2,400+"
+    },
+    {
+      "id": "rating_label",
+      "label": "Rating label",
+      "type": "text",
+      "placeholder": "from 2,400+ reviews"
+    },
+    {
+      "id": "show_customer_count",
+      "label": "Show customer count",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "customer_count",
+      "label": "Customer count",
+      "type": "text",
+      "placeholder": "10,000+"
+    },
+    {
+      "id": "customer_label",
+      "label": "Customer label",
+      "type": "text",
+      "placeholder": "happy customers"
+    },
+    {
+      "id": "show_guarantee",
+      "label": "Show guarantee badge",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "guarantee_text",
+      "label": "Guarantee text",
+      "type": "text",
+      "placeholder": "30-day money-back guarantee"
+    },
+    {
+      "id": "show_security",
+      "label": "Show security badge",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "security_text",
+      "label": "Security text",
+      "type": "text",
+      "placeholder": "Secure checkout"
+    },
+    {
+      "id": "hdr_logos",
+      "label": "Trust Logos",
+      "type": "header"
+    },
+    {
+      "id": "show_trust_logos",
+      "label": "Show trust logos",
+      "type": "toggle",
+      "default": false,
+      "info": "Add each logo as a Trust logo block under this section."
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "star_color",
+      "label": "Star color",
+      "type": "color",
+      "default": "#f59e0b"
+    },
+    {
+      "id": "icon_color",
+      "label": "Icon color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "divider_color",
+      "label": "Divider color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "show_dividers",
+      "label": "Show dividers between items",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "alignment",
+      "label": "Alignment",
+      "type": "radio",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rating + customer count",
+      "settings": {
+        "show_rating": true,
+        "rating_value": 4.9,
+        "review_count": "2,400+",
+        "rating_label": "from 2,400+ reviews",
+        "show_customer_count": true,
+        "customer_count": "10,000+",
+        "customer_label": "happy customers",
+        "show_guarantee": true,
+        "guarantee_text": "30-day money-back guarantee",
+        "show_security": true,
+        "security_text": "Secure checkout",
+        "show_trust_logos": false,
+        "star_color": "#f59e0b",
+        "show_dividers": true,
+        "alignment": "center",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "color_scheme": "light"
+      }
+    },
+    {
+      "name": "Minimal ratings strip",
+      "settings": {
+        "show_rating": true,
+        "rating_value": 4.8,
+        "review_count": "500+",
+        "rating_label": "verified reviews",
+        "show_customer_count": false,
+        "show_guarantee": true,
+        "guarantee_text": "Risk-free 30-day trial",
+        "show_security": true,
+        "security_text": "SSL encrypted",
+        "star_color": "#f59e0b",
+        "show_dividers": false,
+        "alignment": "center",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "color_scheme": "white"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_logo",
+      "name": "Trust logo",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Logo",
+          "type": "image",
+          "default": ""
+        },
+        {
+          "id": "alt",
+          "label": "Name",
+          "type": "text",
+          "default": "",
+          "placeholder": "Visa, PayPal, Trustpilot"
+        },
+        {
+          "id": "url",
+          "label": "Link",
+          "type": "link",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}

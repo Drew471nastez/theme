@@ -1,0 +1,74 @@
+{# ===========================================================================
+   Heading: a theme block
+
+   One line of title, in any section that accepts theme blocks. Its colour
+   is a setting of its own that follows the section's scheme ("default":
+   "scheme.heading") until somebody picks one, so the same block is right on
+   a light section and a dark one. The colour reaches the CSS as an inline
+   custom property, so the rule stays one per type and not one per block.
+   =========================================================================== #}
+<template>
+{% if block.settings.level == 'h1' %}<h1 class="sl-heading sl-heading--{{ block.settings.size }} sl-heading--{{ block.settings.align }}" style="--heading-color: {{ block.settings.color | default: scheme.heading }};">{{ block.settings.text }}</h1>
+{% elsif block.settings.level == 'h3' %}<h3 class="sl-heading sl-heading--{{ block.settings.size }} sl-heading--{{ block.settings.align }}" style="--heading-color: {{ block.settings.color | default: scheme.heading }};">{{ block.settings.text }}</h3>
+{% else %}<h2 class="sl-heading sl-heading--{{ block.settings.size }} sl-heading--{{ block.settings.align }}" style="--heading-color: {{ block.settings.color | default: scheme.heading }};">{{ block.settings.text }}</h2>{% endif %}
+</template>
+
+<style>
+.sl-heading {
+  margin: 0;
+  color: var(--heading-color, var(--s-heading, inherit));
+  font-family: var(--section-heading-font, var(--theme-font-heading, inherit), ui-sans-serif, system-ui, sans-serif);
+  font-weight: var(--section-heading-weight, 700);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  line-height: var(--section-heading-line-height, 1.15);
+  overflow-wrap: anywhere;
+}
+.sl-heading--center { text-align: center; }
+.sl-heading--right { text-align: right; }
+.sl-heading--small { font-size: 22px; }
+.sl-heading--medium { font-size: var(--section-heading-size, 32px); }
+.sl-heading--large { font-size: 44px; }
+@media (max-width: 749px) {
+  .sl-heading--large { font-size: 34px; }
+  .sl-heading--medium { font-size: 28px; }
+}
+</style>
+
+<schema>
+{
+  "name": "Heading",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Heading", "default": "A heading" },
+    {
+      "type": "select", "id": "size", "label": "Size", "default": "medium",
+      "options": [
+        { "label": "Small", "value": "small" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "Large", "value": "large" }
+      ]
+    },
+    {
+      "type": "select", "id": "level", "label": "Tag", "default": "h2",
+      "info": "One h1 per page, for its main title.",
+      "options": [
+        { "label": "H1", "value": "h1" },
+        { "label": "H2", "value": "h2" },
+        { "label": "H3", "value": "h3" }
+      ]
+    },
+    {
+      "type": "radio", "id": "align", "label": "Alignment", "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    { "type": "color", "id": "color", "label": "Text color", "default": "scheme.heading" }
+  ],
+  "presets": [
+    { "name": "Heading" }
+  ]
+}
+</schema>

@@ -1,0 +1,477 @@
+<template>
+<section
+  class="tst tst--{{ settings.layout }}"
+  data-scheme="{{ settings.color_scheme }}"
+  style="background: {{ settings.bg_color | default: scheme.bg }}; --tst-heading: {{ settings.text_color | default: scheme.heading }}; --tst-para: {{ settings.text_color | default: scheme.paragraph }}; --tst-card: {{ settings.card_bg_color }}; --tst-accent: {{ settings.accent_color | default: scheme.primary_btn_bg }}; --tst-border: {{ scheme.border }}; --tst-avatar-bg: {{ scheme.primary_btn_bg }}; --tst-avatar-text: {{ scheme.primary_btn_text }}; --tst-pad-top: {{ settings.padding_top }}px; --tst-pad-bottom: {{ settings.padding_bottom }}px;"
+>
+  <div class="tst__inner">
+    {% if settings.heading %}<h2 class="tst__heading">{{ settings.heading }}</h2>{% endif %}
+    {% if settings.subheading %}
+      <p class="tst__sub">{{ settings.subheading }}</p>
+    {% elsif settings.heading %}
+      <div class="tst__gap"></div>
+    {% endif %}
+
+    {% if blocks.size == 0 %}
+      {% if page.in_editor %}<p class="tst__empty">Add testimonial blocks in the sidebar</p>{% endif %}
+    {% else %}
+      <div class="tst__list">
+        {% for block in blocks %}
+          <div class="tst__card" data-block-id="{{ block.id }}">
+            {% if settings.show_rating %}
+              <div class="tst__rating" aria-label="{{ block.settings.rating }} {{ words.out_of_five }}">
+                <span aria-hidden="true" class="{% if block.settings.rating > 0 %}is-on{% endif %}">★</span>
+                <span aria-hidden="true" class="{% if block.settings.rating > 1 %}is-on{% endif %}">★</span>
+                <span aria-hidden="true" class="{% if block.settings.rating > 2 %}is-on{% endif %}">★</span>
+                <span aria-hidden="true" class="{% if block.settings.rating > 3 %}is-on{% endif %}">★</span>
+                <span aria-hidden="true" class="{% if block.settings.rating > 4 %}is-on{% endif %}">★</span>
+              </div>
+            {% endif %}
+            <p class="tst__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+            <div class="tst__who">
+              {% if block.settings.avatar %}
+                <img class="tst__avatar" src="{{ block.settings.avatar | asset }}" alt="" loading="lazy" decoding="async">
+              {% else %}
+                <div class="tst__initial">{{ block.settings.author | first }}</div>
+              {% endif %}
+              <div class="tst__names">
+                <div class="tst__name">
+                  <span class="tst__truncate">{{ block.settings.author }}</span>
+                  {% if block.settings.verified %}<span class="tst__check" title="{{ words.verified }}" aria-label="{{ words.verified }}">✓</span>{% endif %}
+                </div>
+                <div class="tst__role tst__truncate">
+                  {% if block.settings.role and block.settings.company %}{{ block.settings.role }} · {{ block.settings.company }}
+                  {% elsif block.settings.role %}{{ block.settings.role }}
+                  {% elsif block.settings.company %}{{ block.settings.company }}{% endif %}
+                </div>
+              </div>
+            </div>
+            {% if settings.show_date or block.settings.source %}
+              <div class="tst__meta">
+                <span>{% if settings.show_date %}{{ block.settings.date }}{% endif %}</span>
+                {% if block.settings.source %}
+                  <span>
+                    {% if block.settings.source == "google" %}Google
+                    {% elsif block.settings.source == "trustpilot" %}Trustpilot
+                    {% elsif block.settings.source == "facebook" %}Facebook
+                    {% elsif block.settings.source == "instagram" %}Instagram
+                    {% elsif block.settings.source == "twitter" %}X
+                    {% elsif block.settings.source == "yelp" %}Yelp
+                    {% elsif block.settings.source == "site" %}{{ words.verified_purchase }}
+                    {% else %}{{ block.settings.source }}{% endif %}
+                  </span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.tst { container-type: inline-size; }
+.tst__inner {
+  max-width: var(--theme-page-width, 1280px);
+  margin: 0 auto;
+  padding: calc(var(--tst-pad-top) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--tst-pad-bottom) * var(--theme-spacing-scale, 1));
+}
+.tst__heading {
+  margin: 0 0 12px;
+  /* The section's heading style, set by the theme stylesheet on the section
+     root, with what this section always drew as the fallback. */
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--section-heading-size, 30px);
+  line-height: var(--section-heading-line-height, 1.2);
+  font-weight: var(--section-heading-weight, 700);
+  letter-spacing: var(--section-heading-tracking, normal);
+  text-transform: var(--section-heading-transform, none);
+  text-align: center;
+  color: var(--tst-heading);
+}
+.tst__sub {
+  margin: 0 auto 40px;
+  max-width: 36rem;
+  font-size: var(--section-text-size, 16px);
+  line-height: var(--section-text-line-height, 1.5);
+  text-align: center;
+  color: var(--tst-para);
+}
+.tst__gap { margin-bottom: 40px; }
+.tst__empty { margin: 0; text-align: center; font-size: 14px; line-height: 20px; opacity: 0.4; color: var(--tst-para); }
+
+.tst__list { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 24px; }
+@container (min-width: 640px) { .tst--grid .tst__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (min-width: 768px) { .tst--grid .tst__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.tst--carousel .tst__list {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+}
+.tst--carousel .tst__card { width: 82%; flex-shrink: 0; scroll-snap-align: start; }
+@container (min-width: 640px) { .tst--carousel .tst__card { width: 46%; } }
+@container (min-width: 768px) { .tst--carousel .tst__card { width: 31%; } }
+
+.tst--masonry .tst__list { display: block; columns: 1; column-gap: 24px; }
+@container (min-width: 640px) { .tst--masonry .tst__list { columns: 2; } }
+@container (min-width: 768px) { .tst--masonry .tst__list { columns: 3; } }
+.tst--masonry .tst__card { margin-bottom: 24px; break-inside: avoid; }
+
+.tst__card {
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--tst-border);
+  background: var(--tst-card);
+}
+.tst__rating { display: flex; gap: 2px; margin-bottom: 12px; }
+.tst__rating span { font-size: 15px; line-height: 1; color: var(--tst-border); }
+.tst__rating span.is-on { color: var(--tst-accent); }
+.tst__quote { margin: 0 0 16px; font-size: 14px; line-height: 1.625; color: var(--tst-para); }
+.tst__who { display: flex; align-items: center; gap: 12px; }
+.tst__avatar { height: 36px; width: 36px; border-radius: 3.40282e38px; object-fit: cover; }
+.tst__initial {
+  display: flex;
+  height: 36px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3.40282e38px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  background: var(--tst-avatar-bg);
+  color: var(--tst-avatar-text);
+}
+.tst__names { min-width: 0; }
+.tst__name { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--tst-heading); }
+.tst__check { font-size: 11px; line-height: 1; color: var(--tst-accent); }
+.tst__role { font-size: 11px; color: var(--tst-para); opacity: 0.85; }
+.tst__truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tst__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--tst-para);
+  opacity: 0.7;
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "testimonials",
+  "name": "Testimonials",
+  "description": "Customer reviews and social proof with flexible layouts.",
+  "icon": "message-square",
+  "category": "social-proof",
+  "version": "1.0.0",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What our customers say",
+      "placeholder": "Section heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join thousands of happy customers who trust us every day.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "carousel",
+      "options": [
+        {
+          "label": "Cards (grid)",
+          "value": "card"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        },
+        {
+          "label": "Masonry",
+          "value": "masonry"
+        }
+      ]
+    },
+    {
+      "type": "toggle",
+      "id": "show_rating",
+      "label": "Show star rating",
+      "default": true
+    },
+    {
+      "type": "toggle",
+      "id": "show_date",
+      "label": "Show date",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "white",
+      "options": [
+        {
+          "label": "White",
+          "value": "white"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Black",
+          "value": "black"
+        },
+        {
+          "label": "Highlight",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent / star color",
+      "default": "#f59e0b"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "id": "hdr_padding",
+      "label": "Padding"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This product completely changed how I work. I can't imagine going back.",
+          "placeholder": "Customer quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author name",
+          "default": "Jane Smith",
+          "placeholder": "Full name"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role / title",
+          "default": "Product Manager",
+          "placeholder": "Job title"
+        },
+        {
+          "type": "text",
+          "id": "company",
+          "label": "Company",
+          "default": "Acme Corp",
+          "placeholder": "Company name"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar image",
+          "default": ""
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating (1\u20135)",
+          "default": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "March 2025",
+          "placeholder": "e.g. March 2025"
+        },
+        {
+          "type": "toggle",
+          "id": "verified",
+          "label": "Verified badge",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "source",
+          "label": "Review source",
+          "default": "google",
+          "options": [
+            {
+              "label": "Google",
+              "value": "google"
+            },
+            {
+              "label": "Trustpilot",
+              "value": "trustpilot"
+            },
+            {
+              "label": "Twitter / X",
+              "value": "twitter"
+            },
+            {
+              "label": "Facebook",
+              "value": "facebook"
+            },
+            {
+              "label": "Instagram",
+              "value": "instagram"
+            },
+            {
+              "label": "Yelp",
+              "value": "yelp"
+            },
+            {
+              "label": "Verified purchase",
+              "value": "site"
+            },
+            {
+              "label": "None",
+              "value": "none"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Three testimonials carousel",
+      "settings": {
+        "heading": "What our customers say",
+        "layout": "carousel",
+        "show_rating": true,
+        "show_date": true,
+        "accent_color": "#f59e0b",
+        "card_bg_color": "#ffffff",
+        "bg_color": "#f9fafb",
+        "text_color": "#111827",
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "id": "t1",
+          "type": "testimonial",
+          "settings": {
+            "quote": "Absolutely love this product. It saves me hours every week and the support team is fantastic!",
+            "author": "Sarah Johnson",
+            "role": "Freelance Designer",
+            "company": "Self-employed",
+            "rating": 5,
+            "date": "January 2025",
+            "verified": true,
+            "source": "google"
+          }
+        },
+        {
+          "id": "t2",
+          "type": "testimonial",
+          "settings": {
+            "quote": "Best purchase I've made this year. Setup was a breeze and results were immediate.",
+            "author": "Marcus Lee",
+            "role": "Head of Marketing",
+            "company": "Bright Ideas Inc.",
+            "rating": 5,
+            "date": "February 2025",
+            "verified": true,
+            "source": "trustpilot"
+          }
+        },
+        {
+          "id": "t3",
+          "type": "testimonial",
+          "settings": {
+            "quote": "Highly recommend to anyone looking to streamline their workflow. 10 out of 10.",
+            "author": "Priya Patel",
+            "role": "Operations Lead",
+            "company": "Velocity Co.",
+            "rating": 5,
+            "date": "March 2025",
+            "verified": false,
+            "source": "twitter"
+          }
+        }
+      ]
+    }
+  ]
+}
+</schema>

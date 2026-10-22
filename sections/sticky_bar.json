@@ -1,0 +1,133 @@
+{
+  "type": "sticky_bar",
+  "name": "Sticky Bar",
+  "description": "A sticky top or bottom promotional bar with a short message and optional link.",
+  "icon": "minus",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Bar Content",
+      "type": "header"
+    },
+    {
+      "id": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "Free shipping on orders over $75. Shop now",
+      "placeholder": "Short promotional message"
+    },
+    {
+      "id": "link_text",
+      "label": "Link Text",
+      "type": "text",
+      "default": "Shop now",
+      "placeholder": "e.g. Shop now, Learn more"
+    },
+    {
+      "id": "link_url",
+      "label": "Link URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "position",
+      "label": "Position",
+      "type": "radio",
+      "default": "top",
+      "options": [
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Bottom",
+          "value": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "show_close",
+      "label": "Show Close Button",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_y",
+      "label": "Vertical Padding",
+      "type": "range",
+      "default": 12,
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Bar",
+      "settings": {
+        "text": "Free shipping on orders over $75. Shop now",
+        "link_text": "Shop now",
+        "link_url": "#",
+        "position": "top",
+        "show_close": true,
+        "padding_y": 12,
+        "color_scheme": "black"
+      }
+    }
+  ]
+}

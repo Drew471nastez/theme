@@ -1,0 +1,209 @@
+<template>
+<header class="fh" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.background }}; --s-text: {{ settings.link_color }}; --s-heading: {{ settings.link_color }}; --s-border: {{ scheme.border }}; --s-icon: {{ settings.icon_color }}; --s-h: {{ settings.logo_height }}px; --s-py: {{ settings.padding_y }}px;" data-btn="{{ theme.buttons.style }}" data-btn-hover="{{ theme.buttons.hover }}">
+  <div class="fh__bar">
+    <button class="fh__menu" type="button" data-storelib-menu="{{ settings.menu.handle }}" data-storelib-menu-from="left" aria-label="{{ settings.menu_label }}">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a class="fh__logo" href="{{ routes.root_url }}">
+      {% if theme.logo.url %}
+        <img src="{{ theme.logo.url }}" alt="{{ theme.logo.text | default: shop.name }}" style="height: var(--s-h);" width="{{ theme.logo.width }}" height="{{ settings.logo_height }}">
+      {% else %}
+        <span class="fh__word">{{ theme.logo.text | default: shop.name }}</span>
+      {% endif %}
+    </a>
+
+    <nav class="fh__nav" aria-label="{{ settings.menu.title }}">
+      {% for link in settings.menu.links %}
+        {% if link.links.size > 0 %}
+          <details class="fh__drop">
+            <summary>{{ link.title }}</summary>
+            <div class="fh__sub">
+              {% for child in link.links %}
+                <a href="{{ child.url | url }}">{{ child.title }}</a>
+              {% endfor %}
+            </div>
+          </details>
+        {% else %}
+          <a href="{{ link.url | url }}">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="fh__tools">
+      {% if settings.show_search %}
+        <a class="fh__tool" href="{{ routes.search_url }}" data-storelib-search="{{ settings.search_label }}" aria-label="{{ settings.search_label }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>
+        </a>
+      {% endif %}
+      {% if settings.show_account %}
+        <a class="fh__tool" href="{{ routes.account_url }}" aria-label="{{ settings.account_label }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.4-3 3.8-4.5 7-4.5S17.6 16 19 19"/></svg>
+        </a>
+      {% endif %}
+      {% if settings.show_cart %}
+        <a class="fh__tool" href="{{ routes.cart_url }}" data-storelib-cart aria-label="{{ settings.cart_label }}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h15l-1.6 9H8L6 7z"/><path d="M6 7L5 4H2"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/></svg>
+          <span class="fh__count" data-storelib-cart-count></span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+</template>
+
+<style scoped>
+.fh {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--s-bg);
+  color: var(--s-text);
+  border-bottom: 1px solid var(--s-border);
+  container-type: inline-size;
+}
+.fh__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: var(--theme-page-width, 1280px);
+  margin: 0 auto;
+  min-height: 64px;
+  padding: var(--s-py) var(--theme-padding-x, 24px);
+}
+.fh__logo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--s-heading);
+  text-decoration: none;
+}
+.fh__logo img { width: auto; display: block; }
+.fh__word {
+  font-family: var(--theme-font-heading), sans-serif;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+.fh__nav {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+.fh__nav > a,
+.fh__drop > summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--s-text);
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+.fh__drop > summary::-webkit-details-marker { display: none; }
+.fh__nav > a:hover,
+.fh__drop > summary:hover { color: var(--s-heading); }
+.fh__drop { position: relative; }
+.fh__sub {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  padding: 8px;
+  background: var(--s-bg);
+  border: 1px solid var(--s-border);
+  border-radius: var(--theme-radius, 8px);
+}
+.fh__sub a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--s-text);
+  text-decoration: none;
+}
+.fh__tools { display: flex; align-items: center; margin-left: auto; }
+.fh__nav + .fh__tools { margin-left: 0; }
+.fh__tool {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--s-icon);
+  text-decoration: none;
+}
+.fh__tool svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.fh__count {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 99px;
+  background: var(--s-heading);
+  color: var(--s-bg);
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+.fh__count[data-count="0"] { display: none; }
+.fh__menu {
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--s-icon);
+  cursor: pointer;
+}
+.fh__menu span { display: block; width: 18px; height: 1.5px; background: currentColor; }
+.fh a:focus-visible,
+.fh button:focus-visible,
+.fh summary:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 3px; }
+
+@container (min-width: 860px) {
+  .fh__menu { display: none; }
+  .fh__nav { display: flex; }
+  .fh__tools { margin-left: 0; }
+}
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "foundation_header",
+  "name": "Foundation header",
+  "kind": "header",
+  "category": "header",
+  "description": "The site header. It stays at the top of the page with no slide and no fade.",
+  "version": "1.0.0",
+  "icon": "menu",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "menu_label", "label": "Menu button name", "default": "Menu" },
+    { "type": "text", "id": "search_label", "label": "Search name", "default": "Search" },
+    { "type": "text", "id": "account_label", "label": "Account name", "default": "Account" },
+    { "type": "text", "id": "cart_label", "label": "Cart name", "default": "Cart" },
+    { "type": "range", "id": "logo_height", "label": "Logo height", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_y", "label": "Vertical padding", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 12 },
+    { "type": "toggle", "id": "show_search", "label": "Show search", "default": true },
+    { "type": "toggle", "id": "show_account", "label": "Show account", "default": true },
+    { "type": "toggle", "id": "show_cart", "label": "Show cart", "default": false },
+    { "type": "header", "id": "hdr_colours", "label": "Colours" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "color", "id": "link_color", "label": "Links", "default": "scheme.text" },
+    { "type": "color", "id": "icon_color", "label": "Icons", "default": "scheme.heading" }
+  ],
+  "presets": [
+    { "name": "Foundation header", "settings": { "menu": "main-menu", "color_scheme": "white" } }
+  ]
+}
+</schema>

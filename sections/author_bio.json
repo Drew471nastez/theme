@@ -1,0 +1,269 @@
+{
+  "type": "author_bio",
+  "name": "Author Bio",
+  "description": "Author profile section with photo, credentials, stats, and social links.",
+  "supports_typography_overrides": false,
+  "icon": "user",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Author Info",
+      "type": "header"
+    },
+    {
+      "id": "photo_url",
+      "label": "Author Photo",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "name",
+      "label": "Name",
+      "type": "text",
+      "default": "Jane Harlow",
+      "placeholder": "Author full name"
+    },
+    {
+      "id": "title_line",
+      "label": "Title / Tagline",
+      "type": "text",
+      "default": "Bestselling author & educator",
+      "placeholder": "e.g. Bestselling author & educator"
+    },
+    {
+      "id": "bio",
+      "label": "Bio",
+      "type": "textarea",
+      "default": "Jane Harlow is the author of six internationally bestselling books on business, productivity, and personal growth. With over a decade of experience working with Fortune 500 companies and independent entrepreneurs, Jane brings practical wisdom and inspiring stories to every page.",
+      "placeholder": "Author biography"
+    },
+    {
+      "id": "credentials",
+      "label": "Credentials (one per line)",
+      "type": "textarea",
+      "default": "MBA, Harvard Business School\nForbes 30 Under 30\nTED Talk speaker, 2M+ views\nFeatured in WSJ, Fast Company, Inc.",
+      "placeholder": "One credential per line"
+    },
+    {
+      "id": "featured_quote",
+      "label": "Featured Quote",
+      "type": "textarea",
+      "default": "Success isn't a destination. It is the courage to keep moving when everything tells you to stop.",
+      "placeholder": "A memorable quote from the author"
+    },
+    {
+      "id": "quote_attribution",
+      "label": "Quote Attribution",
+      "type": "text",
+      "default": "Jane Harlow, Chapter 7",
+      "placeholder": "e.g. Jane Harlow"
+    },
+    {
+      "id": "books_count",
+      "label": "Books Published",
+      "type": "number",
+      "default": 6
+    },
+    {
+      "id": "years_experience",
+      "label": "Years of Experience",
+      "type": "number",
+      "default": 14
+    },
+    {
+      "id": "students_count",
+      "label": "Students / Readers",
+      "type": "text",
+      "default": "200,000+",
+      "placeholder": "e.g. 200,000+"
+    },
+    {
+      "id": "publications_count",
+      "label": "Media Publications",
+      "type": "number",
+      "default": 38
+    },
+    {
+      "id": "hdr_social",
+      "label": "Social Links",
+      "type": "header"
+    },
+    {
+      "id": "social_twitter",
+      "label": "Twitter / X",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://twitter.com/..."
+    },
+    {
+      "id": "social_instagram",
+      "label": "Instagram",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://instagram.com/..."
+    },
+    {
+      "id": "social_linkedin",
+      "label": "LinkedIn",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://linkedin.com/in/..."
+    },
+    {
+      "id": "social_goodreads",
+      "label": "Goodreads",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://goodreads.com/..."
+    },
+    {
+      "id": "social_amazon",
+      "label": "Amazon Author Page",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://amazon.com/author/..."
+    },
+    {
+      "id": "website_url",
+      "label": "Personal Website",
+      "type": "link",
+      "default": "",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "radio",
+      "default": "left",
+      "options": [
+        {
+          "label": "Photo Left",
+          "value": "left"
+        },
+        {
+          "label": "Photo Right",
+          "value": "right"
+        },
+        {
+          "label": "Centered",
+          "value": "centered"
+        }
+      ]
+    },
+    {
+      "id": "show_stats",
+      "label": "Show Stats",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_social",
+      "label": "Show Social Links",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Author Bio",
+      "settings": {
+        "name": "Jane Harlow",
+        "title_line": "Bestselling author & educator",
+        "bio": "Jane Harlow is the author of six internationally bestselling books on business, productivity, and personal growth. With over a decade of experience working with Fortune 500 companies and independent entrepreneurs, Jane brings practical wisdom and inspiring stories to every page.",
+        "credentials": "MBA, Harvard Business School\nForbes 30 Under 30\nTED Talk speaker, 2M+ views\nFeatured in WSJ, Fast Company, Inc.",
+        "featured_quote": "Success isn't a destination. It is the courage to keep moving when everything tells you to stop.",
+        "quote_attribution": "Jane Harlow, Chapter 7",
+        "books_count": 6,
+        "years_experience": 14,
+        "students_count": "200,000+",
+        "publications_count": 38,
+        "layout": "left",
+        "show_stats": true,
+        "show_social": true,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "light"
+      }
+    }
+  ]
+}

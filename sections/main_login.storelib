@@ -1,0 +1,160 @@
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in login login--{{ settings.text_align }}">
+    {# Signing in is an email, then the code sent to it, on this website. A
+       new email makes the account when its code is typed, so there is no
+       second form for signing up and no password anywhere. The page says
+       which step it is on (page.step); in the builder it is the first. #}
+    {% if page.step == "code" %}
+      <h1 class="s__h">{{ settings.code_heading }}</h1>
+      <p class="s__sub">{{ settings.code_text }} <span class="login__email">{{ page.email }}</span></p>
+      {% if page.notice %}<p class="login__notice" role="alert">{{ page.notice }}</p>{% endif %}
+      <form class="login__form" method="post" action="{{ routes.account_verify_url }}" data-storelib-form="native">
+        <label class="login__label" for="{{ section.id }}-code">{{ settings.code_label }}</label>
+        <input class="login__input login__input--code" id="{{ section.id }}-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="{{ settings.code_placeholder }}" required autofocus>
+        <button class="s__btn s__btn--primary" type="submit">{{ settings.signin_label }}</button>
+      </form>
+      <div class="login__more">
+        <form method="post" action="{{ routes.account_code_url }}" data-storelib-form="native">
+          <input type="hidden" name="email" value="{{ page.email }}">
+          <input type="hidden" name="return" value="{{ page.return_to }}">
+          <input type="hidden" name="again" value="1">
+          <button class="login__link" type="submit">{{ settings.resend_label }}</button>
+        </form>
+        <a class="login__link" href="{{ routes.account_login_url }}?step=email">{{ settings.change_label }}</a>
+      </div>
+    {% else %}
+      <h1 class="s__h">{{ settings.heading }}</h1>
+      {% if settings.text %}<p class="s__sub">{{ settings.text }}</p>{% endif %}
+      {% if page.notice %}<p class="login__notice" role="alert">{{ page.notice }}</p>{% endif %}
+      <form class="login__form" method="post" action="{{ routes.account_code_url }}" data-storelib-form="native">
+        <label class="login__label" for="{{ section.id }}-email">{{ settings.email_label }}</label>
+        <input class="login__input" id="{{ section.id }}-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="{{ settings.email_placeholder }}" required>
+        <input type="hidden" name="return" value="{{ page.return_to }}">
+        <button class="s__btn s__btn--primary" type="submit">{{ settings.continue_label }}</button>
+      </form>
+      {% if settings.note %}<p class="login__note">{{ settings.note }}</p>{% endif %}
+      {# A buyer who checked out as a guest follows an order by its number and email (app/checkout/site/track). #}
+      {% if settings.track_label %}<p class="login__track"><a class="login__link" href="{{ routes.order_lookup_url }}">{{ settings.track_label }}</a></p>{% endif %}
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.login { max-width: 440px; }
+/* Centred: the words and the links in the middle; the fields and the button stay full width. */
+.login--center { text-align: center; }
+.login--center .login__label { text-align: left; }
+.login--center .login__more { justify-content: center; }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 12px 0 0; font-size: var(--section-text-size, 16px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); overflow-wrap: anywhere; }
+.login__email { color: var(--s-heading); font-weight: 600; }
+.login__notice {
+  margin: 20px 0 0; padding: 12px 14px; font-size: 14px; line-height: 1.5;
+  color: var(--s-heading); border: 1px solid var(--s-border); border-radius: var(--s-radius);
+}
+.login__form { display: flex; flex-direction: column; margin-top: 28px; }
+.login__label { font-size: 14px; font-weight: 600; color: var(--s-heading); }
+/* 16px text, so a phone does not zoom the page when the field takes focus. */
+.login__input {
+  box-sizing: border-box; width: 100%; min-height: 48px; margin: 8px 0 16px; padding: 12px 14px;
+  font: inherit; font-size: 16px; color: var(--s-text); background: var(--s-bg);
+  border: 1px solid var(--s-border); border-radius: var(--s-radius);
+  -webkit-appearance: none; appearance: none;
+}
+.login__input::placeholder { color: var(--s-para); opacity: 0.75; letter-spacing: normal; }
+.login__input:focus { outline: 2px solid var(--s-heading); outline-offset: 1px; border-color: var(--s-heading); }
+.login__input--code { font-size: 22px; letter-spacing: 0.3em; font-variant-numeric: tabular-nums; }
+.s__btn {
+  display: flex; align-items: center; justify-content: center; min-height: 48px;
+  padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none; text-align: center;
+  border-radius: var(--s-radius); border: 1px solid transparent; cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.s__btn:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+.s__btn--primary { background: var(--s-btn); color: var(--s-btn-text); border-color: var(--s-btn); }
+.s__btn--secondary { background: var(--s-btn2); color: var(--s-btn2-text); border-color: var(--s-btn2-border); }
+/* Hover colours from the scheme, after the section's own Advanced colors. */
+.s__btn--primary:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.s__btn--secondary:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+.login__more { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; margin-top: 12px; }
+.login__more form { margin: 0; }
+.login__link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0;
+  font: inherit; font-size: 15px; font-weight: 500; color: var(--s-heading);
+  background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+}
+.login__link:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+.login__note { margin: 20px 0 0; font-size: 14px; line-height: 1.55; color: var(--s-para); }
+.login__track { margin: 8px 0 0; }
+.login__track .login__link { font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .s__btn { transition: none; } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "main_login",
+  "name": "Sign in",
+  "category": "account",
+  "description": "The sign in page. Visitors enter their email, then the code sent to it. A new email makes the account.",
+  "version": "2.0.0",
+  "icon": "user",
+  "allowed_templates": ["page.login"],
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Email step" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sign in" },
+    { "type": "textarea", "id": "text", "label": "Line under the heading", "default": "Enter your email and we will send you a code." },
+    { "type": "text", "id": "email_label", "label": "Email field", "default": "Email" },
+    { "type": "text", "id": "email_placeholder", "label": "Placeholder", "default": "you@example.com" },
+    { "type": "text", "id": "continue_label", "label": "Button", "default": "Continue" },
+    { "type": "textarea", "id": "note", "label": "Small print", "default": "New here? Signing in makes your account. There is no password.", "info": "Empty hides it." },
+    { "type": "text", "id": "track_label", "label": "Order lookup link", "default": "Track an order without signing in", "info": "Opens the order lookup for guests. Empty hides it." },
+    { "type": "header", "id": "hdr_code", "label": "Code step" },
+    { "type": "text", "id": "code_heading", "label": "Heading", "default": "Enter your code" },
+    { "type": "text", "id": "code_text", "label": "Line under the heading", "default": "We sent a code to", "info": "The email follows it." },
+    { "type": "text", "id": "code_label", "label": "Code field", "default": "Code" },
+    { "type": "text", "id": "code_placeholder", "label": "Placeholder", "default": "6 digit code" },
+    { "type": "text", "id": "signin_label", "label": "Button", "default": "Sign in" },
+    { "type": "text", "id": "resend_label", "label": "Send again", "default": "Send a new code" },
+    { "type": "text", "id": "change_label", "label": "Change email", "default": "Use a different email" },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    {
+      "type": "radio", "id": "text_align", "label": "Alignment", "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Center", "value": "center" }
+      ]
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 72, "min": 0, "max": 160, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 88, "min": 0, "max": 160, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Sign in", "settings": {} }
+  ]
+}
+</schema>

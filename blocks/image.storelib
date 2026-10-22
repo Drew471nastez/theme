@@ -1,0 +1,61 @@
+{# ===========================================================================
+   Image: a theme block
+
+   One picture, at the shape chosen, with an optional link. Empty, it draws
+   a quiet frame in the editor and nothing on the live page.
+   =========================================================================== #}
+<template>
+{% if block.settings.image %}
+<figure class="sl-image sl-image--{{ block.settings.ratio }}{% if block.settings.rounded %} sl-image--round{% endif %}">
+  {% if block.settings.link %}<a href="{{ block.settings.link | url }}"><img src="{{ block.settings.image | asset }}" alt="{{ block.settings.alt }}" loading="lazy" decoding="async"></a>
+  {% else %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.alt }}" loading="lazy" decoding="async">{% endif %}
+  {% if block.settings.caption %}<figcaption>{{ block.settings.caption }}</figcaption>{% endif %}
+</figure>
+{% elsif page.in_editor %}
+<div class="sl-image sl-image--{{ block.settings.ratio }} sl-image--empty{% if block.settings.rounded %} sl-image--round{% endif %}"><span>Choose a picture</span></div>
+{% endif %}
+</template>
+
+<style>
+.sl-image { margin: 0; width: 100%; }
+.sl-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sl-image--square img, .sl-image--square.sl-image--empty { aspect-ratio: 1 / 1; }
+.sl-image--portrait img, .sl-image--portrait.sl-image--empty { aspect-ratio: 3 / 4; }
+.sl-image--landscape img, .sl-image--landscape.sl-image--empty { aspect-ratio: 4 / 3; }
+.sl-image--wide img, .sl-image--wide.sl-image--empty { aspect-ratio: 16 / 9; }
+.sl-image--auto img { height: auto; }
+.sl-image--auto.sl-image--empty { aspect-ratio: 4 / 3; }
+.sl-image--round img, .sl-image--round.sl-image--empty { border-radius: var(--s-radius, 8px); }
+.sl-image--empty {
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed var(--s-border, currentColor); color: var(--s-para, inherit);
+  font-size: 13px; opacity: 0.7;
+}
+.sl-image figcaption { margin-top: 8px; font-size: 14px; color: var(--s-para, inherit); }
+</style>
+
+<schema>
+{
+  "name": "Image",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Picture", "default": "" },
+    { "type": "text", "id": "alt", "label": "Description for screen readers", "default": "" },
+    {
+      "type": "select", "id": "ratio", "label": "Shape", "default": "landscape",
+      "options": [
+        { "label": "As uploaded", "value": "auto" },
+        { "label": "Square", "value": "square" },
+        { "label": "Portrait", "value": "portrait" },
+        { "label": "Landscape", "value": "landscape" },
+        { "label": "Wide", "value": "wide" }
+      ]
+    },
+    { "type": "toggle", "id": "rounded", "label": "Rounded corners", "default": true },
+    { "type": "url", "id": "link", "label": "Link", "default": "" },
+    { "type": "text", "id": "caption", "label": "Caption", "default": "" }
+  ],
+  "presets": [
+    { "name": "Image" }
+  ]
+}
+</schema>

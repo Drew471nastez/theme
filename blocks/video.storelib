@@ -1,0 +1,50 @@
+{# ===========================================================================
+   Video: a theme block
+
+   A YouTube or Vimeo player, or a video file. The player address goes
+   through the `embed` filter, which is why this block declares "embed".
+   =========================================================================== #}
+<template>
+<div class="sl-video sl-video--{{ block.settings.ratio }}">
+  {% if block.settings.video %}
+    <video src="{{ block.settings.video | asset }}" playsinline controls preload="metadata"{% if block.settings.poster %} poster="{{ block.settings.poster | asset }}"{% endif %}></video>
+  {% elsif block.settings.url %}
+    <iframe src="{{ block.settings.url | embed }}" title="{{ block.settings.title | default: 'Video' }}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  {% elsif page.in_editor %}
+    <span class="sl-video__empty">Add a video link or file</span>
+  {% endif %}
+</div>
+</template>
+
+<style>
+.sl-video { position: relative; width: 100%; overflow: hidden; border-radius: var(--s-radius, 8px); background: rgba(0, 0, 0, 0.06); }
+.sl-video--wide { aspect-ratio: 16 / 9; }
+.sl-video--square { aspect-ratio: 1 / 1; }
+.sl-video--portrait { aspect-ratio: 9 / 16; }
+.sl-video video, .sl-video iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: cover; }
+.sl-video__empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--s-para, inherit); opacity: 0.7; }
+</style>
+
+<schema>
+{
+  "name": "Video",
+  "capabilities": ["embed"],
+  "settings": [
+    { "type": "video_url", "id": "url", "label": "YouTube or Vimeo link", "default": "" },
+    { "type": "video_picker", "id": "video", "label": "Or a video file", "default": "" },
+    { "type": "image_picker", "id": "poster", "label": "Still shown before it plays", "default": "" },
+    { "type": "text", "id": "title", "label": "Title for screen readers", "default": "" },
+    {
+      "type": "select", "id": "ratio", "label": "Shape", "default": "wide",
+      "options": [
+        { "label": "Wide", "value": "wide" },
+        { "label": "Square", "value": "square" },
+        { "label": "Portrait", "value": "portrait" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Video" }
+  ]
+}
+</schema>

@@ -1,0 +1,723 @@
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --cols-d: {{ settings.columns.desktop }}; --cols-t: {{ settings.columns.tablet }}; --cols-m: {{ settings.columns.mobile }};">
+  <div class="s__in s__in--{{ settings.max_width }}">
+    {% if settings.eyebrow or settings.heading or settings.subheading %}
+      <div class="s__head {% if settings.align == 'center' %}s__head--center{% endif %} s__headblock">
+        {% if settings.eyebrow %}<p class="s__eyebrow">{{ settings.eyebrow }}</p>{% endif %}
+        {% if settings.heading %}<h2 class="s__h">{{ settings.heading }}</h2>{% endif %}
+        {% if settings.subheading %}<p class="s__sub">{{ settings.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    {# Two sources, one card. `products` is block-shaped for exactly this
+       reason: the body below is the same in both loops, and the language
+       has no way to write it once. #}
+    {% if settings.source == 'shop' and settings.show_filters and page.filters %}
+      {# The shop with its filters: the page passes the products that pass
+         them as `products`, and every group, value and count as
+         `page.filters` (lib/products/catalog-filters.ts). #}
+      <div class="cat{% if page.filters.price.show or page.filters.groups.size > 0 %}{% else %} cat--bare{% endif %}">
+        <form class="cat__form" action="{{ page.filters.path | url }}" method="get" data-storelib-filters>
+          {% if page.filters.q %}<input type="hidden" name="q" value="{{ page.filters.q }}">{% endif %}
+          <input class="cat__toggle" type="checkbox" id="{{ section.id }}-filters" aria-hidden="true" tabindex="-1">
+          <div class="cat__bar">
+            <label class="cat__open" for="{{ section.id }}-filters">{{ settings.filter_label }}{% if page.filters.active_count > 0 %} ({{ page.filters.active_count }}){% endif %}</label>
+            <p class="cat__count" aria-live="polite">{{ page.filters.count_label }}</p>
+            <label class="cat__sort"><span class="cat__sortl">{{ settings.sort_label }}</span>
+              <select name="sort">{% for o in page.filters.sort_options %}<option value="{{ o.value }}"{% if o.selected %} selected{% endif %}>{{ o.label }}</option>{% endfor %}</select>
+            </label>
+          </div>
+          <div class="cat__panel" role="group" aria-label="{{ settings.filter_label }}">
+            {% if page.filters.price.show %}
+            <fieldset class="cat__group">
+              <legend class="cat__legend">{{ words.price }}</legend>
+              <div class="cat__range">
+                <label class="cat__num"><span>$</span><input type="number" name="price_min" min="0" step="1" inputmode="numeric" placeholder="{{ page.filters.price.min }}" value="{{ page.filters.price.from }}" aria-label="{{ words.lowest_price }}"></label>
+                <span class="cat__to">{{ words.price_to }}</span>
+                <label class="cat__num"><span>$</span><input type="number" name="price_max" min="0" step="1" inputmode="numeric" placeholder="{{ page.filters.price.max }}" value="{{ page.filters.price.to }}" aria-label="{{ words.highest_price }}"></label>
+              </div>
+            </fieldset>
+            {% endif %}
+            {% for g in page.filters.groups %}
+            <fieldset class="cat__group">
+              <legend class="cat__legend">{{ g.label }}</legend>
+              {% for v in g.values %}
+              <label class="cat__opt{% if v.disabled %} cat__opt--off{% endif %}"><input type="checkbox" name="{{ g.param }}" value="{{ v.value }}"{% if v.checked %} checked{% endif %}{% if v.disabled %} disabled{% endif %}>{% if v.swatch %}<span class="cat__sw" style="background: {{ v.swatch }};"></span>{% endif %}<span class="cat__lab">{{ v.label }}</span><span class="cat__n">{{ v.count }}</span></label>
+              {% endfor %}
+            </fieldset>
+            {% endfor %}
+            <div class="cat__actions">
+              <button type="submit" class="cat__apply">{{ settings.apply_label }}</button>
+              {% if page.filters.active %}<a class="cat__clear" href="{{ page.filters.clear_url | url }}">{{ settings.clear_label }}</a>{% endif %}
+            </div>
+          </div>
+        </form>
+        <div class="cat__results">
+          {% if page.filters.chips.size > 0 %}
+          <div class="cat__chips">{% for c in page.filters.chips %}<a class="cat__chip" href="{{ c.url | url }}" aria-label="{{ words.remove }} {{ c.label }}">{{ c.label }}<span aria-hidden="true">×</span></a>{% endfor %}<a class="cat__chip cat__chip--clear" href="{{ page.filters.clear_url | url }}">{{ settings.clear_label }}</a></div>
+          {% endif %}
+          {% if products.size == 0 %}
+            <div class="cat__empty"><p>{{ settings.no_match }}</p>{% if page.filters.active %}<a href="{{ page.filters.clear_url | url }}">{{ settings.clear_label }}</a>{% endif %}</div>
+          {% else %}
+        <div class="grid">
+          {% for block in products %}
+          <article class="card card__wrap" data-block-id="{{ block.id }}">
+            <div class="card__media" style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+              {% if block.settings.tag %}<span class="tag">{{ block.settings.tag }}</span>{% endif %}
+              {% if settings.show_wishlist %}<button type="button" class="heart" data-storelib-wishlist="{{ block.id }}" aria-pressed="false" aria-label="{{ words.save }} {{ block.settings.title }}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></button>{% endif %}
+            </div>
+            <h3 class="card__title">{{ block.settings.title }}</h3>
+            {% if settings.show_rating and block.rating.count > 0 %}<p class="card__rating" style="margin:6px 0 0;display:flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--s-para)"><span role="img" aria-label="{{ words.rated }} {{ block.rating.value }} {{ words.out_of_five }}" style="position:relative;letter-spacing:1px;color:var(--s-border)">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="position:absolute;left:0;top:0;width:{{ block.rating.percent }}%;overflow:hidden;white-space:nowrap;color:{{ block.rating.color | default: '#f5a623' }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span>({{ block.rating.count }})</span></p>{% endif %}
+            {% if settings.show_price and block.settings.price %}
+              <p class="card__price">{{ block.settings.price }}{% if block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+            {% endif %}
+            {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+          {% endif %}
+        </div>
+      </div>
+    {% elsif settings.source == 'shop' %}
+      {% if products.size == 0 %}
+        {% if page.in_editor %}<p class="empty">Your published products appear here</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in products %}
+          <article class="card card__wrap" data-card="product" data-block-id="{{ block.id }}">
+            <div class="card__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+              {# Theme settings › Badges: Sale on a discounted product, then the card's own tag (Sold out on the shop's). #}{% if block.settings.tag or theme.badges.sale and block.settings.compare_price %}<span class="badges" data-badges>{% if theme.badges.sale and block.settings.compare_price %}<span class="tag" data-badge="sale">{{ theme.badges.sale_text }}</span>{% endif %}{% if block.settings.tag %}<span class="tag" data-badge="{% if block.settings.tag == 'Sold out' %}soldout{% else %}tag{% endif %}">{{ block.settings.tag }}</span>{% endif %}</span>{% endif %}
+              {% if settings.show_wishlist %}<button type="button" class="heart" data-storelib-wishlist="{{ block.id }}" aria-pressed="false" aria-label="{{ words.save }} {{ block.settings.title }}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></button>{% endif %}
+            </div>
+            <h3 class="card__title">{{ block.settings.title }}</h3>
+            {% if settings.show_rating and block.rating.count > 0 %}<p class="card__rating" style="margin:6px 0 0;display:flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--s-para)"><span role="img" aria-label="{{ words.rated }} {{ block.rating.value }} {{ words.out_of_five }}" style="position:relative;letter-spacing:1px;color:var(--s-border)">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="position:absolute;left:0;top:0;width:{{ block.rating.percent }}%;overflow:hidden;white-space:nowrap;color:{{ block.rating.color | default: '#f5a623' }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span>({{ block.rating.count }})</span></p>{% endif %}
+            {% if settings.show_price and block.settings.price %}
+              <p class="card__price">{{ block.settings.price }}{% if block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+            {% endif %}
+            {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% elsif settings.source == 'chosen' %}
+      {# Real products, in the order they were chosen: the product_list
+         setting hands them over block-shaped, like `products`. A product
+         that is unpublished or deleted is simply not in the list. #}
+      {% if settings.chosen.size == 0 %}
+        {% if page.in_editor %}<p class="empty">Choose products in the sidebar</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in settings.chosen %}
+          <article class="card card__wrap" data-card="product" data-block-id="{{ block.id }}">
+            <div class="card__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+              {# Theme settings › Badges: Sale on a discounted product, then the card's own tag (Sold out on the shop's). #}{% if block.settings.tag or theme.badges.sale and block.settings.compare_price %}<span class="badges" data-badges>{% if theme.badges.sale and block.settings.compare_price %}<span class="tag" data-badge="sale">{{ theme.badges.sale_text }}</span>{% endif %}{% if block.settings.tag %}<span class="tag" data-badge="{% if block.settings.tag == 'Sold out' %}soldout{% else %}tag{% endif %}">{{ block.settings.tag }}</span>{% endif %}</span>{% endif %}
+            </div>
+            <h3 class="card__title">{{ block.settings.title }}</h3>
+            {% if settings.show_rating and block.rating.count > 0 %}<p class="card__rating" style="margin:6px 0 0;display:flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--s-para)"><span role="img" aria-label="{{ words.rated }} {{ block.rating.value }} {{ words.out_of_five }}" style="position:relative;letter-spacing:1px;color:var(--s-border)">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="position:absolute;left:0;top:0;width:{{ block.rating.percent }}%;overflow:hidden;white-space:nowrap;color:{{ block.rating.color | default: '#f5a623' }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span>({{ block.rating.count }})</span></p>{% endif %}
+            {% if settings.show_price and block.settings.price %}
+              <p class="card__price">{{ block.settings.price }}{% if block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+            {% endif %}
+            {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% elsif settings.source == 'collection' %}
+      {# One collection's products, in the collection's own order, from
+         Products › Collections: any kind of product. The button goes to
+         the whole collection. #}
+      {% if settings.collection.title %}
+        {% if settings.collection.products.size == 0 %}
+          {% if page.in_editor %}<p class="empty">This collection has no published products yet</p>{% endif %}
+        {% else %}
+        <div class="grid">
+          {% for block in settings.collection.products %}
+          <article class="card card__wrap" data-card="product" data-block-id="{{ block.id }}">
+            <div class="card__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+              {# Theme settings › Badges: Sale on a discounted product, then the card's own tag (Sold out on the shop's). #}{% if block.settings.tag or theme.badges.sale and block.settings.compare_price %}<span class="badges" data-badges>{% if theme.badges.sale and block.settings.compare_price %}<span class="tag" data-badge="sale">{{ theme.badges.sale_text }}</span>{% endif %}{% if block.settings.tag %}<span class="tag" data-badge="{% if block.settings.tag == 'Sold out' %}soldout{% else %}tag{% endif %}">{{ block.settings.tag }}</span>{% endif %}</span>{% endif %}
+            </div>
+            <h3 class="card__title">{{ block.settings.title }}</h3>
+            {% if settings.show_rating and block.rating.count > 0 %}<p class="card__rating" style="margin:6px 0 0;display:flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--s-para)"><span role="img" aria-label="{{ words.rated }} {{ block.rating.value }} {{ words.out_of_five }}" style="position:relative;letter-spacing:1px;color:var(--s-border)">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="position:absolute;left:0;top:0;width:{{ block.rating.percent }}%;overflow:hidden;white-space:nowrap;color:{{ block.rating.color | default: '#f5a623' }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span>({{ block.rating.count }})</span></p>{% endif %}
+            {% if settings.show_price and block.settings.price %}
+              <p class="card__price">{{ block.settings.price }}{% if block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+            {% endif %}
+            {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      {% else %}
+        {% if page.in_editor %}<p class="empty">Choose a collection in the sidebar</p>{% endif %}
+      {% endif %}
+    {% else %}
+      {% if blocks.size == 0 %}
+        {% if page.in_editor %}<p class="empty">Add products in the sidebar</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in blocks %}
+          {# The product chosen in "Product" fills the card; a name, price or photo typed on the block overrides it. #}
+          {% if block.settings.title or block.settings.url.title %}
+          <article class="card card__wrap" data-card="product" data-block-id="{{ block.id }}">
+            <div class="card__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {# No photo of its own: the photo of the product the card goes to. #}
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title | default: block.settings.url.title }}" loading="lazy" decoding="async">{% elsif block.settings.url.image %}<img src="{{ block.settings.url.image | asset }}" alt="{{ block.settings.title | default: block.settings.url.title }}" loading="lazy" decoding="async">{% endif %}
+              {# Theme settings › Badges: Sale on a discounted product, then the card's own tag (Sold out on the shop's). #}{% if block.settings.tag or theme.badges.sale and block.settings.compare_price %}<span class="badges" data-badges>{% if theme.badges.sale and block.settings.compare_price %}<span class="tag" data-badge="sale">{{ theme.badges.sale_text }}</span>{% endif %}{% if block.settings.tag %}<span class="tag" data-badge="{% if block.settings.tag == 'Sold out' %}soldout{% else %}tag{% endif %}">{{ block.settings.tag }}</span>{% endif %}</span>{% endif %}
+            </div>
+            <h3 class="card__title">{{ block.settings.title | default: block.settings.url.title }}</h3>
+            {% if settings.show_rating and block.settings.url.rating.count > 0 %}<p class="card__rating" style="margin:6px 0 0;display:flex;align-items:center;gap:6px;font-size:13px;line-height:1;color:var(--s-para)"><span role="img" aria-label="{{ words.rated }} {{ block.settings.url.rating.value }} {{ words.out_of_five }}" style="position:relative;letter-spacing:1px;color:var(--s-border)">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="position:absolute;left:0;top:0;width:{{ block.settings.url.rating.percent }}%;overflow:hidden;white-space:nowrap;color:{{ block.settings.url.rating.color | default: '#f5a623' }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span>({{ block.settings.url.rating.count }})</span></p>{% endif %}
+            {% if settings.show_price and (block.settings.price or block.settings.url.price) %}
+              <p class="card__price">{{ block.settings.url.price | default: block.settings.price }}{% if block.settings.url.title %}{% if block.settings.url.compare_price %}<s class="card__was">{{ block.settings.url.compare_price }}</s>{% endif %}{% elsif block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+            {% endif %}
+            {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title | default: block.settings.url.title }}</span></a>{% endif %}
+          </article>
+          {% elsif page.in_editor %}
+          <p class="empty" data-block-id="{{ block.id }}">Choose a product for this card</p>
+          {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+    {# Pages of a long shop or collection: page.pagination (lib/products/catalog-filters.ts), only on the shop's own listing. #}
+    {% if settings.source == 'shop' and page.pagination.pages > 1 %}
+      <nav class="pager" aria-label="{{ words.pages }}">
+        {% if page.pagination.prev_url %}<a class="pager__step" href="{{ page.pagination.prev_url | url }}" rel="prev">{{ settings.prev_label | default: 'Previous' }}</a>{% endif %}
+        <ol class="pager__list">
+          {% for link in page.pagination.links %}
+            <li>{% if link.current %}<span class="pager__num pager__num--on" aria-current="page">{{ link.number }}</span>{% else %}<a class="pager__num" href="{{ link.url | url }}">{{ link.number }}</a>{% endif %}</li>
+          {% endfor %}
+        </ol>
+        {% if page.pagination.next_url %}<a class="pager__step" href="{{ page.pagination.next_url | url }}" rel="next">{{ settings.next_label | default: 'Next' }}</a>{% endif %}
+      </nav>
+    {% endif %}
+    {% if settings.button_text %}
+      {% if settings.source == 'collection' and settings.collection.title %}
+        <div class="s__btns more"><a class="s__btn s__btn--secondary" href="{{ settings.collection | url }}">{{ settings.button_text }}</a></div>
+      {% else %}
+        <div class="s__btns more"><a class="s__btn s__btn--secondary" href="{{ settings.button_url | default: '/products' | url }}">{{ settings.button_text }}</a></div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.s__eyebrow { margin: 0 0 12px; font-family: var(--sl-caption-font); font-size: var(--sl-caption-size, 12px); font-weight: var(--sl-caption-weight, 600); letter-spacing: var(--sl-caption-tracking, 0.14em); text-transform: var(--sl-caption-transform, uppercase); color: var(--s-accent); }
+.s__h {
+  margin: 0;
+  /* The section's heading style: Heading 2 unless the section picked
+     another, set by the theme stylesheet on the section root. */
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  /* The theme's font when the page sets one, the token otherwise, and a real
+     stack either way: a bare family name falls back to the browser's serif. */
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 14px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.s__head { max-width: 44rem; }
+.s__head--center { margin-inline: auto; text-align: center; }
+.s__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.s__head--center .s__btns { justify-content: center; }
+.s__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--sl-button-padding, 13px 24px); font-size: var(--sl-button-size, 15px); line-height: var(--sl-button-line-height); font-weight: var(--theme-button-weight, 600); text-decoration: none;
+  border-radius: var(--s-radius); border: 1px solid transparent; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+/* Each button's hover colours come from the scheme, after the section's own
+   Advanced colors: automatic until somebody chooses them. */
+.s__btn--primary:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.s__btn--secondary:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+.s__btn--primary { background: var(--s-btn); color: var(--s-btn-text); border-color: var(--s-btn); }
+/* The scheme's OWN secondary-button colours, not a stand-in for them.
+   This said `transparent / var(--s-heading) / var(--s-border)`, so the
+   two Secondary button controls in the section panel changed nothing at
+   all, and on a light scheme the outline was drawn in the faint divider
+   colour instead of the dark one the scheme asks for. */
+.s__btn--secondary { background: var(--s-btn2); color: var(--s-btn2-text); border-color: var(--s-btn2-border); }
+.s__note { margin: 16px 0 0; font-size: 13px; color: var(--s-para); opacity: 0.8; }
+
+.s__headblock { margin-bottom: 40px; }
+.grid { display: grid; gap: 24px; grid-template-columns: repeat(var(--cols-m), minmax(0, 1fr)); }
+@container (min-width: 640px) { .grid { grid-template-columns: repeat(var(--cols-t), minmax(0, 1fr)); } }
+@container (min-width: 900px) { .grid { grid-template-columns: repeat(var(--cols-d), minmax(0, 1fr)); } }
+.card { display: flex; flex-direction: column; }
+.card__media { overflow: hidden; border-radius: var(--s-radius); background: var(--s-border); }
+.card__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card__title { margin: 14px 0 0; font-size: 15px; font-weight: 600; color: var(--s-heading); }
+.card__text { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--s-para); }
+.card__price { margin: 8px 0 0; display: flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 600; color: var(--s-heading); }
+.card__was { font-size: 13px; font-weight: 400; color: var(--s-para); opacity: 0.7; }
+.card__link { position: absolute; inset: 0; }
+.card__wrap { position: relative; }
+.empty { margin: 0; text-align: center; font-size: 14px; color: var(--s-para); opacity: 0.55; }
+
+.card__media { position: relative; }
+/* The badges stack in one corner, so Sale and Sold out never sit on top of each other. Where, and their colours, are Theme settings › Badges. */
+.badges { position: absolute; top: 10px; left: 10px; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 20px); }
+.tag { padding: 4px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; background: var(--s-btn); color: var(--s-btn-text); }
+.more { justify-content: center; margin-top: 36px; }
+.pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 40px; font-size: 14px; }
+.pager__list { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.pager__num, .pager__step { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; padding: 0 12px; border-radius: var(--s-radius); color: var(--s-heading); text-decoration: none; transition: background-color 150ms ease; }
+.pager__num:hover, .pager__step:hover { background: var(--s-border); }
+.pager__num--on { background: var(--s-heading); color: var(--s-bg); font-weight: 600; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+/* The heart: over the card's link and above it, so pressing it saves the
+   product rather than opening it. Filled once it is saved. Only on the
+   shop's own products, which are the ones with an id to save. */
+.heart {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0;
+  color: var(--s-heading); background: var(--s-bg);
+  border: 1px solid var(--s-border); border-radius: 999px;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  transition: transform 150ms ease;
+}
+.heart svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; transition: fill 150ms ease; }
+.heart[aria-pressed="true"] svg { fill: currentColor; }
+.heart:active { transform: scale(0.92); }
+.heart:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .heart, .heart svg { transition: none; } }
+
+/* ── Filters: a sidebar beside the grid on a computer, a panel that opens
+   under the bar on a phone. A plain GET form: the address is the state, so
+   a filtered list can be linked and reloaded, and it works before any
+   script. The page submits it as soon as a box is ticked. ── */
+.cat { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "bar" "side" "main"; column-gap: 40px; margin-top: 8px; }
+.cat__form { display: contents; }
+.cat__toggle { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.cat__bar { grid-area: bar; display: flex; align-items: center; gap: 12px; padding: 0 0 16px; border-bottom: 1px solid var(--s-border); }
+.cat__open {
+  display: inline-flex; flex: 0 0 auto; align-items: center; height: 40px; padding: 0 16px; font-size: 14px; font-weight: 600; white-space: nowrap; cursor: pointer;
+  color: var(--s-heading); border: 1px solid var(--s-border); border-radius: var(--s-radius); -webkit-tap-highlight-color: transparent;
+}
+.cat__toggle:checked ~ .cat__bar .cat__open { border-color: var(--s-heading); }
+.cat__toggle:focus-visible ~ .cat__bar .cat__open { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+.cat__count { margin: 0; min-width: 0; font-size: 14px; color: var(--s-para); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cat__sort { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--s-para); }
+.cat__sortl { display: none; }
+.cat__sort select {
+  height: 40px; max-width: 44vw; padding: 0 30px 0 12px; font: inherit; font-size: 14px; color: var(--s-heading); background-color: var(--s-bg);
+  border: 1px solid var(--s-border); border-radius: var(--s-radius); -webkit-appearance: none; appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 15px) 18px, calc(100% - 10px) 18px; background-size: 5px 5px; background-repeat: no-repeat;
+}
+.cat__panel { grid-area: side; display: none; padding: 8px 0 16px; border-bottom: 1px solid var(--s-border); }
+.cat__toggle:checked ~ .cat__panel { display: block; }
+.cat__group { margin: 0; padding: 14px 0; border: 0; border-top: 1px solid var(--s-border); min-width: 0; }
+.cat__group:first-child { border-top: 0; }
+/* Floated, so the fieldset's rule runs above it rather than through it. */
+.cat__legend { float: left; width: 100%; padding: 0; margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--s-heading); }
+.cat__legend + * { clear: both; }
+.cat__opt { display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 14px; color: var(--s-text); cursor: pointer; }
+.cat__opt input { width: 18px; height: 18px; margin: 0; accent-color: var(--s-heading); flex: 0 0 auto; }
+.cat__opt--off { opacity: 0.45; cursor: default; }
+.cat__sw { width: 18px; height: 18px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); flex: 0 0 auto; }
+.cat__lab { flex: 1 1 auto; min-width: 0; }
+.cat__n { font-size: 13px; color: var(--s-para); opacity: 0.75; font-variant-numeric: tabular-nums; }
+.cat__range { display: flex; align-items: center; gap: 8px; }
+.cat__num { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 4px; height: 40px; padding: 0 10px; border: 1px solid var(--s-border); border-radius: var(--s-radius); color: var(--s-para); }
+.cat__num input { width: 100%; min-width: 0; border: 0; outline: none; background: transparent; font: inherit; font-size: 16px; color: var(--s-heading); -moz-appearance: textfield; }
+.cat__num input::-webkit-outer-spin-button, .cat__num input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.cat__to { font-size: 13px; color: var(--s-para); }
+.cat__actions { display: flex; align-items: center; gap: 16px; padding-top: 14px; }
+.cat__apply { height: 40px; padding: 0 20px; font: inherit; font-size: 14px; font-weight: 600; color: var(--s-btn-text); background: var(--s-btn); border: 1px solid var(--s-btn); border-radius: var(--s-radius); cursor: pointer; }
+.cat__clear { font-size: 14px; color: var(--s-heading); text-underline-offset: 3px; }
+.cat__results { grid-area: main; min-width: 0; container-type: inline-size; padding-top: 20px; }
+.cat__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.cat__chip { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; font-size: 13px; color: var(--s-heading); text-decoration: none; border: 1px solid var(--s-border); border-radius: 999px; }
+.cat__chip--clear { border-color: transparent; text-decoration: underline; text-underline-offset: 3px; }
+.cat__empty { padding: 48px 0; text-align: center; font-size: 15px; color: var(--s-para); }
+.cat__empty a { display: inline-block; margin-top: 10px; color: var(--s-heading); }
+.cat .grid { margin-top: 0; }
+@container (min-width: 900px) {
+  .cat { grid-template-columns: 240px minmax(0, 1fr); grid-template-areas: "side bar" "side main"; }
+  .cat__open { display: none; }
+  .cat__sortl { display: inline; }
+  .cat__panel { display: block; align-self: start; padding: 0; border-bottom: 0; }
+  .cat__group:first-child { padding-top: 4px; }
+}
+
+/* Nothing to filter by (one product, no options): no Filter button and no
+   empty column holding a lone Apply; the bar keeps the count and the sort. */
+.cat--bare .cat__open, .cat--bare .cat__panel { display: none !important; }
+@container (min-width: 900px) { .cat.cat--bare { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bar" "main"; } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "product_grid",
+  "name": "Product Grid",
+  "category": "products",
+  "description": "A row of products, as many across as you like.",
+  "version": "1.0.0",
+  "icon": "grid",
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Products",
+      "info": "Products you choose, a collection and your shop stay in step with Products on their own. Cards show the product each one is set to.",
+      "default": "picked",
+      "options": [
+        {
+          "label": "Cards, one product each",
+          "value": "picked"
+        },
+        {
+          "label": "Products I choose",
+          "value": "chosen"
+        },
+        {
+          "label": "My shop, newest first",
+          "value": "shop"
+        },
+        {
+          "label": "A collection",
+          "value": "collection"
+        }
+      ]
+    },
+    {
+      "type": "product_list",
+      "id": "chosen",
+      "label": "Products to show",
+      "limit": 12,
+      "default": [],
+      "visible_if": "{{ section.settings.source == 'chosen' }}"
+    },
+    {
+      "type": "collection_picker",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Its products in its own order, up to 12. The button goes to the whole collection.",
+      "visible_if": "{{ section.settings.source == 'collection' }}"
+    },
+    {
+      "type": "header",
+      "id": "hdr_content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What's in the shop"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Supporting line",
+      "default": ""
+    },
+    {
+      "type": "radio",
+      "id": "align",
+      "label": "Heading sits",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Centre",
+          "value": "center"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_layout",
+      "label": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "default": {
+        "desktop": 3,
+        "tablet": 2,
+        "mobile": 1
+      },
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "responsive": true
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Photo shape",
+      "default": "1 / 1",
+      "options": [
+        {
+          "label": "Square",
+          "value": "1 / 1"
+        },
+        {
+          "label": "Portrait",
+          "value": "3 / 4"
+        },
+        {
+          "label": "Landscape",
+          "value": "4 / 3"
+        }
+      ]
+    },
+    {
+      "type": "toggle",
+      "id": "show_price",
+      "label": "Show prices",
+      "default": true
+    },
+    {
+      "type": "toggle",
+      "id": "show_rating",
+      "label": "Show star ratings",
+      "default": true,
+      "info": "From Storelib Reviews, when it is on and a product has reviews."
+    },
+    {
+      "type": "toggle",
+      "id": "show_wishlist",
+      "label": "Show a heart to save",
+      "default": true,
+      "info": "On your shop's products. Saved ones are listed on the Wishlist page."
+    },
+    {
+      "type": "header",
+      "id": "hdr_filters",
+      "label": "Filters"
+    },
+    {
+      "type": "toggle",
+      "id": "show_filters",
+      "label": "Show filters",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "filter_label",
+      "label": "Filter button",
+      "default": "Filter",
+      "visible_if": "{{ section.settings.show_filters }}"
+    },
+    {
+      "type": "text",
+      "id": "sort_label",
+      "label": "Sort label",
+      "default": "Sort by",
+      "visible_if": "{{ section.settings.show_filters }}"
+    },
+    {
+      "type": "text",
+      "id": "apply_label",
+      "label": "Apply button",
+      "default": "Apply",
+      "visible_if": "{{ section.settings.show_filters }}"
+    },
+    {
+      "type": "text",
+      "id": "clear_label",
+      "label": "Clear link",
+      "default": "Clear all",
+      "visible_if": "{{ section.settings.show_filters }}"
+    },
+    {
+      "type": "text",
+      "id": "no_match",
+      "label": "When nothing matches the filters",
+      "default": "No products match these filters.",
+      "visible_if": "{{ section.settings.show_filters }}"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button under the grid",
+      "default": "See everything"
+    },
+    {
+      "type": "text",
+      "id": "prev_label",
+      "label": "Previous page",
+      "default": "Previous",
+      "visible_if": "{{ section.settings.source == 'shop' }}"
+    },
+    {
+      "type": "text",
+      "id": "next_label",
+      "label": "Next page",
+      "default": "Next",
+      "visible_if": "{{ section.settings.source == 'shop' }}"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link",
+      "default": "/products",
+      "visible_if": "{{ section.settings.source != 'collection' }}"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Content width",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    {
+      "type": "header",
+      "id": "hdr_spacing",
+      "label": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "default": 72,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "default": 72,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product_picker",
+          "id": "url",
+          "label": "Product",
+          "default": ""
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo",
+          "info": "Leave empty to use the product's.",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name",
+          "info": "Leave empty to use the product's.",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "info": "Leave empty to use the product's.",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Was",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Corner label",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [
+    {
+      "name": "Product Grid",
+      "settings": {
+        "source": "shop"
+      },
+      "blocks": []
+    },
+    {
+      "name": "Product Grid, four across",
+      "settings": {
+        "columns": {
+          "desktop": 4,
+          "tablet": 2,
+          "mobile": 1
+        },
+        "source": "shop"
+      },
+      "blocks": []
+    }
+  ]
+}
+</schema>

@@ -1,0 +1,278 @@
+{
+  "type": "collection_banner",
+  "name": "Collection Banner",
+  "description": "Product collection hero banner with optional filters, sort, and product count.",
+  "supports_typography_overrides": false,
+  "icon": "grid",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Collection",
+      "type": "header"
+    },
+    {
+      "id": "collection_name",
+      "label": "Collection Name",
+      "type": "text",
+      "default": "Women's Outerwear",
+      "placeholder": "Collection name"
+    },
+    {
+      "id": "product_count_text",
+      "label": "Product Count Text",
+      "type": "text",
+      "default": "142 products",
+      "placeholder": "e.g. 142 products"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Discover our curated selection of women's outerwear, from lightweight transitional jackets to heavyweight winter coats, crafted for style and function.",
+      "placeholder": "Collection description"
+    },
+    {
+      "id": "hero_image",
+      "label": "Hero Image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "hero_image_alt",
+      "label": "Hero Image Alt Text",
+      "type": "text",
+      "default": "Women's Outerwear Collection",
+      "placeholder": "Describe the image for accessibility"
+    },
+    {
+      "id": "badge_text",
+      "label": "Badge Text",
+      "type": "text",
+      "default": "New Arrivals",
+      "placeholder": "e.g. Sale, New Arrivals"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "badge_color",
+      "label": "Badge Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_filters",
+      "label": "Filters",
+      "type": "header"
+    },
+    {
+      "id": "show_filters",
+      "label": "Show Filters",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_sort",
+      "label": "Show Sort",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_product_count",
+      "label": "Show Product Count",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "filter_style",
+      "label": "Filter Style",
+      "type": "select",
+      "default": "pills",
+      "options": [
+        {
+          "label": "Pills",
+          "value": "pills"
+        },
+        {
+          "label": "Dropdowns",
+          "value": "dropdowns"
+        },
+        {
+          "label": "Sidebar",
+          "value": "sidebar"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Banner Layout",
+      "type": "select",
+      "default": "banner-top",
+      "options": [
+        {
+          "label": "Banner Top",
+          "value": "banner-top"
+        },
+        {
+          "label": "Banner Left",
+          "value": "banner-left"
+        },
+        {
+          "label": "Banner Right",
+          "value": "banner-right"
+        },
+        {
+          "label": "No Banner",
+          "value": "no-banner"
+        }
+      ]
+    },
+    {
+      "id": "banner_height",
+      "label": "Banner Height",
+      "type": "range",
+      "default": 400,
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px"
+    },
+    {
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "type": "range",
+      "default": 30,
+      "min": 0,
+      "max": 90,
+      "step": 5
+    },
+    {
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "type": "color",
+      "default": "#000000"
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_position",
+      "label": "Text Alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Banner",
+      "settings": {
+        "collection_name": "Women's Outerwear",
+        "product_count_text": "142 products",
+        "description": "Discover our curated selection of women's outerwear, from lightweight transitional jackets to heavyweight winter coats, crafted for style and function.",
+        "hero_image_alt": "Women's Outerwear Collection",
+        "badge_text": "New Arrivals",
+        "show_filters": true,
+        "show_sort": true,
+        "show_product_count": true,
+        "filter_style": "pills",
+        "layout": "banner-top",
+        "banner_height": 400,
+        "overlay_opacity": 30,
+        "overlay_color": "#000000",
+        "text_color": "#ffffff",
+        "text_position": "center",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}

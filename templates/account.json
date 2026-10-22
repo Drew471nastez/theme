@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "account": {
+      "name": "Main Account",
+      "type": "main_account",
+      "hidden": false,
+      "settings": {
+        "color_scheme": "white"
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "account"
+  ]
+}

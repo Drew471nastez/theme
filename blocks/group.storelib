@@ -1,0 +1,122 @@
+{# ===========================================================================
+   Group: a theme block that holds theme blocks
+
+   The block that makes layouts out of blocks: a column of them, or a row
+   that stacks on a phone. It accepts any public theme block, a group
+   included, so a row of two columns is a group holding two groups.
+
+   Its presets are what the Add block menu offers under Group, and each one
+   arrives already filled in, written in Shopify's keyed form.
+
+   A background of its own is optional: empty is none, and the section shows
+   through. --g-bg is always written, `transparent` when empty, because a
+   custom property is inherited and a group inside a coloured group would
+   otherwise paint the outer one's colour again.
+   =========================================================================== #}
+<template>
+<div class="sl-group sl-group--{{ block.settings.direction }} sl-group--{{ block.settings.align }}{% if block.settings.stack_on_mobile %} sl-group--stack{% endif %}" style="--g-gap: {{ block.settings.gap }}px; --g-pad: {{ block.settings.padding }}px; --g-bg: {{ block.settings.background | default: 'transparent' }}; --g-radius: {{ block.settings.radius }}px;">
+  {% content_for "blocks" %}
+  {% if block.blocks.size == 0 and page.in_editor %}<p class="sl-group__empty">Add blocks to this group</p>{% endif %}
+</div>
+</template>
+
+<style>
+.sl-group { display: flex; gap: var(--g-gap); padding: var(--g-pad); min-width: 0; background: var(--g-bg, transparent); border-radius: var(--g-radius, 0); }
+.sl-group--column { flex-direction: column; }
+.sl-group--row { flex-direction: row; flex-wrap: nowrap; }
+.sl-group--row > .sl-block { flex: 1 1 0; min-width: 0; }
+.sl-group--column.sl-group--start { align-items: flex-start; }
+.sl-group--column.sl-group--center { align-items: center; text-align: center; }
+.sl-group--column.sl-group--end { align-items: flex-end; text-align: right; }
+.sl-group--column > .sl-block { max-width: 100%; }
+.sl-group--column.sl-group--start > .sl-block, .sl-group--column.sl-group--center > .sl-block, .sl-group--column.sl-group--end > .sl-block { width: auto; }
+.sl-group--column > .sl-block:has(.sl-group), .sl-group--column > .sl-block:has(.sl-image), .sl-group--column > .sl-block:has(.sl-video), .sl-group--column > .sl-block:has(.sl-spacer) { width: 100%; }
+.sl-group--row.sl-group--start { align-items: flex-start; }
+.sl-group--row.sl-group--center { align-items: center; }
+.sl-group--row.sl-group--end { align-items: flex-end; }
+.sl-group__empty { margin: 0; padding: 16px; border: 1px dashed var(--s-border, currentColor); font-size: 13px; opacity: 0.7; text-align: center; width: 100%; box-sizing: border-box; }
+@media (max-width: 749px) {
+  .sl-group--row.sl-group--stack { flex-direction: column; align-items: stretch; }
+}
+</style>
+
+<schema>
+{
+  "name": "Group",
+  "blocks": [{ "type": "@theme" }],
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "radio", "id": "direction", "label": "Direction", "default": "column",
+      "options": [
+        { "label": "Column", "value": "column" },
+        { "label": "Row", "value": "row" }
+      ]
+    },
+    {
+      "type": "select", "id": "align", "label": "Alignment", "default": "start",
+      "options": [
+        { "label": "Start", "value": "start" },
+        { "label": "Centre", "value": "center" },
+        { "label": "End", "value": "end" }
+      ]
+    },
+    { "type": "range", "id": "gap", "label": "Space between", "default": 16, "min": 0, "max": 80, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding", "label": "Padding", "default": 0, "min": 0, "max": 80, "step": 4, "unit": "px" },
+    { "type": "toggle", "id": "stack_on_mobile", "label": "Stack a row on phones", "default": true },
+    { "type": "color", "id": "background", "label": "Background", "default": "", "info": "Empty for none: the section shows through." },
+    { "type": "range", "id": "radius", "label": "Corner radius", "default": 0, "min": 0, "max": 40, "step": 2, "unit": "px" }
+  ],
+  "presets": [
+    {
+      "name": "Group",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "text": "A short title", "size": "small" } },
+        "text": { "type": "text" }
+      },
+      "block_order": ["heading", "text"]
+    },
+    {
+      "name": "Two columns",
+      "settings": { "direction": "row", "gap": 32 },
+      "blocks": {
+        "left": {
+          "type": "group",
+          "blocks": {
+            "heading": { "type": "heading", "settings": { "text": "First column", "size": "small" } },
+            "text": { "type": "text" }
+          },
+          "block_order": ["heading", "text"]
+        },
+        "right": {
+          "type": "group",
+          "blocks": {
+            "heading": { "type": "heading", "settings": { "text": "Second column", "size": "small" } },
+            "text": { "type": "text" }
+          },
+          "block_order": ["heading", "text"]
+        }
+      },
+      "block_order": ["left", "right"]
+    },
+    {
+      "name": "Image with text",
+      "settings": { "direction": "row", "gap": 40, "align": "center" },
+      "blocks": {
+        "image": { "type": "image", "settings": { "ratio": "portrait" } },
+        "words": {
+          "type": "group",
+          "settings": { "gap": 16 },
+          "blocks": {
+            "heading": { "type": "heading", "settings": { "text": "Made by hand" } },
+            "text": { "type": "text", "settings": { "text": "<p>Tell the story behind what you sell, in a few lines.</p>" } },
+            "button": { "type": "button" }
+          },
+          "block_order": ["heading", "text", "button"]
+        }
+      },
+      "block_order": ["image", "words"]
+    }
+  ]
+}
+</schema>

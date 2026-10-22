@@ -1,0 +1,194 @@
+{
+  "type": "products_carousel",
+  "name": "Products carousel",
+  "description": "Heading + horizontal scrollable strip of product cards with arrows.",
+  "supports_typography_overrides": false,
+  "icon": "shopping-bag",
+  "category": "commerce",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Featured products"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "text"
+    },
+    {
+      "id": "show_view_all_button",
+      "label": "Show view-all button",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "view_all_url",
+      "label": "View all URL",
+      "type": "link"
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_products",
+      "label": "Products",
+      "type": "header"
+    },
+    {
+      "id": "items_to_show",
+      "label": "Products to show",
+      "type": "range",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "id": "items_per_row",
+      "label": "Items per row",
+      "type": "range",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "column_gap",
+      "label": "Column gap",
+      "type": "range",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "id": "show_arrows",
+      "label": "Show arrow controls",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_dots",
+      "label": "Show pagination dots",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "show_banner",
+      "label": "Show side banner",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "banner_image",
+      "label": "Banner image",
+      "type": "image"
+    },
+    {
+      "id": "position",
+      "label": "Banner position",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products",
+      "settings": {
+        "heading": "Featured products",
+        "items_to_show": 8,
+        "items_per_row": 4,
+        "show_arrows": true,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

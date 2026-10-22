@@ -1,0 +1,218 @@
+{
+  "type": "cta",
+  "name": "Call to action",
+  "description": "A high-impact call-to-action banner with optional countdown.",
+  "supports_typography_overrides": false,
+  "icon": "zap",
+  "category": "marketing",
+  "fields": [
+    {
+      "id": "badge_text",
+      "label": "Badge / eyebrow text",
+      "type": "text",
+      "default": "Limited time offer",
+      "placeholder": "Short badge label"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Ready to get started?",
+      "placeholder": "Main headline"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "Join over 10,000 businesses that rely on us every day. No credit card required.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "btn_primary_text",
+      "label": "Primary button text",
+      "type": "text",
+      "default": "Start free trial"
+    },
+    {
+      "id": "btn_primary_url",
+      "label": "Primary button URL",
+      "type": "link",
+      "default": "#"
+    },
+    {
+      "id": "btn_secondary_text",
+      "label": "Secondary button text",
+      "type": "text",
+      "default": "Learn more"
+    },
+    {
+      "id": "btn_secondary_url",
+      "label": "Secondary button URL",
+      "type": "link",
+      "default": "#"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "centered",
+      "options": [
+        {
+          "label": "Centered",
+          "value": "centered"
+        },
+        {
+          "label": "Left / right split",
+          "value": "left-right"
+        }
+      ]
+    },
+    {
+      "id": "bg_type",
+      "label": "Background type",
+      "type": "select",
+      "default": "color",
+      "options": [
+        {
+          "label": "Solid color",
+          "value": "color"
+        },
+        {
+          "label": "Gradient",
+          "value": "gradient"
+        },
+        {
+          "label": "Image",
+          "value": "image"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "gradient_from",
+      "label": "Gradient from",
+      "type": "color",
+      "default": "#4f46e5"
+    },
+    {
+      "id": "gradient_to",
+      "label": "Gradient to",
+      "type": "color",
+      "default": "#7c3aed"
+    },
+    {
+      "id": "bg_image",
+      "label": "Background image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "decorative_image",
+      "label": "Decorative image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "countdown",
+      "label": "Show countdown timer",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "countdown_end",
+      "label": "Countdown end date",
+      "type": "text",
+      "default": "",
+      "placeholder": "YYYY-MM-DD HH:MM"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gradient CTA banner",
+      "settings": {
+        "badge_text": "New release",
+        "heading": "Ready to get started?",
+        "subheading": "Try free for 14 days. No credit card required.",
+        "btn_primary_text": "Get started free",
+        "btn_primary_url": "/products",
+        "btn_secondary_text": "See pricing",
+        "btn_secondary_url": "/pricing",
+        "layout": "centered",
+        "bg_type": "gradient",
+        "gradient_from": "#4f46e5",
+        "gradient_to": "#7c3aed",
+        "countdown": false,
+        "text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "black"
+      }
+    }
+  ]
+}

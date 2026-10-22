@@ -1,0 +1,80 @@
+<template>
+{# Fixed to a corner of the screen on the live site, and shown once the page
+   has been scrolled (components/website-builder/sections/overlay-hooks.ts sets
+   data-shown). In the builder it sits in the page where it can be selected. #}
+<div class="btt {% if page.in_editor %}btt--canvas{% endif %}" data-scheme="{{ settings.color_scheme }}" style="--btt-bg: {{ settings.background | default: scheme.primary_btn_bg }}; --btt-text: {{ settings.icon_color | default: scheme.primary_btn_text }}; --btt-size: {{ settings.size }}px; --btt-gap: {{ settings.offset }}px; --btt-radius: {% if settings.shape == 'circle' %}999px{% else %}{{ theme.radius.medium }}px{% endif %};">
+  <button class="btt__go btt__go--{{ settings.side }}" type="button" data-storelib-back-to-top data-after="{{ settings.show_after }}" aria-label="{{ settings.label }}">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    {% if settings.show_label %}<span class="btt__label">{{ settings.label }}</span>{% endif %}
+  </button>
+</div>
+</template>
+
+<style scoped>
+.btt__go {
+  position: fixed; z-index: 60; bottom: calc(var(--btt-gap) + max(var(--sl-bottom-bar-h, 0px), env(safe-area-inset-bottom, 0px)));
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; font-family: inherit;
+  min-width: var(--btt-size); height: var(--btt-size); padding: 0 calc(var(--btt-size) / 3.4);
+  border-radius: var(--btt-radius); background: var(--btt-bg); color: var(--btt-text);
+  font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+}
+.btt__go:not(:has(.btt__label)) { padding: 0; }
+.btt__go--right { right: calc(var(--btt-gap) + env(safe-area-inset-right, 0px)); }
+.btt__go--left { left: calc(var(--btt-gap) + env(safe-area-inset-left, 0px)); }
+.btt__go[data-shown] { opacity: 1; visibility: visible; transform: none; transition: opacity 200ms ease, transform 200ms ease; }
+.btt__go:hover { filter: brightness(0.92); }
+.btt__go:focus-visible { outline: 2px solid var(--btt-bg); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .btt__go, .btt__go[data-shown] { transition: none; transform: none; } }
+
+/* In the builder: in the page, at its corner, always shown. */
+.btt--canvas { display: flex; padding: 12px var(--btt-gap); }
+.btt--canvas:has(.btt__go--right) { justify-content: flex-end; }
+.btt--canvas .btt__go { position: static; opacity: 1; visibility: visible; transform: none; }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "back_to_top",
+  "name": "Back to top",
+  "category": "overlay",
+  "description": "A button in a corner of the screen that goes back to the top of the page.",
+  "version": "1.0.0",
+  "icon": "arrow-up",
+  "enabled_on": { "groups": ["overlay"] },
+  "supports_typography_overrides": false,
+  "settings": [
+    { "type": "header", "id": "hdr_button", "label": "Button" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Back to top", "info": "Read aloud, and shown when Show the label is on." },
+    { "type": "toggle", "id": "show_label", "label": "Show the label", "default": false },
+    {
+      "type": "radio", "id": "side", "label": "Corner", "default": "right",
+      "options": [ { "label": "Left", "value": "left" }, { "label": "Right", "value": "right" } ]
+    },
+    {
+      "type": "radio", "id": "shape", "label": "Shape", "default": "circle",
+      "options": [ { "label": "Circle", "value": "circle" }, { "label": "Theme corners", "value": "theme" } ]
+    },
+    { "type": "range", "id": "size", "label": "Size", "default": 44, "min": 36, "max": 64, "step": 2, "unit": "px" },
+    { "type": "range", "id": "offset", "label": "Distance from the edge", "default": 20, "min": 8, "max": 48, "step": 2, "unit": "px" },
+    { "type": "range", "id": "show_after", "label": "Appears after scrolling", "default": 400, "min": 0, "max": 2000, "step": 100, "unit": "px" },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "color", "id": "background", "label": "Button colour", "default": "", "info": "Empty uses the scheme's button colour." },
+    { "type": "color", "id": "icon_color", "label": "Arrow colour", "default": "" }
+  ],
+  "presets": [
+    { "name": "Back to top" }
+  ]
+}
+</schema>

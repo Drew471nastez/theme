@@ -1,0 +1,257 @@
+{
+  "type": "announcement_banner",
+  "name": "Announcement Banner",
+  "description": "Page-level announcement bar with optional countdown, CTA, and dismiss button.",
+  "icon": "megaphone",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Limited Time Offer",
+      "placeholder": "Banner heading"
+    },
+    {
+      "id": "body",
+      "label": "Body Text",
+      "type": "textarea",
+      "default": "Get 20% off your first order. Use code WELCOME20 at checkout. Offer ends midnight Sunday.",
+      "placeholder": "Banner body text"
+    },
+    {
+      "id": "icon",
+      "label": "Icon",
+      "type": "select",
+      "default": "megaphone",
+      "options": [
+        {
+          "label": "Megaphone",
+          "value": "megaphone"
+        },
+        {
+          "label": "Bell",
+          "value": "bell"
+        },
+        {
+          "label": "Star",
+          "value": "star"
+        },
+        {
+          "label": "Info",
+          "value": "info"
+        },
+        {
+          "label": "Warning",
+          "value": "warning"
+        }
+      ]
+    },
+    {
+      "id": "show_close_button",
+      "label": "Show Close Button",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "dismissible",
+      "label": "Dismissible (remembers close)",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "countdown_end",
+      "label": "Countdown End Date/Time",
+      "type": "text",
+      "default": "",
+      "placeholder": "e.g. 2026-03-31T23:59:00"
+    },
+    {
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "type": "text",
+      "default": "Shop Now",
+      "placeholder": "e.g. Shop Now"
+    },
+    {
+      "id": "cta_url",
+      "label": "CTA Button URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "cta_style",
+      "label": "CTA Style",
+      "type": "radio",
+      "default": "filled",
+      "options": [
+        {
+          "label": "Filled",
+          "value": "filled"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "style_preset",
+      "label": "Style Preset",
+      "type": "select",
+      "default": "scheme",
+      "options": [
+        {
+          "label": "Follow color scheme",
+          "value": "scheme"
+        },
+        {
+          "label": "Info (Blue)",
+          "value": "info"
+        },
+        {
+          "label": "Success (Green)",
+          "value": "success"
+        },
+        {
+          "label": "Warning (Amber)",
+          "value": "warning"
+        },
+        {
+          "label": "Error (Red)",
+          "value": "error"
+        },
+        {
+          "label": "Brand",
+          "value": "brand"
+        },
+        {
+          "label": "Gradient",
+          "value": "gradient"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_color",
+      "label": "Border Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_radius",
+      "label": "Border Radius",
+      "type": "range",
+      "default": 8,
+      "min": 0,
+      "max": 16,
+      "step": 1
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 16,
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 16,
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Banner",
+      "settings": {
+        "heading": "Limited Time Offer",
+        "body": "Get 20% off your first order. Use code WELCOME20 at checkout. Offer ends midnight Sunday.",
+        "icon": "megaphone",
+        "show_close_button": true,
+        "dismissible": true,
+        "countdown_end": "",
+        "cta_text": "Shop Now",
+        "cta_url": "#",
+        "cta_style": "filled",
+        "style_preset": "scheme",
+        "border_radius": 8,
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "color_scheme": "black"
+      }
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "type": "chapter_preview",
+  "name": "Chapter Preview",
+  "description": "Display a locked or unlocked chapter excerpt with optional CTA to purchase.",
+  "supports_typography_overrides": false,
+  "icon": "file-text",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Preview Content",
+      "type": "header"
+    },
+    {
+      "id": "chapter_number",
+      "label": "Chapter Number",
+      "type": "text",
+      "default": "Chapter 1",
+      "placeholder": "e.g. Chapter 1"
+    },
+    {
+      "id": "chapter_title",
+      "label": "Chapter Title",
+      "type": "text",
+      "default": "The Modern Business Landscape",
+      "placeholder": "Chapter title"
+    },
+    {
+      "id": "intro_text",
+      "label": "Intro Text",
+      "type": "text",
+      "default": "Free preview: read the first 10 pages",
+      "placeholder": "Short intro above the excerpt"
+    },
+    {
+      "id": "preview_text",
+      "label": "Preview Text",
+      "type": "richtext",
+      "default": "<p>Every great business begins with a single insight, a moment of clarity where opportunity meets preparation. In this opening chapter, we explore what separates the businesses that thrive from those that merely survive.</p><p>The landscape of modern business has shifted dramatically. Where once you needed deep pockets and industry connections to compete, today a single person with a laptop and an internet connection can build a seven-figure enterprise in under two years.</p><p>But with opportunity comes noise. More tools, more tactics, more gurus, more conflicting advice than any one person could ever consume. The goal of this book isn't to add to that noise. It is to cut through it.</p>"
+    },
+    {
+      "id": "word_count",
+      "label": "Word Count",
+      "type": "number",
+      "default": 4200
+    },
+    {
+      "id": "read_time_minutes",
+      "label": "Read Time (minutes)",
+      "type": "number",
+      "default": 18
+    },
+    {
+      "id": "is_locked",
+      "label": "Lock Content (show paywall)",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "lock_message",
+      "label": "Lock Message",
+      "type": "text",
+      "default": "Purchase to read the full book",
+      "placeholder": "e.g. Purchase to read full book"
+    },
+    {
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "type": "text",
+      "default": "Unlock Full Chapter",
+      "placeholder": "e.g. Buy Now"
+    },
+    {
+      "id": "cta_url",
+      "label": "CTA Button URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "show_progress_bar",
+      "label": "Show Reading Progress Bar",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "progress_percent",
+      "label": "Progress Percent",
+      "type": "range",
+      "default": 15,
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_color",
+      "label": "Border Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "font_family",
+      "label": "Font",
+      "type": "font",
+      "default": "Georgia, serif"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Chapter Preview",
+      "settings": {
+        "chapter_number": "Chapter 1",
+        "chapter_title": "The Modern Business Landscape",
+        "intro_text": "Free preview: read the first 10 pages",
+        "preview_text": "<p>Every great business begins with a single insight, a moment of clarity where opportunity meets preparation. In this opening chapter, we explore what separates the businesses that thrive from those that merely survive.</p><p>The landscape of modern business has shifted dramatically. Where once you needed deep pockets and industry connections to compete, today a single person with a laptop and an internet connection can build a seven-figure enterprise in under two years.</p>",
+        "word_count": 4200,
+        "read_time_minutes": 18,
+        "is_locked": false,
+        "lock_message": "Purchase to read the full book",
+        "cta_text": "Unlock Full Chapter",
+        "cta_url": "#",
+        "show_progress_bar": true,
+        "progress_percent": 15,
+        "font_family": "Georgia, serif",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

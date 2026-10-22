@@ -1,0 +1,240 @@
+{
+  "type": "size_guide",
+  "name": "Size Guide",
+  "description": "Clothing size chart with unit toggle, fit guide image, and model measurements.",
+  "supports_typography_overrides": false,
+  "icon": "ruler",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Size Guide",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Find Your Perfect Fit",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Use our size guide to find your ideal fit. Sizes are based on body measurements. If you are between sizes we recommend sizing up for a relaxed fit.",
+      "placeholder": "Introductory description"
+    },
+    {
+      "id": "note_text",
+      "label": "Note Text",
+      "type": "text",
+      "default": "Measurements are in cm unless toggled to inches.",
+      "placeholder": "e.g. Measurements are in cm"
+    },
+    {
+      "id": "unit_system",
+      "label": "Default Unit System",
+      "type": "radio",
+      "default": "metric",
+      "options": [
+        {
+          "label": "Metric (cm)",
+          "value": "metric"
+        },
+        {
+          "label": "Imperial (inches)",
+          "value": "imperial"
+        }
+      ]
+    },
+    {
+      "id": "show_unit_toggle",
+      "label": "Show Unit Toggle",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "chart_style",
+      "label": "Chart Style",
+      "type": "select",
+      "default": "bordered-table",
+      "options": [
+        {
+          "label": "Minimal Table",
+          "value": "minimal-table"
+        },
+        {
+          "label": "Bordered Table",
+          "value": "bordered-table"
+        },
+        {
+          "label": "Cards",
+          "value": "cards"
+        },
+        {
+          "label": "Visual",
+          "value": "visual"
+        }
+      ]
+    },
+    {
+      "id": "hdr_fit",
+      "label": "Fit Guide",
+      "type": "header"
+    },
+    {
+      "id": "show_fit_guide",
+      "label": "Show Fit Guide",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "fit_guide_image",
+      "label": "Fit Guide Image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "fit_guide_text",
+      "label": "Fit Guide Text",
+      "type": "textarea",
+      "default": "Chest: Measure around the fullest part of your chest, keeping the tape horizontal.\n\nWaist: Measure around your natural waistline, the narrowest part of your torso.\n\nHips: Measure around the fullest part of your hips, about 8 inches below your waist.",
+      "placeholder": "How-to measurement instructions"
+    },
+    {
+      "id": "show_model_measurements",
+      "label": "Show Model Measurements",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "model_info",
+      "label": "Model Info",
+      "type": "text",
+      "default": "Model is 5'9\" (175 cm) and wears size S",
+      "placeholder": "e.g. Model is 5'9\" and wears size S"
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "header_bg_color",
+      "label": "Table Header Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_color",
+      "label": "Border Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "highlight_size",
+      "label": "Highlight this size",
+      "type": "text",
+      "default": "",
+      "placeholder": "M",
+      "info": "The row to pick out, usually the size you recommend most. Leave empty for none."
+    },
+    {
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "type": "color",
+      "default": "#fff3e0"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Size Guide",
+      "settings": {
+        "heading": "Find Your Perfect Fit",
+        "description": "Use our size guide to find your ideal fit. Sizes are based on body measurements. If you are between sizes we recommend sizing up for a relaxed fit.",
+        "note_text": "Measurements are in cm unless toggled to inches.",
+        "unit_system": "metric",
+        "show_unit_toggle": true,
+        "chart_style": "bordered-table",
+        "show_fit_guide": true,
+        "fit_guide_text": "Chest: Measure around the fullest part of your chest, keeping the tape horizontal.\n\nWaist: Measure around your natural waistline.",
+        "show_model_measurements": true,
+        "model_info": "Model is 5'9\" (175 cm) and wears size S",
+        "highlight_color": "#fff3e0",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

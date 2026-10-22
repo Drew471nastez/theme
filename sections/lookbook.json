@@ -1,0 +1,335 @@
+{
+  "type": "lookbook",
+  "name": "Lookbook",
+  "description": "Fashion / clothing brand lookbook hero with collection info and mood styling.",
+  "supports_typography_overrides": false,
+  "icon": "image",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Collection Info",
+      "type": "header"
+    },
+    {
+      "id": "season_text",
+      "label": "Season / Year",
+      "type": "text",
+      "default": "Spring / Summer 2026",
+      "placeholder": "e.g. Spring / Summer 2026"
+    },
+    {
+      "id": "collection_name",
+      "label": "Collection Name",
+      "type": "text",
+      "default": "Soleil",
+      "placeholder": "Collection name"
+    },
+    {
+      "id": "subtitle",
+      "label": "Subtitle",
+      "type": "text",
+      "default": "Where warmth meets intention",
+      "placeholder": "Collection subtitle"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Inspired by the golden hours of the Mediterranean coast, Soleil explores the intersection of effortless elegance and conscious design. Each piece is crafted from sustainably sourced fabrics that move with you.",
+      "placeholder": "Collection description"
+    },
+    {
+      "id": "hero_image",
+      "label": "Hero Image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "hero_image_position",
+      "label": "Hero Image Position",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Top",
+          "value": "top"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Bottom",
+          "value": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "hdr_cta",
+      "label": "Call to Action",
+      "type": "header"
+    },
+    {
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "type": "text",
+      "default": "Explore the Collection",
+      "placeholder": "Button label"
+    },
+    {
+      "id": "cta_url",
+      "label": "CTA Button URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "cta_style",
+      "label": "CTA Style",
+      "type": "radio",
+      "default": "outline",
+      "options": [
+        {
+          "label": "Filled",
+          "value": "filled"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Ghost",
+          "value": "ghost"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "cta_color",
+      "label": "CTA Button Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_mood",
+      "label": "Mood & Aesthetic",
+      "type": "header"
+    },
+    {
+      "id": "mood_style",
+      "label": "Mood Style",
+      "type": "select",
+      "default": "minimal",
+      "options": [
+        {
+          "label": "Minimal",
+          "value": "minimal"
+        },
+        {
+          "label": "Bold",
+          "value": "bold"
+        },
+        {
+          "label": "Editorial",
+          "value": "editorial"
+        },
+        {
+          "label": "Street",
+          "value": "street"
+        },
+        {
+          "label": "Luxury",
+          "value": "luxury"
+        },
+        {
+          "label": "Bohemian",
+          "value": "bohemian"
+        }
+      ]
+    },
+    {
+      "id": "overlay_style",
+      "label": "Overlay Style",
+      "type": "select",
+      "default": "dark",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        },
+        {
+          "label": "Color",
+          "value": "color"
+        }
+      ]
+    },
+    {
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "type": "color",
+      "default": "#000000"
+    },
+    {
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "type": "range",
+      "default": 35,
+      "min": 0,
+      "max": 80,
+      "step": 1
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "heading_color",
+      "label": "Heading Color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_position",
+      "label": "Text Position",
+      "type": "select",
+      "default": "bottom-left",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top-left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top-center"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom-left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom-center"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook Hero",
+      "settings": {
+        "season_text": "Spring / Summer 2026",
+        "collection_name": "Soleil",
+        "subtitle": "Where warmth meets intention",
+        "description": "Inspired by the golden hours of the Mediterranean coast, Soleil explores the intersection of effortless elegance and conscious design.",
+        "hero_image_position": "center",
+        "cta_text": "Explore the Collection",
+        "cta_url": "#",
+        "cta_style": "outline",
+        "mood_style": "minimal",
+        "overlay_style": "dark",
+        "overlay_color": "#000000",
+        "overlay_opacity": 35,
+        "text_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "text_position": "bottom-left",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}

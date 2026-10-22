@@ -1,0 +1,331 @@
+{
+  "type": "feature_grid",
+  "name": "Feature grid",
+  "description": "A grid of features with icons or images",
+  "supports_typography_overrides": false,
+  "icon": "grid",
+  "category": "content",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "type": "text",
+      "placeholder": "Why choose us"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Everything you need"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "placeholder": "Built to grow with your business"
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "columns",
+      "label": "Columns",
+      "type": "select",
+      "default": "3",
+      "options": [
+        {
+          "label": "2 columns",
+          "value": "2"
+        },
+        {
+          "label": "3 columns",
+          "value": "3"
+        },
+        {
+          "label": "4 columns",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "alignment",
+      "label": "Card alignment",
+      "type": "radio",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "icon_color",
+      "label": "Icon color",
+      "type": "color",
+      "default": ""
+    },
+    {
+      "id": "card_bg_color",
+      "label": "Card background",
+      "type": "color",
+      "default": "#f8fafc"
+    },
+    {
+      "id": "font_size_heading",
+      "label": "Section heading size",
+      "type": "range",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "fields": [
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "icon",
+          "default": "zap"
+        },
+        {
+          "id": "image",
+          "label": "Image (overrides icon)",
+          "type": "image"
+        },
+        {
+          "id": "title",
+          "label": "Title",
+          "type": "text",
+          "placeholder": "Feature name"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "placeholder": "Describe this feature"
+        },
+        {
+          "id": "link_text",
+          "label": "Link text",
+          "type": "text",
+          "placeholder": "Learn more"
+        },
+        {
+          "id": "link_url",
+          "label": "Link URL",
+          "type": "link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "3 features with icons",
+      "settings": {
+        "heading": "Why choose us",
+        "subheading": "Built to grow with your business",
+        "columns": "3",
+        "alignment": "left",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "feat-1",
+          "type": "feature",
+          "settings": {
+            "icon": "zap",
+            "title": "Lightning Fast",
+            "description": "Optimised for speed from the ground up. Load times under a second."
+          }
+        },
+        {
+          "id": "feat-2",
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "Secure by Default",
+            "description": "Enterprise-grade security with zero configuration required."
+          }
+        },
+        {
+          "id": "feat-3",
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "title": "Built with Love",
+            "description": "Every detail has been crafted with care to delight your customers."
+          }
+        }
+      ]
+    },
+    {
+      "name": "4 features centered",
+      "settings": {
+        "heading": "Everything you need",
+        "columns": "4",
+        "alignment": "center",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "light"
+      },
+      "blocks": [
+        {
+          "id": "feat-a",
+          "type": "feature",
+          "settings": {
+            "icon": "globe",
+            "title": "Global Reach",
+            "description": "Sell to customers in 150+ countries."
+          }
+        },
+        {
+          "id": "feat-b",
+          "type": "feature",
+          "settings": {
+            "icon": "refresh-cw",
+            "title": "Auto Updates",
+            "description": "Always on the latest version automatically."
+          }
+        },
+        {
+          "id": "feat-c",
+          "type": "feature",
+          "settings": {
+            "icon": "lock",
+            "title": "Data Privacy",
+            "description": "Your data is yours. Always."
+          }
+        },
+        {
+          "id": "feat-d",
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "title": "99.9% Uptime",
+            "description": "Reliable infrastructure you can count on."
+          }
+        }
+      ]
+    }
+  ]
+}

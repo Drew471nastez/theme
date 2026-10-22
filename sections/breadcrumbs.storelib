@@ -1,0 +1,209 @@
+<template>
+<nav class="s bc bc--{{ settings.style }}" aria-label="{{ words.breadcrumb }}" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --bc-size: {{ settings.size }}px;">
+  <div class="s__in s__in--{{ settings.max_width }} bc__in bc__in--{{ settings.align }}">
+    {# The trail is the page's own (lib/products/breadcrumbs.ts): Home > Shop >
+       the product on a product page, Home > the title on any other. The
+       home page has none, and a visitor sees nothing there. #}
+    {% if page.breadcrumbs.size > 0 %}
+      <ol class="bc__list">
+        {% for c in page.breadcrumbs %}
+          <li class="bc__item">
+            {% if c.url %}
+              <a class="bc__link" href="{{ c.url | url }}"{% if forloop.first and settings.home_icon %} aria-label="{{ settings.home_label | default: 'Home' }}"{% endif %}>{% if forloop.first and settings.home_icon %}<svg class="bc__home" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>{% elsif forloop.first and settings.home_label %}{{ settings.home_label }}{% elsif c.url == '/products' and settings.shop_label %}{{ settings.shop_label }}{% else %}{{ c.label }}{% endif %}</a>
+            {% else %}
+              <span class="bc__here" aria-current="page">{% if c.label == 'Shop' and settings.shop_label %}{{ settings.shop_label }}{% else %}{{ c.label }}{% endif %}</span>
+            {% endif %}
+            {% if forloop.last %}{% else %}<span class="bc__sep" aria-hidden="true">{% if settings.separator == 'chevron' %}›{% elsif settings.separator == 'dot' %}·{% elsif settings.separator == 'arrow' %}→{% elsif settings.separator == 'pipe' %}|{% elsif settings.separator == 'line' %}<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg>{% else %}/{% endif %}</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      {% if page.in_editor %}<p class="bc__note">Breadcrumbs show on every page but the home page</p>{% endif %}
+    {% endif %}
+  </div>
+</nav>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; display: block; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+
+.bc__in { display: flex; }
+.bc__in--center { justify-content: center; }
+.bc__in--right { justify-content: flex-end; }
+.bc__list { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: var(--bc-size, 13px); line-height: 1.4; }
+.bc__item { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.bc__link { color: var(--s-para); text-decoration: none; }
+.bc__link:hover { color: var(--s-heading); text-decoration: underline; text-underline-offset: 3px; }
+.bc__link:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; border-radius: 2px; }
+.bc__here { color: var(--s-heading); font-weight: 500; max-width: 60cqi; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bc__sep { color: var(--s-para); opacity: 0.55; }
+.bc__note { margin: 0; font-size: 13px; color: var(--s-para); opacity: 0.7; }
+.bc__sep svg, .bc__home { display: block; }
+.bc__link { display: inline-flex; align-items: center; transition: color 150ms ease, background-color 150ms ease; }
+/* Pill: each step on a soft ground, the current page a step stronger, the way current shops draw a trail. */
+.bc--pill .bc__list { gap: 6px; }
+.bc--pill .bc__item { gap: 6px; }
+.bc--pill .bc__link,
+.bc--pill .bc__here { padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--s-text) 6%, transparent); }
+.bc--pill .bc__link:hover { text-decoration: none; background: color-mix(in srgb, var(--s-text) 11%, transparent); }
+.bc--pill .bc__here { background: color-mix(in srgb, var(--s-text) 12%, transparent); }
+.bc--pill .bc__sep { opacity: 0.4; }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "breadcrumbs",
+  "name": "Breadcrumbs",
+  "category": "content",
+  "description": "Where the page is: Home, the shop, the product. On any page but the home page.",
+  "version": "1.0.0",
+  "icon": "arrow-right",
+  "supports_typography_overrides": false,
+  "settings": [
+    {
+      "type": "header",
+      "id": "hdr_content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "home_label",
+      "label": "Home link",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Shop link",
+      "default": "Shop"
+    },
+    {
+      "type": "select",
+      "id": "separator",
+      "label": "Separator",
+      "default": "slash",
+      "options": [
+        { "label": "/  Slash", "value": "slash" },
+        { "label": "›  Chevron", "value": "chevron" },
+        { "label": "Thin chevron", "value": "line" },
+        { "label": "→  Arrow", "value": "arrow" },
+        { "label": "·  Dot", "value": "dot" },
+        { "label": "|  Line", "value": "pipe" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "default": "plain",
+      "options": [
+        { "label": "Plain", "value": "plain" },
+        { "label": "Pill", "value": "pill" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "home_icon",
+      "label": "Home as an icon",
+      "default": false
+    },
+    {
+      "type": "header",
+      "id": "hdr_layout",
+      "label": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "size",
+      "label": "Text size",
+      "default": 13,
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignment",
+      "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Content width",
+      "default": "wide",
+      "options": [
+        { "label": "Narrow", "value": "narrow" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "Wide", "value": "wide" },
+        { "label": "Full", "value": "full" }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "default": 16,
+      "min": 0,
+      "max": 64,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "default": 0,
+      "min": 0,
+      "max": 64,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs",
+      "category": "content",
+      "settings": {
+        "home_label": "Home",
+        "shop_label": "Shop",
+        "separator": "slash"
+      }
+    }
+  ]
+}
+</schema>

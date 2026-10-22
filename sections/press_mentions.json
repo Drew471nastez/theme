@@ -1,0 +1,326 @@
+{
+  "type": "press_mentions",
+  "name": "Press mentions",
+  "description": "Showcase press coverage and media features with logos and quotes",
+  "supports_typography_overrides": false,
+  "icon": "newspaper",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "type": "text",
+      "placeholder": "As seen in",
+      "default": "As seen in"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Featured in top publications"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "placeholder": "Trusted by leading media outlets worldwide"
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Layout style",
+      "type": "select",
+      "default": "logos_only",
+      "options": [
+        {
+          "label": "Logos only",
+          "value": "logos_only"
+        },
+        {
+          "label": "Logos with quotes",
+          "value": "logos_quotes"
+        },
+        {
+          "label": "Featured quote + logos",
+          "value": "featured"
+        }
+      ]
+    },
+    {
+      "id": "columns",
+      "label": "Columns",
+      "type": "select",
+      "default": "4",
+      "options": [
+        {
+          "label": "3 columns",
+          "value": "3"
+        },
+        {
+          "label": "4 columns",
+          "value": "4"
+        },
+        {
+          "label": "5 columns",
+          "value": "5"
+        },
+        {
+          "label": "6 columns",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "logo_color",
+      "label": "Logo tint color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "grayscale",
+      "label": "Grayscale logos",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hover_color",
+      "label": "Colored on hover",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "card_bg_color",
+      "label": "Quote card background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Quote accent color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press_item",
+      "name": "Press item",
+      "fields": [
+        {
+          "id": "logo_url",
+          "label": "Publication logo",
+          "type": "image"
+        },
+        {
+          "id": "publication_name",
+          "label": "Publication name",
+          "type": "text",
+          "placeholder": "The New York Times"
+        },
+        {
+          "id": "url",
+          "label": "Article URL",
+          "type": "link"
+        },
+        {
+          "id": "quote",
+          "label": "Pull quote",
+          "type": "textarea",
+          "placeholder": "\"A must-have for any modern business...\""
+        },
+        {
+          "id": "date",
+          "label": "Publication date",
+          "type": "text",
+          "placeholder": "March 2025"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "5 press logos",
+      "settings": {
+        "eyebrow": "As seen in",
+        "heading": "Featured in the press",
+        "layout": "logos_only",
+        "columns": "5",
+        "grayscale": true,
+        "hover_color": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "pm-1",
+          "type": "press_item",
+          "settings": {
+            "publication_name": "TechCrunch",
+            "quote": "\"Revolutionizing the way creators sell online.\"",
+            "date": "Jan 2025"
+          }
+        },
+        {
+          "id": "pm-2",
+          "type": "press_item",
+          "settings": {
+            "publication_name": "Forbes",
+            "quote": "\"One of the most innovative platforms we've reviewed.\"",
+            "date": "Feb 2025"
+          }
+        },
+        {
+          "id": "pm-3",
+          "type": "press_item",
+          "settings": {
+            "publication_name": "Wired",
+            "quote": "\"The future of digital commerce is here.\"",
+            "date": "Mar 2025"
+          }
+        },
+        {
+          "id": "pm-4",
+          "type": "press_item",
+          "settings": {
+            "publication_name": "Fast Company",
+            "quote": "\"A game-changer for independent creators.\"",
+            "date": "Apr 2025"
+          }
+        },
+        {
+          "id": "pm-5",
+          "type": "press_item",
+          "settings": {
+            "publication_name": "The Verge",
+            "quote": "\"Beautifully designed and incredibly powerful.\"",
+            "date": "May 2025"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Featured quote with logos",
+      "settings": {
+        "eyebrow": "In the press",
+        "heading": "What the media says",
+        "layout": "featured",
+        "columns": "4",
+        "grayscale": false,
+        "hover_color": true,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "light"
+      }
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{# ===========================================================================
+   Collection list: the creator's collections as cards
+
+   Every published collection, or the ones the creator picks in the order
+   they pick them, each a picture, a name and how many products are in it,
+   linking to the collection. Shopify's Collection list section, and with
+   "Every collection" the body of the collections page (/collections), the
+   way Dawn's main-list-collections is.
+
+   The collections come from Products › Collections: `collections` is every
+   published one the page was handed, `settings.chosen` the picked ones,
+   block-shaped alike so one card serves both loops.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --cols-d: {{ settings.columns.desktop }}; --cols-t: {{ settings.columns.tablet }}; --cols-m: {{ settings.columns.mobile }};">
+  <div class="s__in">
+    {% if settings.heading or settings.subheading %}
+      <div class="s__head {% if settings.align == 'center' %}s__head--center{% endif %}">
+        {% if settings.heading %}<h2 class="s__h">{{ settings.heading }}</h2>{% endif %}
+        {% if settings.subheading %}<p class="s__sub">{{ settings.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+
+    {% if settings.source == 'chosen' %}
+      {% if settings.chosen.size == 0 %}
+        {% if page.in_editor %}<p class="empty">Choose collections in the sidebar</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in settings.chosen %}
+          <article class="col" data-card="collection" data-block-id="{{ block.id }}">
+            <div class="col__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+            </div>
+            <h3 class="col__title">{{ block.settings.title }}</h3>
+            {% if settings.show_count %}<p class="col__count">{{ block.settings.products_count }} {% if block.settings.products_count == 1 %}{{ settings.count_one }}{% else %}{{ settings.count_many }}{% endif %}</p>{% endif %}
+            {% if settings.show_description and block.settings.description %}<p class="col__text">{{ block.settings.description | truncate: 140 }}</p>{% endif %}
+            <a class="col__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>
+          </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% else %}
+      {% if collections.size == 0 %}
+        {% if page.in_editor %}<p class="empty">Your published collections appear here</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in collections %}
+          <article class="col" data-card="collection" data-block-id="{{ block.id }}">
+            <div class="col__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+              {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+            </div>
+            <h3 class="col__title">{{ block.settings.title }}</h3>
+            {% if settings.show_count %}<p class="col__count">{{ block.settings.products_count }} {% if block.settings.products_count == 1 %}{{ settings.count_one }}{% else %}{{ settings.count_many }}{% endif %}</p>{% endif %}
+            {% if settings.show_description and block.settings.description %}<p class="col__text">{{ block.settings.description | truncate: 140 }}</p>{% endif %}
+            <a class="col__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>
+          </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if settings.button_text %}
+      <div class="more"><a class="s__btn" href="{{ settings.button_url | default: '/collections' | url }}">{{ settings.button_text }}</a></div>
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  max-width: var(--theme-page-width, 1280px);
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__head { max-width: 44rem; margin-bottom: 36px; }
+.s__head--center { margin-inline: auto; text-align: center; }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 12px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.grid { display: grid; gap: 24px; grid-template-columns: repeat(var(--cols-m), minmax(0, 1fr)); }
+@container (min-width: 640px) { .grid { grid-template-columns: repeat(var(--cols-t), minmax(0, 1fr)); } }
+@container (min-width: 900px) { .grid { grid-template-columns: repeat(var(--cols-d), minmax(0, 1fr)); } }
+.col { position: relative; display: flex; flex-direction: column; }
+.col__media { overflow: hidden; border-radius: var(--sl-image-radius, var(--s-radius)); background: var(--s-border); }
+.col__media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+.col:hover .col__media img { transform: scale(1.03); }
+.col__title { margin: 14px 0 0; font-size: 16px; font-weight: 600; color: var(--s-heading); }
+.col__count { margin: 4px 0 0; font-size: 14px; color: var(--s-para); }
+.col__text { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--s-para); }
+.col__link { position: absolute; inset: 0; }
+.col__link:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 3px; border-radius: var(--s-radius); }
+.more { display: flex; justify-content: center; margin-top: 36px; }
+.s__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--sl-button-padding, 13px 24px); font-size: var(--sl-button-size, 15px); line-height: var(--sl-button-line-height); font-weight: var(--theme-button-weight, 600); text-decoration: none;
+  border-radius: var(--s-radius); border: 1px solid var(--s-btn2-border);
+  background: var(--s-btn2); color: var(--s-btn2-text);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.s__btn:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+.empty { margin: 0; text-align: center; font-size: 14px; color: var(--s-para); opacity: 0.6; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (prefers-reduced-motion: reduce) { .col__media img { transition: none; } .col:hover .col__media img { transform: none; } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "collections_grid",
+  "name": "Collection list",
+  "category": "products",
+  "description": "Your collections as cards: a picture, a name and how many products are in each.",
+  "version": "1.0.0",
+  "icon": "grid",
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Collections",
+      "default": "all",
+      "options": [
+        { "label": "Every collection", "value": "all" },
+        { "label": "Collections I choose", "value": "chosen" }
+      ]
+    },
+    {
+      "type": "collection_list",
+      "id": "chosen",
+      "label": "Collections to show",
+      "limit": 12,
+      "default": [],
+      "visible_if": "{{ section.settings.source == 'chosen' }}"
+    },
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Collections" },
+    { "type": "textarea", "id": "subheading", "label": "Supporting line", "default": "" },
+    {
+      "type": "radio",
+      "id": "align",
+      "label": "Heading sits",
+      "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" }
+      ]
+    },
+    { "type": "header", "id": "hdr_cards", "label": "Cards" },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "default": { "desktop": 3, "tablet": 2, "mobile": 1 },
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "responsive": true
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Photo shape",
+      "default": "4 / 5",
+      "options": [
+        { "label": "Square", "value": "1 / 1" },
+        { "label": "Portrait", "value": "4 / 5" },
+        { "label": "Landscape", "value": "4 / 3" }
+      ]
+    },
+    { "type": "toggle", "id": "show_count", "label": "Show how many products", "default": true },
+    { "type": "text", "id": "count_one", "label": "Word after 1", "default": "product", "visible_if": "{{ section.settings.show_count }}" },
+    { "type": "text", "id": "count_many", "label": "Word after 2 or more", "default": "products", "visible_if": "{{ section.settings.show_count }}" },
+    { "type": "toggle", "id": "show_description", "label": "Show descriptions", "default": false },
+    { "type": "text", "id": "button_text", "label": "Button under the list", "default": "" },
+    { "type": "url", "id": "button_url", "label": "Button link", "default": "/collections" },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [
+    { "name": "Collection list", "settings": { "heading": "Shop by collection", "button_text": "See every collection" } }
+  ]
+}
+</schema>

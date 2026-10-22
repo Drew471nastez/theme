@@ -1,0 +1,255 @@
+{
+  "type": "faq",
+  "name": "FAQ",
+  "description": "Frequently asked questions with accordion or boxed styles.",
+  "supports_typography_overrides": false,
+  "icon": "help-circle",
+  "category": "content",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Frequently asked questions",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "Can't find the answer you're looking for? Reach out to our support team.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "style",
+      "label": "Style",
+      "type": "select",
+      "default": "accordion",
+      "options": [
+        {
+          "label": "Accordion",
+          "value": "accordion"
+        },
+        {
+          "label": "Boxed",
+          "value": "boxed"
+        },
+        {
+          "label": "Minimal",
+          "value": "minimal"
+        }
+      ]
+    },
+    {
+      "id": "show_count",
+      "label": "Show question count",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "expanded_first",
+      "label": "Expand first item by default",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "icon_style",
+      "label": "Icon style",
+      "type": "select",
+      "default": "chevron",
+      "options": [
+        {
+          "label": "Chevron",
+          "value": "chevron"
+        },
+        {
+          "label": "Plus / minus",
+          "value": "plus-minus"
+        },
+        {
+          "label": "Arrow",
+          "value": "arrow"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": "hdr_colors",
+      "label": "Colors",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "fields": [
+        {
+          "id": "question",
+          "label": "Question",
+          "type": "text",
+          "default": "How does it work?",
+          "placeholder": "Enter question"
+        },
+        {
+          "id": "answer",
+          "label": "Answer",
+          "type": "richtext",
+          "default": "<p>Here you can describe how your product or service works in detail.</p>",
+          "placeholder": "Enter answer"
+        },
+        {
+          "id": "open_by_default",
+          "label": "Open by default",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "category",
+          "label": "Category tag",
+          "type": "text",
+          "default": "",
+          "placeholder": "e.g. Billing, Shipping…"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "5-item FAQ accordion",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "style": "accordion",
+        "expanded_first": true,
+        "show_count": false,
+        "icon_style": "chevron",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "f1",
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day hassle-free return policy on all orders. Simply contact our support team and we'll arrange a return.</p>",
+            "open_by_default": true,
+            "category": "Returns"
+          }
+        },
+        {
+          "id": "f2",
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping takes 3–5 business days. Expedited options are available at checkout.</p>",
+            "open_by_default": false,
+            "category": "Shipping"
+          }
+        },
+        {
+          "id": "f3",
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer discounts for bulk orders?",
+            "answer": "<p>Yes! Contact our sales team for pricing on orders of 10 or more units.</p>",
+            "open_by_default": false,
+            "category": "Billing"
+          }
+        },
+        {
+          "id": "f4",
+          "type": "faq_item",
+          "settings": {
+            "question": "Is my payment information secure?",
+            "answer": "<p>Absolutely. All transactions are encrypted with TLS and we never store card details on our servers.</p>",
+            "open_by_default": false,
+            "category": "Billing"
+          }
+        },
+        {
+          "id": "f5",
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I change or cancel my order?",
+            "answer": "<p>Orders can be modified or cancelled within 1 hour of placement. After that, please contact support.</p>",
+            "open_by_default": false,
+            "category": "Orders"
+          }
+        }
+      ]
+    }
+  ]
+}

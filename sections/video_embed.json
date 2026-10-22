@@ -1,0 +1,250 @@
+{
+  "type": "video_embed",
+  "name": "Video Embed",
+  "description": "Embed a YouTube, Vimeo, or self-hosted video with optional heading and controls.",
+  "supports_typography_overrides": false,
+  "icon": "play-circle",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Video",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "See It in Action",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "default": "Watch how our product transforms your everyday routine.",
+      "placeholder": "Section subheading"
+    },
+    {
+      "id": "video_url",
+      "label": "Video URL",
+      "type": "video_url",
+      "default": "",
+      "placeholder": "https://youtube.com/watch?v=..."
+    },
+    {
+      "id": "video_poster",
+      "label": "Poster / Thumbnail Image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "provider",
+      "label": "Provider",
+      "type": "select",
+      "default": "youtube",
+      "options": [
+        {
+          "label": "YouTube",
+          "value": "youtube"
+        },
+        {
+          "label": "Vimeo",
+          "value": "vimeo"
+        },
+        {
+          "label": "Self-Hosted",
+          "value": "self-hosted"
+        }
+      ]
+    },
+    {
+      "id": "autoplay",
+      "label": "Autoplay",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "loop_video",
+      "label": "Loop Video",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "mute_video",
+      "label": "Mute Video",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "show_controls",
+      "label": "Show Controls",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "aspect_ratio",
+      "label": "Aspect Ratio",
+      "type": "select",
+      "default": "16:9",
+      "options": [
+        {
+          "label": "16:9 (Widescreen)",
+          "value": "16:9"
+        },
+        {
+          "label": "4:3 (Standard)",
+          "value": "4:3"
+        },
+        {
+          "label": "1:1 (Square)",
+          "value": "1:1"
+        },
+        {
+          "label": "9:16 (Vertical)",
+          "value": "9:16"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "max_width_video",
+      "label": "Max Video Width",
+      "type": "range",
+      "default": 800,
+      "min": 400,
+      "max": 1200,
+      "step": 20,
+      "unit": "px"
+    },
+    {
+      "id": "border_radius",
+      "label": "Border Radius",
+      "type": "range",
+      "default": 8,
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "id": "show_shadow",
+      "label": "Show Shadow",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "alignment",
+      "label": "Alignment",
+      "type": "radio",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Embed",
+      "settings": {
+        "heading": "See It in Action",
+        "subheading": "Watch how our product transforms your everyday routine.",
+        "provider": "youtube",
+        "autoplay": false,
+        "loop_video": false,
+        "mute_video": false,
+        "show_controls": true,
+        "aspect_ratio": "16:9",
+        "max_width_video": 800,
+        "border_radius": 8,
+        "show_shadow": true,
+        "alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

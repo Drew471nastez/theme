@@ -1,0 +1,1388 @@
+[
+  {
+    "name": "Logo and brand",
+    "id": "branding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Store name",
+        "placeholder": "My Store"
+      },
+      {
+        "type": "image",
+        "id": "logo_url",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width (px)",
+        "min": 60,
+        "max": 300,
+        "step": 10,
+        "default": 120,
+        "unit": "px"
+      },
+      {
+        "type": "image",
+        "id": "favicon_url",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "tagline",
+        "label": "Tagline",
+        "placeholder": "Your trusted digital store"
+      },
+      {
+        "type": "header",
+        "id": "hdr_brand",
+        "label": "Brand information",
+        "info": "Not drawn anywhere by itself. A section shows it where you insert it: in any text box, Insert shop data › Brand headline, Brand description or Brand image. Store name, logo and favicon above are the header's and the browser tab's."
+      },
+      {
+        "type": "text",
+        "id": "brand_headline",
+        "label": "Headline",
+        "placeholder": "Small batch candles, poured in Leeds"
+      },
+      {
+        "type": "textarea",
+        "id": "brand_description",
+        "label": "Description",
+        "placeholder": "A few lines about what you make and why"
+      },
+      {
+        "type": "image",
+        "id": "brand_image",
+        "label": "Image"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "id": "color_schemes",
+    "settings": []
+  },
+  {
+    "name": "Page colors",
+    "id": "colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Page background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Page text",
+        "default": "#0f172a"
+      },
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primary",
+        "default": "#6366f1"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "id": "typography",
+    "settings": [
+      {
+        "type": "font",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "Inter",
+        "options": [
+          {
+            "label": "Inter",
+            "value": "Inter"
+          },
+          {
+            "label": "Plus Jakarta Sans",
+            "value": "Plus Jakarta Sans"
+          },
+          {
+            "label": "Space Grotesk",
+            "value": "Space Grotesk"
+          },
+          {
+            "label": "DM Sans",
+            "value": "DM Sans"
+          },
+          {
+            "label": "Poppins",
+            "value": "Poppins"
+          },
+          {
+            "label": "Montserrat",
+            "value": "Montserrat"
+          },
+          {
+            "label": "Raleway",
+            "value": "Raleway"
+          },
+          {
+            "label": "Oswald",
+            "value": "Oswald"
+          },
+          {
+            "label": "Bebas Neue",
+            "value": "Bebas Neue"
+          },
+          {
+            "label": "Playfair Display",
+            "value": "Playfair Display"
+          },
+          {
+            "label": "Cormorant Garamond",
+            "value": "Cormorant Garamond"
+          },
+          {
+            "label": "Lora",
+            "value": "Lora"
+          },
+          {
+            "label": "Merriweather",
+            "value": "Merriweather"
+          },
+          {
+            "label": "Libre Baskerville",
+            "value": "Libre Baskerville"
+          },
+          {
+            "label": "EB Garamond",
+            "value": "EB Garamond"
+          }
+        ]
+      },
+      {
+        "type": "font",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "Inter",
+        "options": [
+          {
+            "label": "Inter",
+            "value": "Inter"
+          },
+          {
+            "label": "DM Sans",
+            "value": "DM Sans"
+          },
+          {
+            "label": "Plus Jakarta Sans",
+            "value": "Plus Jakarta Sans"
+          },
+          {
+            "label": "Space Grotesk",
+            "value": "Space Grotesk"
+          },
+          {
+            "label": "Poppins",
+            "value": "Poppins"
+          },
+          {
+            "label": "Nunito",
+            "value": "Nunito"
+          },
+          {
+            "label": "Source Sans 3",
+            "value": "Source Sans 3"
+          },
+          {
+            "label": "Lato",
+            "value": "Lato"
+          },
+          {
+            "label": "Open Sans",
+            "value": "Open Sans"
+          }
+        ]
+      },
+      {
+        "type": "font",
+        "id": "font_accent",
+        "label": "Accent font",
+        "default": "",
+        "options": [
+          {
+            "label": "Same as heading font",
+            "value": ""
+          },
+          {
+            "label": "Inter",
+            "value": "Inter"
+          },
+          {
+            "label": "DM Sans",
+            "value": "DM Sans"
+          },
+          {
+            "label": "Plus Jakarta Sans",
+            "value": "Plus Jakarta Sans"
+          },
+          {
+            "label": "Space Grotesk",
+            "value": "Space Grotesk"
+          },
+          {
+            "label": "Poppins",
+            "value": "Poppins"
+          },
+          {
+            "label": "Nunito",
+            "value": "Nunito"
+          },
+          {
+            "label": "Source Sans 3",
+            "value": "Source Sans 3"
+          },
+          {
+            "label": "Lato",
+            "value": "Lato"
+          },
+          {
+            "label": "Open Sans",
+            "value": "Open Sans"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Buttons and inputs",
+    "id": "buttons",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "button_style",
+        "label": "Default style",
+        "default": "filled",
+        "options": [
+          {
+            "label": "Filled",
+            "value": "filled"
+          },
+          {
+            "label": "Outline",
+            "value": "outline"
+          },
+          {
+            "label": "Ghost",
+            "value": "ghost"
+          }
+        ]
+      },
+      {
+        "type": "radio",
+        "id": "button_shape",
+        "label": "Button shape",
+        "default": "rounded",
+        "options": [
+          {
+            "label": "Square",
+            "value": "square"
+          },
+          {
+            "label": "Rounded",
+            "value": "rounded"
+          },
+          {
+            "label": "Pill",
+            "value": "pill"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "button_border_radius",
+        "label": "Corner radius when rounded",
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "toggle",
+        "id": "button_shadow",
+        "label": "Button shadow",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "button_transition",
+        "label": "Hover animation",
+        "default": "fade",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Fade",
+            "value": "fade"
+          },
+          {
+            "label": "Lift",
+            "value": "lift"
+          },
+          {
+            "label": "Scale",
+            "value": "scale"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_pills",
+        "label": "Variant pills"
+      },
+      {
+        "type": "range",
+        "id": "pill_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 40,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "pill_border_width",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 1,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "id": "hdr_inputs",
+        "label": "Text boxes"
+      },
+      {
+        "type": "range",
+        "id": "input_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "input_border_width",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "input_border_opacity",
+        "label": "Border opacity",
+        "min": 10,
+        "max": 100,
+        "step": 5,
+        "default": 25,
+        "unit": "%"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "id": "layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Max page width",
+        "min": 900,
+        "max": 1800,
+        "step": 20,
+        "default": 1280,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "content_padding_x",
+        "label": "Side padding",
+        "min": 8,
+        "max": 80,
+        "step": 4,
+        "default": 24,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "section_gap",
+        "label": "Section gap",
+        "min": 0,
+        "max": 80,
+        "step": 4,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "spacing_scale",
+        "label": "Spacing scale",
+        "min": 0.5,
+        "max": 2,
+        "step": 0.1,
+        "default": 1,
+        "info": "Multiplies every section's top and bottom padding."
+      },
+      {
+        "type": "header",
+        "id": "hdr_cards",
+        "label": "Cards"
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Card corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "card_shadow",
+        "label": "Card shadow",
+        "default": "none",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Small",
+            "value": "sm"
+          },
+          {
+            "label": "Medium",
+            "value": "md"
+          },
+          {
+            "label": "Large",
+            "value": "lg"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "container_border",
+        "label": "Card border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "id": "hdr_media",
+        "label": "Images and video"
+      },
+      {
+        "type": "range",
+        "id": "image_border_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "media_border",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "media_shadow",
+        "label": "Shadow",
+        "default": "none",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Small",
+            "value": "sm"
+          },
+          {
+            "label": "Medium",
+            "value": "md"
+          },
+          {
+            "label": "Large",
+            "value": "lg"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_popups",
+        "label": "Dropdowns and pop-ups"
+      },
+      {
+        "type": "range",
+        "id": "popup_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 12,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "popup_border",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 1,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "popup_shadow",
+        "label": "Shadow",
+        "default": "md",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Small",
+            "value": "sm"
+          },
+          {
+            "label": "Medium",
+            "value": "md"
+          },
+          {
+            "label": "Large",
+            "value": "lg"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_breadcrumbs",
+        "label": "Breadcrumbs"
+      },
+      {
+        "type": "toggle",
+        "id": "breadcrumbs_enabled",
+        "label": "Show on every page but home",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "breadcrumbs_separator",
+        "label": "Separator",
+        "default": "slash",
+        "options": [
+          {
+            "label": "/  Slash",
+            "value": "slash"
+          },
+          {
+            "label": "›  Chevron",
+            "value": "chevron"
+          },
+          {
+            "label": "Thin chevron",
+            "value": "line"
+          },
+          {
+            "label": "→  Arrow",
+            "value": "arrow"
+          },
+          {
+            "label": "·  Dot",
+            "value": "dot"
+          },
+          {
+            "label": "|  Line",
+            "value": "pipe"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "breadcrumbs_style",
+        "label": "Style",
+        "default": "plain",
+        "options": [
+          {
+            "label": "Plain",
+            "value": "plain"
+          },
+          {
+            "label": "Pill",
+            "value": "pill"
+          }
+        ]
+      },
+      {
+        "type": "toggle",
+        "id": "breadcrumbs_home_icon",
+        "label": "Home as an icon",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Product cards",
+    "id": "product_cards",
+    "settings": [
+      {
+        "type": "header",
+        "id": "hdr_product_cards",
+        "label": "Product cards"
+      },
+      {
+        "type": "radio",
+        "id": "product_card_style",
+        "label": "Style",
+        "default": "standard",
+        "options": [
+          {
+            "label": "Standard",
+            "value": "standard"
+          },
+          {
+            "label": "Card",
+            "value": "card"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_image_padding",
+        "label": "Image padding",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "radio",
+        "id": "product_card_align",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_card_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "product_card_border",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "product_card_shadow",
+        "label": "Shadow",
+        "default": "none",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Small",
+            "value": "sm"
+          },
+          {
+            "label": "Medium",
+            "value": "md"
+          },
+          {
+            "label": "Large",
+            "value": "lg"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_collection_cards",
+        "label": "Collection cards"
+      },
+      {
+        "type": "radio",
+        "id": "collection_card_style",
+        "label": "Style",
+        "default": "standard",
+        "options": [
+          {
+            "label": "Standard",
+            "value": "standard"
+          },
+          {
+            "label": "Card",
+            "value": "card"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "collection_card_image_padding",
+        "label": "Image padding",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "radio",
+        "id": "collection_card_align",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "collection_card_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 8,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "collection_card_border",
+        "label": "Border thickness",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "default": 0,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "collection_card_shadow",
+        "label": "Shadow",
+        "default": "none",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Small",
+            "value": "sm"
+          },
+          {
+            "label": "Medium",
+            "value": "md"
+          },
+          {
+            "label": "Large",
+            "value": "lg"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_badges",
+        "label": "Badges"
+      },
+      {
+        "type": "select",
+        "id": "badge_position",
+        "label": "Position on cards",
+        "default": "top_left",
+        "options": [
+          {
+            "label": "Top left",
+            "value": "top_left"
+          },
+          {
+            "label": "Top right",
+            "value": "top_right"
+          },
+          {
+            "label": "Bottom left",
+            "value": "bottom_left"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "badge_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 40,
+        "unit": "px"
+      },
+      {
+        "type": "toggle",
+        "id": "badge_sale_show",
+        "label": "Show Sale on discounted products",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "badge_sale_text",
+        "label": "Sale label",
+        "placeholder": "Sale",
+        "default": "Sale"
+      },
+      {
+        "type": "color",
+        "id": "badge_sale_bg",
+        "label": "Sale background",
+        "default": "#dc2626"
+      },
+      {
+        "type": "color",
+        "id": "badge_sale_color",
+        "label": "Sale text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "badge_soldout_bg",
+        "label": "Sold out background",
+        "default": "#1a1a2e"
+      },
+      {
+        "type": "color",
+        "id": "badge_soldout_color",
+        "label": "Sold out text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "toggle",
+        "id": "currency_code_enabled",
+        "label": "Show currency codes",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Cart and checkout",
+    "id": "cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "When someone adds to cart",
+        "default": "drawer",
+        "options": [
+          {
+            "label": "Open the cart drawer",
+            "value": "drawer"
+          },
+          {
+            "label": "Go to the cart page",
+            "value": "page"
+          },
+          {
+            "label": "Show a short notice",
+            "value": "notification"
+          }
+        ]
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold ($)",
+        "min": 0,
+        "default": 0,
+        "unit": "$",
+        "info": "0 uses the amount from your shipping rates."
+      },
+      {
+        "type": "toggle",
+        "id": "free_shipping_bar",
+        "label": "Show free shipping progress bar",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Social links",
+    "id": "social",
+    "settings": [
+      {
+        "type": "link",
+        "id": "social_instagram",
+        "label": "Instagram",
+        "placeholder": "https://instagram.com/username"
+      },
+      {
+        "type": "link",
+        "id": "social_tiktok",
+        "label": "TikTok",
+        "placeholder": "https://tiktok.com/@username"
+      },
+      {
+        "type": "link",
+        "id": "social_youtube",
+        "label": "YouTube",
+        "placeholder": "https://youtube.com/@channel"
+      },
+      {
+        "type": "link",
+        "id": "social_twitter",
+        "label": "X (Twitter)",
+        "placeholder": "https://x.com/username"
+      },
+      {
+        "type": "link",
+        "id": "social_facebook",
+        "label": "Facebook",
+        "placeholder": "https://facebook.com/page"
+      },
+      {
+        "type": "link",
+        "id": "social_linkedin",
+        "label": "LinkedIn",
+        "placeholder": "https://linkedin.com/in/name"
+      },
+      {
+        "type": "link",
+        "id": "social_pinterest",
+        "label": "Pinterest",
+        "placeholder": "https://pinterest.com/username"
+      },
+      {
+        "type": "link",
+        "id": "social_threads",
+        "label": "Threads",
+        "placeholder": "https://threads.net/@username"
+      },
+      {
+        "type": "link",
+        "id": "social_spotify",
+        "label": "Spotify",
+        "placeholder": "https://open.spotify.com/artist/id"
+      },
+      {
+        "type": "link",
+        "id": "social_soundcloud",
+        "label": "SoundCloud",
+        "placeholder": "https://soundcloud.com/name"
+      },
+      {
+        "type": "link",
+        "id": "social_snapchat",
+        "label": "Snapchat",
+        "placeholder": "https://snapchat.com/add/username"
+      },
+      {
+        "type": "link",
+        "id": "social_bluesky",
+        "label": "Bluesky",
+        "placeholder": "https://bsky.app/profile/name"
+      },
+      {
+        "type": "link",
+        "id": "social_whatsapp",
+        "label": "WhatsApp",
+        "placeholder": "https://wa.me/15551234567"
+      },
+      {
+        "type": "link",
+        "id": "social_discord",
+        "label": "Discord",
+        "placeholder": "https://discord.gg/invite"
+      },
+      {
+        "type": "link",
+        "id": "social_twitch",
+        "label": "Twitch",
+        "placeholder": "https://twitch.tv/channel"
+      },
+      {
+        "type": "link",
+        "id": "social_github",
+        "label": "GitHub",
+        "placeholder": "https://github.com/name"
+      },
+      {
+        "type": "link",
+        "id": "social_website",
+        "label": "Website",
+        "placeholder": "https://example.com"
+      },
+      {
+        "type": "text",
+        "id": "social_email",
+        "label": "Email",
+        "placeholder": "hello@example.com"
+      },
+      {
+        "type": "toggle",
+        "id": "social_show_in_footer",
+        "label": "Show icons in footer",
+        "default": true
+      },
+      {
+        "type": "toggle",
+        "id": "social_show_in_header",
+        "label": "Show icons in header",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Cookie banner",
+    "id": "cookies",
+    "settings": [
+      {
+        "type": "toggle",
+        "id": "cookie_banner_show",
+        "label": "Show the cookie banner",
+        "default": true,
+        "info": "Off: no banner, and nothing optional is stored for your visitors."
+      },
+      {
+        "type": "textarea",
+        "id": "cookie_banner_text",
+        "label": "Message",
+        "default": "We use necessary cookies to keep this site working. With your OK we also count visits, to learn what people like.",
+        "visible_if": "{{ section.settings.cookie_banner_show }}"
+      },
+      {
+        "type": "text",
+        "id": "cookie_accept_text",
+        "label": "Accept button",
+        "default": "Accept all",
+        "visible_if": "{{ section.settings.cookie_banner_show }}"
+      },
+      {
+        "type": "text",
+        "id": "cookie_decline_text",
+        "label": "Reject button",
+        "default": "Reject all",
+        "visible_if": "{{ section.settings.cookie_banner_show }}"
+      },
+      {
+        "type": "toggle",
+        "id": "cookie_banner_enabled",
+        "label": "Use my own colours",
+        "default": false,
+        "info": "Off: white with dark text.",
+        "visible_if": "{{ section.settings.cookie_banner_show }}"
+      },
+      {
+        "type": "color",
+        "id": "cookie_bg",
+        "label": "Background",
+        "default": "#0f172a",
+        "visible_if": "{{ section.settings.cookie_banner_show and section.settings.cookie_banner_enabled }}"
+      },
+      {
+        "type": "color",
+        "id": "cookie_text_color",
+        "label": "Text",
+        "default": "#ffffff",
+        "visible_if": "{{ section.settings.cookie_banner_show and section.settings.cookie_banner_enabled }}"
+      }
+    ]
+  },
+  {
+    "name": "Animations",
+    "id": "animations",
+    "settings": [
+      {
+        "type": "toggle",
+        "id": "animations_enabled",
+        "label": "Enable scroll animations",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "animation_style",
+        "label": "Animation style",
+        "default": "fade-up",
+        "options": [
+          {
+            "label": "Fade up",
+            "value": "fade-up"
+          },
+          {
+            "label": "Fade",
+            "value": "fade-in"
+          },
+          {
+            "label": "Rise",
+            "value": "rise"
+          },
+          {
+            "label": "Blur in",
+            "value": "blur-in"
+          },
+          {
+            "label": "Zoom",
+            "value": "zoom-in"
+          },
+          {
+            "label": "From the right",
+            "value": "slide-left"
+          },
+          {
+            "label": "From the left",
+            "value": "slide-right"
+          },
+          {
+            "label": "Alternate sides",
+            "value": "alternate"
+          }
+        ],
+        "info": "Each section can pick its own in its settings."
+      },
+      {
+        "type": "range",
+        "id": "animation_duration",
+        "label": "Duration (ms)",
+        "min": 200,
+        "max": 1200,
+        "step": 50,
+        "default": 600,
+        "unit": "ms"
+      },
+      {
+        "type": "range",
+        "id": "animation_stagger",
+        "label": "Stagger delay (ms)",
+        "min": 0,
+        "max": 200,
+        "step": 10,
+        "default": 80,
+        "unit": "ms"
+      },
+      {
+        "type": "header",
+        "id": "hdr_intro",
+        "label": "Intro"
+      },
+      {
+        "type": "toggle",
+        "id": "intro_enabled",
+        "label": "Show an intro when someone opens the site",
+        "default": false
+      },
+      {
+        "type": "video_picker",
+        "id": "intro_video",
+        "label": "Video",
+        "info": "Plays muted, then the site opens. Leave empty to use a picture."
+      },
+      {
+        "type": "image",
+        "id": "intro_image",
+        "label": "Picture or GIF",
+        "info": "Empty uses your logo, or your store name when there is no logo."
+      },
+      {
+        "type": "color",
+        "id": "intro_background",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "id": "intro_style",
+        "label": "Arrives by",
+        "default": "grow",
+        "options": [
+          {
+            "label": "Growing in",
+            "value": "grow"
+          },
+          {
+            "label": "Fading in",
+            "value": "fade"
+          },
+          {
+            "label": "Rising",
+            "value": "rise"
+          },
+          {
+            "label": "Fading in, then lifting away",
+            "value": "reveal"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "intro_duration",
+        "label": "On screen for (ms)",
+        "min": 800,
+        "max": 6000,
+        "step": 100,
+        "default": 1800,
+        "unit": "ms"
+      },
+      {
+        "type": "range",
+        "id": "intro_size",
+        "label": "Size (px)",
+        "min": 60,
+        "max": 480,
+        "step": 10,
+        "default": 160,
+        "unit": "px"
+      },
+      {
+        "type": "select",
+        "id": "intro_repeat",
+        "label": "Shows",
+        "default": "session",
+        "options": [
+          {
+            "label": "Once per visit",
+            "value": "session"
+          },
+          {
+            "label": "On every page load",
+            "value": "always"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "id": "hdr_page_transition",
+        "label": "Page transitions"
+      },
+      {
+        "type": "select",
+        "id": "page_transition",
+        "label": "Between pages",
+        "default": "none",
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Fade",
+            "value": "fade"
+          },
+          {
+            "label": "Slide",
+            "value": "slide"
+          },
+          {
+            "label": "Rise",
+            "value": "rise"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "page_transition_duration",
+        "label": "Transition length (ms)",
+        "min": 150,
+        "max": 800,
+        "step": 50,
+        "default": 300,
+        "unit": "ms"
+      }
+    ]
+  },
+  {
+    "name": "Old announcement bar",
+    "id": "announcement",
+    "settings": [
+      {
+        "type": "toggle",
+        "id": "announcement_bar_enabled",
+        "label": "Show the old announcement bar",
+        "default": false,
+        "info": "Replaced by the Announcement bar section in the Header group. Add one there, then turn this off."
+      }
+    ]
+  },
+  {
+    "name": "Menus",
+    "id": "menus",
+    "settings": [
+      {
+        "type": "menus",
+        "id": "menus",
+        "label": "Menus"
+      }
+    ]
+  },
+  {
+    "name": "Custom CSS",
+    "id": "custom_css",
+    "settings": [
+      {
+        "type": "css",
+        "id": "custom_css",
+        "label": "Custom CSS",
+        "placeholder": ".card__title { letter-spacing: 0.02em; }"
+      }
+    ]
+  }
+]

@@ -1,0 +1,248 @@
+{# ===========================================================================
+   Image grid: theme blocks by name, and one the template places itself
+
+   Two Shopify ideas in one file. The grid accepts only the Image theme block
+   ({ "type": "image" }), so Add block offers pictures and nothing else. And
+   the title is a STATIC block: the template puts a Heading block where it
+   wants it with content_for "block", and the person can edit it but cannot
+   move or delete it.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --cols: {{ settings.columns }}; --cols-m: {{ settings.columns_mobile }}; --gap: {{ settings.gap }}px;">
+  <div class="s__in s__in--{{ settings.max_width }}">
+    <div class="head">{% content_for "block", type: "heading", id: "title" %}</div>
+    {% if blocks.size == 0 %}
+      {% if page.in_editor %}<p class="empty">Add pictures in the sidebar</p>{% endif %}
+    {% else %}
+      <div class="grid">{% content_for "blocks" %}</div>
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.empty { margin: 0; padding: 24px; border: 1px dashed var(--s-border); text-align: center; font-size: 13px; color: var(--s-para); }
+.head { margin-bottom: 28px; }
+.head:empty { display: none; }
+.grid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--gap); }
+@media (max-width: 749px) {
+  .grid { grid-template-columns: repeat(var(--cols-m), minmax(0, 1fr)); }
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "image_grid",
+  "name": "Image grid",
+  "category": "media",
+  "description": "Pictures in even columns, under a title.",
+  "version": "1.0.0",
+  "icon": "grid",
+  "blocks": [
+    {
+      "type": "image"
+    }
+  ],
+  "max_blocks": 24,
+  "settings": [
+    {
+      "type": "header",
+      "id": "hdr_grid",
+      "label": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "default": 3,
+      "min": 1,
+      "max": 6,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Columns on phones",
+      "default": 2,
+      "min": 1,
+      "max": 3,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Space between",
+      "default": 16,
+      "min": 0,
+      "max": 64,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "id": "hdr_layout",
+      "label": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Content width",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    {
+      "type": "header",
+      "id": "hdr_spacing",
+      "label": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "default": 64,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "default": 64,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image grid",
+      "blocks": {
+        "title": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "From the studio"
+          }
+        },
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "ratio": "square"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "ratio": "square"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "ratio": "square"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3"
+      ]
+    },
+    {
+      "name": "Portrait grid",
+      "settings": {
+        "columns": 4
+      },
+      "blocks": {
+        "title": {
+          "type": "heading",
+          "static": true,
+          "settings": {
+            "text": "The collection"
+          }
+        },
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "ratio": "portrait"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "ratio": "portrait"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "ratio": "portrait"
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "ratio": "portrait"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4"
+      ]
+    }
+  ]
+}
+</schema>

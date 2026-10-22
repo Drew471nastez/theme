@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "page": {
+      "name": "Page Content",
+      "type": "page_content",
+      "hidden": false,
+      "settings": {
+        "padding_top": 76,
+        "color_scheme": "white",
+        "padding_bottom": 84
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "page"
+  ]
+}

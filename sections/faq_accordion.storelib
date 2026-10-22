@@ -1,0 +1,179 @@
+{# ===========================================================================
+   FAQ — the reference section
+
+   This is the shape a Storelib section is meant to have, written to be read
+   as much as to be used. Four things it demonstrates, in order of how often
+   they are got wrong:
+
+   1. THE REPEATED PART IS BLOCKS, not question_1 / answer_1 / question_2.
+      Blocks are added, removed, reordered and limited by the builder without
+      this file knowing anything about it, and the template is written once
+      for one question rather than nine times for nine.
+
+   2. THE EMPTY STATE IS FOR THE EDITOR ONLY. `page.in_editor` is true while
+      the builder draws and false on a published page, so the prompt reaches
+      the person adding questions and never reaches a visitor.
+
+   3. NO JAVASCRIPT. <details> and <summary> are an accordion in the browser:
+      they open, they close, they are keyboard operable, they are announced
+      correctly by a screen reader, and they work on the first frame, before
+      any script could have run. A section should reach for its <script>
+      block when the platform genuinely has no answer, which for an accordion
+      it does not.
+
+   4. EVERY VALUE IS A SETTING. Nothing here is a colour or a size somebody
+      would have to open the code to change.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in s__in--{{ settings.max_width }}">
+
+    {% if settings.eyebrow or settings.heading or settings.subheading %}
+      <div class="s__head {% if settings.align == 'center' %}s__head--center{% endif %}">
+        {% if settings.eyebrow %}<p class="s__eyebrow">{{ settings.eyebrow }}</p>{% endif %}
+        {% if settings.heading %}<h2 class="s__h">{{ settings.heading }}</h2>{% endif %}
+        {% if settings.subheading %}<p class="s__sub">{{ settings.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+
+    {% for block in blocks %}
+      {% if forloop.first %}<div class="qa__list">{% endif %}
+      {# `open` on the first one when the section asks for it: an accordion
+         where everything is shut reads as a list of headings. #}
+      <details class="qa" data-block-id="{{ block.id }}"{% if block.settings.open or forloop.first and settings.open_first %} open{% endif %}>
+        <summary class="qa__q">
+          <span>{{ block.settings.question }}</span>
+          {# Drawn in CSS, so it cannot fall out of step with the open state. #}
+          <span class="qa__mark" aria-hidden="true"></span>
+        </summary>
+        {# `raw` because the answer is richtext, which is sanitised when it is
+           saved. Every other value on this page is escaped. #}
+        <div class="qa__a rt">{{ block.settings.answer | raw }}</div>
+      </details>
+      {% if forloop.last %}</div>{% endif %}
+    {% else %}
+      {% if page.in_editor %}<p class="qa__empty">Add questions in the sidebar</p>{% endif %}
+    {% endfor %}
+
+  </div>
+</section>
+</template>
+
+<style>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+
+.s__head { max-width: 44rem; margin-bottom: 40px; }
+.s__head--center { margin-inline: auto; text-align: center; }
+.s__eyebrow { margin: 0 0 12px; font-family: var(--sl-caption-font); font-size: var(--sl-caption-size, 12px); font-weight: var(--sl-caption-weight, 600); letter-spacing: var(--sl-caption-tracking, 0.14em); text-transform: var(--sl-caption-transform, uppercase); color: var(--s-accent); }
+.s__h {
+  margin: 0;
+  /* The section's heading style: Heading 2 unless the section picked
+     another, set by the theme stylesheet on the section root. */
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  color: var(--s-heading);
+  /* A bare family name falls back to the browser's serif, so give it a stack. */
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 14px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+
+.qa { border-bottom: 1px solid var(--s-border); }
+.qa:first-of-type { border-top: 1px solid var(--s-border); }
+.qa__q {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 2px; cursor: pointer; list-style: none;
+  font-size: 15px; font-weight: 600; color: var(--s-heading);
+}
+/* Both spellings: one hides Safari's triangle, one hides everyone else's. */
+.qa__q::-webkit-details-marker { display: none; }
+.qa__q::marker { content: ""; }
+
+/* A plus that becomes a minus, from two bars and the open state. No glyph, so
+   it cannot arrive in the wrong font, and no script, so it cannot be wrong. */
+.qa__mark { position: relative; flex: none; width: 14px; height: 14px; }
+.qa__mark::before, .qa__mark::after {
+  content: ""; position: absolute; inset: 0; margin: auto;
+  background: currentColor; transition: transform 160ms ease, opacity 160ms ease;
+}
+.qa__mark::before { width: 14px; height: 1.5px; }
+.qa__mark::after { width: 1.5px; height: 14px; }
+.qa[open] .qa__mark::after { transform: scaleY(0); opacity: 0; }
+
+.qa__a { padding: 0 2px 20px; font-size: 15px; line-height: 1.65; color: var(--s-para); }
+.qa__a > :first-child { margin-top: 0; }
+.qa__a > :last-child { margin-bottom: 0; }
+.qa__empty { margin: 0; padding: 28px 0; text-align: center; font-size: 14px; color: var(--s-para); opacity: 0.7; }
+
+/* Somebody who has asked for less movement gets the accordion without any. */
+@media (prefers-reduced-motion: reduce) {
+  .qa__mark::before, .qa__mark::after { transition: none; }
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "language_version": 1,
+  "type": "faq_accordion",
+  "name": "Accordion FAQ",
+  "category": "faq",
+  "description": "Questions that open one at a time",
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ", "placeholder": "Short label above the heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered" },
+    { "type": "textarea", "id": "subheading", "label": "Description" },
+    { "type": "select", "id": "align", "label": "Header alignment", "default": "left",
+      "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }] },
+    { "type": "checkbox", "id": "open_first", "label": "Open the first question", "default": true },
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    { "type": "select", "id": "max_width", "label": "Width", "default": "narrow",
+      "options": [{ "value": "narrow", "label": "Narrow" }, { "value": "medium", "label": "Medium" }, { "value": "wide", "label": "Wide" }] },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "white" },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "limit": 30,
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What is your return policy?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Thirty days, no questions asked.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Accordion FAQ",
+      "blocks": [
+        { "type": "qa", "settings": { "question": "How long does delivery take?", "answer": "<p>Two to four working days in the UK, five to ten elsewhere.</p>" } },
+        { "type": "qa", "settings": { "question": "Can I change my order?", "answer": "<p>Yes, until it ships. Reply to your confirmation email and we will sort it.</p>" } },
+        { "type": "qa", "settings": { "question": "What is your return policy?", "answer": "<p>Thirty days, no questions asked.</p>" } }
+      ]
+    }
+  ]
+}
+</schema>

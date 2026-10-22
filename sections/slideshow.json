@@ -1,0 +1,275 @@
+{
+  "type": "slideshow",
+  "name": "Slideshow",
+  "description": "Rotating banner with multiple slides",
+  "supports_typography_overrides": false,
+  "icon": "monitor-play",
+  "category": "media",
+  "fields": [
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "slide_height",
+      "label": "Slide height",
+      "type": "range",
+      "min": 300,
+      "max": 900,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "id": "font_size_heading",
+      "label": "Heading font size",
+      "type": "range",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "id": "hdr_playback",
+      "label": "Playback",
+      "type": "header"
+    },
+    {
+      "id": "autoplay",
+      "label": "Autoplay",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "type": "range",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "default": 5000
+    },
+    {
+      "id": "transition_style",
+      "label": "Transition style",
+      "type": "select",
+      "default": "slide",
+      "options": [
+        {
+          "label": "Slide",
+          "value": "slide"
+        },
+        {
+          "label": "Fade",
+          "value": "fade"
+        },
+        {
+          "label": "Crossfade",
+          "value": "crossfade"
+        }
+      ]
+    },
+    {
+      "id": "hdr_controls",
+      "label": "Controls",
+      "type": "header"
+    },
+    {
+      "id": "show_dots",
+      "label": "Show dots",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Background image",
+          "type": "image"
+        },
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "placeholder": "Slide heading"
+        },
+        {
+          "id": "subheading",
+          "label": "Subheading",
+          "type": "text",
+          "placeholder": "Slide subheading"
+        },
+        {
+          "id": "cta_text",
+          "label": "Button text",
+          "type": "text",
+          "placeholder": "Shop Now"
+        },
+        {
+          "id": "cta_url",
+          "label": "Button URL",
+          "type": "link"
+        },
+        {
+          "id": "text_color",
+          "label": "Text color",
+          "type": "color",
+          "default": "#ffffff"
+        },
+        {
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "id": "position",
+          "label": "Text position",
+          "type": "select",
+          "default": "center",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "3-slide banner",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "transition_style": "slide",
+        "show_dots": true,
+        "show_arrows": true,
+        "slide_height": 600,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": [
+        {
+          "id": "slide-1",
+          "type": "slide",
+          "settings": {
+            "heading": "New Season Collection",
+            "subheading": "Explore premium products",
+            "cta_text": "Shop Now",
+            "cta_url": "/products",
+            "text_color": "#ffffff",
+            "overlay_opacity": 35,
+            "position": "center"
+          }
+        },
+        {
+          "id": "slide-2",
+          "type": "slide",
+          "settings": {
+            "heading": "Limited Time Offers",
+            "subheading": "Up to 40% off selected items",
+            "cta_text": "View Deals",
+            "cta_url": "/sale",
+            "text_color": "#ffffff",
+            "overlay_opacity": 40,
+            "position": "left"
+          }
+        },
+        {
+          "id": "slide-3",
+          "type": "slide",
+          "settings": {
+            "heading": "Free Shipping Worldwide",
+            "subheading": "On all orders over $50",
+            "cta_text": "Learn More",
+            "cta_url": "/shipping",
+            "text_color": "#ffffff",
+            "overlay_opacity": 30,
+            "position": "right"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "wishlist": {
+      "name": "Main Wishlist",
+      "type": "main_wishlist",
+      "hidden": false,
+      "settings": {
+        "color_scheme": "white"
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "wishlist"
+  ]
+}

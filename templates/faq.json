@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "faqs-title": {
+      "name": "Hero Centered",
+      "type": "hero_centered",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "HELP CENTER",
+        "heading": "Frequently asked questions",
+        "subheading": "The answers you need, right here.",
+        "button_text": "",
+        "padding_top": 76,
+        "button2_text": "",
+        "color_scheme": "light",
+        "padding_bottom": 60
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "faqs": {
+      "name": "Faq Accordion",
+      "type": "faq_accordion",
+      "hidden": false,
+      "settings": {
+        "heading": "Good to know",
+        "subheading": "Clear answers to common questions.",
+        "padding_top": 64,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "block-1": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>Choose a product, review its details, and follow the checkout process.</p>",
+            "question": "How do I place an order?"
+          }
+        },
+        "block-2": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>Send us a message using the contact page.</p>",
+            "question": "How can I contact you?"
+          }
+        },
+        "block-3": {
+          "type": "qa",
+          "settings": {
+            "answer": "<p>Our store policies are linked in the footer.</p>",
+            "question": "Where can I read your policies?"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    }
+  },
+  "order": [
+    "faqs-title",
+    "faqs"
+  ]
+}

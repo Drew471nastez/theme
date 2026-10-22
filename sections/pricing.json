@@ -1,0 +1,277 @@
+{
+  "type": "pricing",
+  "name": "Pricing",
+  "description": "Pricing plans with optional billing toggle and feature lists.",
+  "supports_typography_overrides": false,
+  "icon": "tag",
+  "category": "conversion",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Simple, transparent pricing",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "No hidden fees. Cancel anytime.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "toggle_billing",
+      "label": "Show monthly/annual toggle",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "style",
+      "label": "Style",
+      "type": "select",
+      "default": "cards",
+      "options": [
+        {
+          "label": "Cards",
+          "value": "cards"
+        },
+        {
+          "label": "Table",
+          "value": "table"
+        },
+        {
+          "label": "Minimal",
+          "value": "minimal"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "highlight_color",
+      "label": "Featured plan highlight color",
+      "type": "color",
+      "default": "#4f46e5"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pricing_plan",
+      "name": "Pricing plan",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Plan name",
+          "type": "text",
+          "default": "Pro",
+          "placeholder": "Plan name"
+        },
+        {
+          "id": "badge_text",
+          "label": "Badge text",
+          "type": "text",
+          "default": "",
+          "placeholder": "e.g. Most popular"
+        },
+        {
+          "id": "badge_color",
+          "label": "Badge color",
+          "type": "color",
+          "default": "#4f46e5"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Everything you need to grow your business.",
+          "placeholder": "Short plan description"
+        },
+        {
+          "id": "price",
+          "label": "Monthly price",
+          "type": "text",
+          "default": "$29",
+          "placeholder": "e.g. $29"
+        },
+        {
+          "id": "annual_price",
+          "label": "Annual price",
+          "type": "text",
+          "default": "$19",
+          "placeholder": "e.g. $19/mo billed annually"
+        },
+        {
+          "id": "period",
+          "label": "Period label",
+          "type": "text",
+          "default": "/month",
+          "placeholder": "e.g. /month"
+        },
+        {
+          "id": "features",
+          "label": "Features (one per line)",
+          "type": "textarea",
+          "default": "Unlimited projects\nPriority support\nAdvanced analytics\nCustom domain\n10 team members",
+          "placeholder": "Feature list, one per line"
+        },
+        {
+          "id": "cta_text",
+          "label": "Button text",
+          "type": "text",
+          "default": "Get started",
+          "placeholder": "CTA label"
+        },
+        {
+          "id": "cta_url",
+          "label": "Button URL",
+          "type": "link",
+          "default": "#"
+        },
+        {
+          "id": "is_featured",
+          "label": "Featured plan",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "highlight_border_color",
+          "label": "Featured border color",
+          "type": "color",
+          "default": "#4f46e5"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Three-tier pricing",
+      "settings": {
+        "heading": "Simple, transparent pricing",
+        "subheading": "No hidden fees. Cancel anytime.",
+        "toggle_billing": true,
+        "style": "cards",
+        "highlight_color": "#4f46e5",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "light"
+      },
+      "blocks": [
+        {
+          "id": "p1",
+          "type": "pricing_plan",
+          "settings": {
+            "name": "Starter",
+            "description": "Perfect for individuals and small teams.",
+            "price": "$0",
+            "annual_price": "$0",
+            "period": "/month",
+            "features": "Up to 3 projects\nBasic analytics\nEmail support\n1 GB storage",
+            "cta_text": "Start free",
+            "cta_url": "/products",
+            "is_featured": false
+          }
+        },
+        {
+          "id": "p2",
+          "type": "pricing_plan",
+          "settings": {
+            "name": "Pro",
+            "badge_text": "Most popular",
+            "badge_color": "#4f46e5",
+            "description": "Everything you need to scale.",
+            "price": "$29",
+            "annual_price": "$19",
+            "period": "/month",
+            "features": "Unlimited projects\nAdvanced analytics\nPriority support\n100 GB storage\n10 team seats",
+            "cta_text": "Start free trial",
+            "cta_url": "/signup?plan=pro",
+            "is_featured": true,
+            "highlight_border_color": "#4f46e5"
+          }
+        },
+        {
+          "id": "p3",
+          "type": "pricing_plan",
+          "settings": {
+            "name": "Enterprise",
+            "description": "Custom solutions for large organisations.",
+            "price": "Custom",
+            "annual_price": "Custom",
+            "period": "",
+            "features": "Everything in Pro\nSLA guarantee\nDedicated support\nSSO & advanced security\nUnlimited seats",
+            "cta_text": "Contact sales",
+            "cta_url": "/contact",
+            "is_featured": false
+          }
+        }
+      ]
+    }
+  ]
+}

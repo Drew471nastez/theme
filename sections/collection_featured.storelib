@@ -1,0 +1,165 @@
+{# ===========================================================================
+   Featured collection: one collection's products, on any page
+
+   Shopify's Featured collection. The creator picks a collection from
+   Products › Collections; the section shows its first products in the
+   collection's own order and links to the whole collection. The heading
+   is the collection's name until somebody types another.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --cols-d: {{ settings.columns.desktop }}; --cols-t: {{ settings.columns.tablet }}; --cols-m: {{ settings.columns.mobile }};">
+  <div class="s__in">
+    {% if settings.collection.title %}
+      <div class="s__head {% if settings.align == 'center' %}s__head--center{% endif %}">
+        <h2 class="s__h">{{ settings.heading | default: settings.collection.title }}</h2>
+        {% if settings.show_description and settings.collection.description %}<p class="s__sub">{{ settings.collection.description }}</p>{% endif %}
+      </div>
+      {% if settings.collection.products.size == 0 %}
+        {% if page.in_editor %}<p class="empty">This collection has no published products yet</p>{% endif %}
+      {% else %}
+        <div class="grid">
+          {% for block in settings.collection.products %}
+            {% if forloop.index <= settings.product_count %}
+            <article class="card" data-card="product" data-block-id="{{ block.id }}">
+              <div class="card__media" data-card-media style="aspect-ratio: {{ settings.shape }};">
+                {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async">{% endif %}
+                {% if block.settings.tag or theme.badges.sale and block.settings.compare_price %}<span class="badges" data-badges>{% if theme.badges.sale and block.settings.compare_price %}<span class="tag" data-badge="sale">{{ theme.badges.sale_text }}</span>{% endif %}{% if block.settings.tag %}<span class="tag" data-badge="soldout">{{ block.settings.tag }}</span>{% endif %}</span>{% endif %}
+              </div>
+              <h3 class="card__title">{{ block.settings.title }}</h3>
+              {% if settings.show_rating and block.rating.count > 0 %}<p class="card__rating"><span role="img" aria-label="{{ words.rated }} {{ block.rating.value }} {{ words.out_of_five }}">&#9733;&#9733;&#9733;&#9733;&#9733;<span aria-hidden="true" style="width:{{ block.rating.percent }}%;color:{{ block.rating.color }}">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span>({{ block.rating.count }})</p>{% endif %}
+              {% if settings.show_price and block.settings.price %}
+                <p class="card__price">{{ block.settings.price }}{% if block.settings.compare_price %}<s class="card__was">{{ block.settings.compare_price }}</s>{% endif %}</p>
+              {% endif %}
+              {% if block.settings.url %}<a class="card__link" href="{{ block.settings.url | url }}"><span class="sr">{{ block.settings.title }}</span></a>{% endif %}
+            </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% if settings.button_text %}
+          <div class="more"><a class="s__btn" href="{{ settings.collection | url }}">{{ settings.button_text }}</a></div>
+        {% endif %}
+      {% endif %}
+    {% else %}
+      {% if page.in_editor %}<p class="empty">Choose a collection in the sidebar</p>{% endif %}
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  max-width: var(--theme-page-width, 1280px);
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__head { max-width: 44rem; margin-bottom: 36px; }
+.s__head--center { margin-inline: auto; text-align: center; }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 12px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.grid { display: grid; gap: 24px; grid-template-columns: repeat(var(--cols-m), minmax(0, 1fr)); }
+@container (min-width: 640px) { .grid { grid-template-columns: repeat(var(--cols-t), minmax(0, 1fr)); } }
+@container (min-width: 900px) { .grid { grid-template-columns: repeat(var(--cols-d), minmax(0, 1fr)); } }
+.card { position: relative; display: flex; flex-direction: column; }
+.card__media { position: relative; overflow: hidden; border-radius: var(--s-radius); background: var(--s-border); }
+.card__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card__title { margin: 14px 0 0; font-size: 15px; font-weight: 600; color: var(--s-heading); }
+.card__rating { margin: 6px 0 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 1; color: var(--s-para); }
+.card__rating > span { position: relative; letter-spacing: 1px; color: var(--s-border); }
+.card__rating > span > span { position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap; }
+.card__price { margin: 8px 0 0; display: flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 600; color: var(--s-heading); }
+.card__was { font-size: 13px; font-weight: 400; color: var(--s-para); opacity: 0.7; }
+.card__link { position: absolute; inset: 0; }
+.badges { position: absolute; top: 10px; left: 10px; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 20px); }
+.tag { padding: 4px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; background: var(--s-btn); color: var(--s-btn-text); }
+.more { display: flex; justify-content: center; margin-top: 36px; }
+.s__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--sl-button-padding, 13px 24px); font-size: var(--sl-button-size, 15px); line-height: var(--sl-button-line-height); font-weight: var(--theme-button-weight, 600); text-decoration: none;
+  border-radius: var(--s-radius); border: 1px solid var(--s-btn2-border);
+  background: var(--s-btn2); color: var(--s-btn2-text);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.s__btn:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+.empty { margin: 0; text-align: center; font-size: 14px; color: var(--s-para); opacity: 0.6; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "collection_featured",
+  "name": "Featured collection",
+  "category": "products",
+  "description": "One of your collections and its first products.",
+  "version": "1.0.0",
+  "icon": "grid",
+  "settings": [
+    { "type": "collection_picker", "id": "collection", "label": "Collection" },
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "", "placeholder": "The collection's name", "from": "collection.title" },
+    { "type": "toggle", "id": "show_description", "label": "Show the collection's description", "default": false },
+    {
+      "type": "radio",
+      "id": "align",
+      "label": "Heading sits",
+      "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" }
+      ]
+    },
+    { "type": "text", "id": "button_text", "label": "Button to the collection", "default": "See the collection" },
+    { "type": "header", "id": "hdr_products", "label": "Products" },
+    { "type": "range", "id": "product_count", "label": "How many", "min": 2, "max": 12, "step": 1, "default": 4 },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "default": { "desktop": 4, "tablet": 2, "mobile": 2 },
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "responsive": true
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Photo shape",
+      "default": "1 / 1",
+      "options": [
+        { "label": "Square", "value": "1 / 1" },
+        { "label": "Portrait", "value": "3 / 4" },
+        { "label": "Landscape", "value": "4 / 3" }
+      ]
+    },
+    { "type": "toggle", "id": "show_price", "label": "Show prices", "default": true },
+    { "type": "toggle", "id": "show_rating", "label": "Show star ratings", "default": true, "info": "From Storelib Reviews, when it is on and a product has reviews." },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 72 }
+  ],
+  "presets": [
+    { "name": "Featured collection" }
+  ]
+}
+</schema>

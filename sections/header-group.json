@@ -1,0 +1,119 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "promo_announcement-1792616626080": {
+      "name": "Announcement / Promo",
+      "type": "promo_announcement",
+      "hidden": false,
+      "settings": {
+        "color_scheme": "dark"
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "header": {
+      "name": "Header",
+      "type": "header",
+      "hidden": false,
+      "settings": {
+        "sticky": true,
+        "cta_url": "",
+        "bg_color": "#FCFCFA",
+        "cta_text": "Shop Now",
+        "logo_url": "https://storelib.com/media/store-builder-images/31468589-3d32-4bc0-91bd-406ffd05242e/imported/1792591109133-khbco9y.png",
+        "cta_color": "#3B82F6",
+        "cta_style": "ghost",
+        "logo_font": "Manrope",
+        "logo_mode": "image",
+        "logo_text": "YOUR STUDIO",
+        "max_width": "full",
+        "show_cart": false,
+        "text_color": "#1D2922",
+        "logo_height": 72,
+        "show_search": true,
+        "border_style": "solid",
+        "color_scheme": "white",
+        "header_fixed": false,
+        "header_width": "full",
+        "header_layout": "logo_left_nav_center",
+        "nav_alignment": "center",
+        "show_cart_icon": true,
+        "link_spacing_vw": 2.3,
+        "mobile_logo_url": "",
+        "show_cta_button": false,
+        "use_mobile_logo": false,
+        "vertical_padding": {
+          "mobile": 12,
+          "tablet": 16,
+          "desktop": 12
+        },
+        "border_visibility": "all",
+        "cta_border_radius": 0,
+        "show_account_icon": true,
+        "header_transparent": false,
+        "mobile_logo_height": 44,
+        "show_bottom_border": true,
+        "show_wishlist_icon": false,
+        "header_depth_shadow": true,
+        "vertical_padding_vw": 0,
+        "mobile_header_layout": "hamburger_left_logo_left",
+        "header_sticky_enabled": true,
+        "menu_link_hover_style": "underline",
+        "show_currency_selector": true,
+        "show_language_selector": true,
+        "logo_vertical_offset_px": -2,
+        "logo_horizontal_offset_px": -4,
+        "header_sticky_on_scroll_up": false,
+        "logo_vertical_offset_enabled": false,
+        "logo_horizontal_offset_enabled": false,
+        "mobile_logo_horizontal_offset_px": -2,
+        "mobile_logo_horizontal_offset_enabled": true
+      },
+      "blocks": {
+        "nav-home": {
+          "type": "nav_link",
+          "settings": {
+            "url": "/",
+            "label": "Home",
+            "open_in_new_tab": false
+          }
+        },
+        "nav-shop": {
+          "type": "nav_link",
+          "settings": {
+            "url": "/products",
+            "label": "Shop",
+            "open_in_new_tab": false
+          }
+        },
+        "nav-about": {
+          "type": "nav_link",
+          "settings": {
+            "url": "/about",
+            "label": "Our story",
+            "open_in_new_tab": false
+          }
+        },
+        "nav-contact": {
+          "type": "nav_link",
+          "settings": {
+            "url": "/contact",
+            "label": "Contact",
+            "open_in_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "nav-home",
+        "nav-shop",
+        "nav-about",
+        "nav-contact"
+      ]
+    }
+  },
+  "order": [
+    "promo_announcement-1792616626080",
+    "header"
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "type": "split_content",
+  "name": "Split content",
+  "description": "Side-by-side image and text layout",
+  "supports_typography_overrides": false,
+  "icon": "columns",
+  "category": "content",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "type": "text",
+      "placeholder": "Featured"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Why we stand out"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "placeholder": "A brief intro line"
+    },
+    {
+      "id": "body",
+      "label": "Body text",
+      "type": "richtext",
+      "placeholder": "Describe the value..."
+    },
+    {
+      "id": "hdr_image",
+      "label": "Image",
+      "type": "header"
+    },
+    {
+      "id": "image",
+      "label": "Image",
+      "type": "image"
+    },
+    {
+      "id": "image_position",
+      "label": "Image position",
+      "type": "radio",
+      "default": "right",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "type": "select",
+      "default": "square",
+      "options": [
+        {
+          "label": "Square (1:1)",
+          "value": "square"
+        },
+        {
+          "label": "Portrait (3:4)",
+          "value": "portrait"
+        },
+        {
+          "label": "Landscape (4:3)",
+          "value": "landscape"
+        },
+        {
+          "label": "Wide (16:9)",
+          "value": "wide"
+        }
+      ]
+    },
+    {
+      "id": "hdr_button",
+      "label": "Button",
+      "type": "header"
+    },
+    {
+      "id": "button_text",
+      "label": "Button text",
+      "type": "text",
+      "placeholder": "Learn more"
+    },
+    {
+      "id": "button_url",
+      "label": "Button URL",
+      "type": "link"
+    },
+    {
+      "id": "button_style",
+      "label": "Button style",
+      "type": "radio",
+      "default": "filled",
+      "options": [
+        {
+          "label": "Filled",
+          "value": "filled"
+        },
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Ghost",
+          "value": "ghost"
+        }
+      ]
+    },
+    {
+      "id": "button_color",
+      "label": "Button color",
+      "type": "color",
+      "default": ""
+    },
+    {
+      "id": "button_text_color",
+      "label": "Button text color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "button_border_radius",
+      "label": "Button radius",
+      "type": "range",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "font_size_heading",
+      "label": "Heading font size",
+      "type": "range",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image right",
+      "settings": {
+        "eyebrow": "Our approach",
+        "heading": "Quality meets simplicity",
+        "body": "<p>We take a thoughtful approach to every product we build. No bloat, no compromises — just exactly what you need to succeed.</p>",
+        "button_text": "Discover more",
+        "button_url": "/about",
+        "button_style": "filled",
+        "image_position": "right",
+        "image_aspect_ratio": "square",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      }
+    },
+    {
+      "name": "Image left",
+      "settings": {
+        "eyebrow": "Our approach",
+        "heading": "Quality meets simplicity",
+        "body": "<p>We take a thoughtful approach to every product we build.</p>",
+        "button_text": "Discover more",
+        "button_url": "/about",
+        "button_style": "outline",
+        "image_position": "left",
+        "image_aspect_ratio": "portrait",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "light"
+      }
+    }
+  ]
+}

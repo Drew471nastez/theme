@@ -1,0 +1,441 @@
+{
+  "type": "comparison_table",
+  "name": "Comparison table",
+  "description": "Side-by-side feature comparison table for products, plans, or services",
+  "supports_typography_overrides": false,
+  "icon": "table",
+  "category": "commerce",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Content",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "placeholder": "Compare plans",
+      "default": "Compare plans"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "placeholder": "Find the right plan for your needs"
+    },
+    {
+      "id": "show_cta_row",
+      "label": "Show CTA row at bottom",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "highlight_column",
+      "label": "Highlighted column index",
+      "type": "number",
+      "min": 0,
+      "max": 5,
+      "default": 1
+    },
+    {
+      "id": "max_width",
+      "label": "Container width",
+      "type": "select",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "sticky_header",
+      "label": "Sticky column headers",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_check_icons",
+      "label": "Use icons for yes/no values",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "header_bg_color",
+      "label": "Column header background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "highlight_bg_color",
+      "label": "Highlighted column background",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "highlight_text_color",
+      "label": "Highlighted column text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "row_alt_bg_color",
+      "label": "Alternate row color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "border_color",
+      "label": "Border color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "check_color",
+      "label": "Check icon color",
+      "type": "color",
+      "default": "#22c55e"
+    },
+    {
+      "id": "cross_color",
+      "label": "Cross icon color",
+      "type": "color",
+      "default": "#ef4444"
+    },
+    {
+      "id": "border_radius",
+      "label": "Table border radius",
+      "type": "range",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_column",
+      "name": "Column (Plan)",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Plan / Product name",
+          "type": "text",
+          "placeholder": "Pro"
+        },
+        {
+          "id": "price",
+          "label": "Price",
+          "type": "text",
+          "placeholder": "$29/mo"
+        },
+        {
+          "id": "description",
+          "label": "Short description",
+          "type": "text",
+          "placeholder": "For growing teams"
+        },
+        {
+          "id": "badge",
+          "label": "Badge text",
+          "type": "text",
+          "placeholder": "Most popular"
+        },
+        {
+          "id": "badge_color",
+          "label": "Badge color",
+          "type": "color",
+          "default": "#f59e0b"
+        },
+        {
+          "id": "cta_text",
+          "label": "CTA button text",
+          "type": "text",
+          "placeholder": "Get started"
+        },
+        {
+          "id": "cta_url",
+          "label": "CTA button URL",
+          "type": "link"
+        },
+        {
+          "id": "is_highlighted",
+          "label": "Highlight this column",
+          "type": "toggle",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "comparison_row",
+      "name": "Feature row",
+      "fields": [
+        {
+          "id": "feature",
+          "label": "Feature name",
+          "type": "text",
+          "placeholder": "Unlimited projects"
+        },
+        {
+          "id": "tooltip",
+          "label": "Tooltip / help text",
+          "type": "text",
+          "placeholder": "Create as many projects as you need"
+        },
+        {
+          "id": "values",
+          "label": "Values (comma-separated, use yes/no/true/false)",
+          "type": "text",
+          "placeholder": "yes,yes,no"
+        },
+        {
+          "id": "is_divider",
+          "label": "Use as section divider",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "divider_label",
+          "label": "Divider label",
+          "type": "text",
+          "placeholder": "Core features"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "3-plan comparison",
+      "settings": {
+        "heading": "Compare plans",
+        "subheading": "Choose the plan that's right for you",
+        "highlight_column": 1,
+        "show_cta_row": true,
+        "sticky_header": true,
+        "show_check_icons": true,
+        "border_radius": 12,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "col-free",
+          "type": "comparison_column",
+          "settings": {
+            "name": "Free",
+            "price": "$0/mo",
+            "description": "For individuals",
+            "cta_text": "Get started free",
+            "cta_url": "/products",
+            "is_highlighted": false
+          }
+        },
+        {
+          "id": "col-pro",
+          "type": "comparison_column",
+          "settings": {
+            "name": "Pro",
+            "price": "$29/mo",
+            "description": "For growing teams",
+            "badge": "Most popular",
+            "badge_color": "#f59e0b",
+            "cta_text": "Start free trial",
+            "cta_url": "/signup?plan=pro",
+            "is_highlighted": true
+          }
+        },
+        {
+          "id": "col-ent",
+          "type": "comparison_column",
+          "settings": {
+            "name": "Enterprise",
+            "price": "Custom",
+            "description": "For large organisations",
+            "cta_text": "Contact sales",
+            "cta_url": "/contact",
+            "is_highlighted": false
+          }
+        },
+        {
+          "id": "div-1",
+          "type": "comparison_row",
+          "settings": {
+            "is_divider": true,
+            "divider_label": "Core features"
+          }
+        },
+        {
+          "id": "row-1",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Projects",
+            "values": "3,Unlimited,Unlimited"
+          }
+        },
+        {
+          "id": "row-2",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Team members",
+            "values": "1,10,Unlimited"
+          }
+        },
+        {
+          "id": "row-3",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Storage",
+            "values": "1 GB,50 GB,500 GB"
+          }
+        },
+        {
+          "id": "div-2",
+          "type": "comparison_row",
+          "settings": {
+            "is_divider": true,
+            "divider_label": "Advanced features"
+          }
+        },
+        {
+          "id": "row-4",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "API access",
+            "values": "no,yes,yes"
+          }
+        },
+        {
+          "id": "row-5",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Priority support",
+            "values": "no,yes,yes"
+          }
+        },
+        {
+          "id": "row-6",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Custom domain",
+            "values": "no,yes,yes"
+          }
+        },
+        {
+          "id": "row-7",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "SSO / SAML",
+            "values": "no,no,yes"
+          }
+        },
+        {
+          "id": "row-8",
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Dedicated account manager",
+            "values": "no,no,yes"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "catalog-intro": {
+      "name": "Text Rich",
+      "type": "text_rich",
+      "hidden": false,
+      "settings": {
+        "body": "<p>Browse products made with care and attention to detail.</p>",
+        "eyebrow": "EXPLORE",
+        "heading": "The collection.",
+        "padding_top": 72,
+        "color_scheme": "white",
+        "padding_bottom": 32
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "catalog": {
+      "name": "Product Grid",
+      "type": "product_grid",
+      "hidden": false,
+      "settings": {
+        "source": "shop",
+        "columns": {
+          "mobile": 1,
+          "tablet": 2,
+          "desktop": 3
+        },
+        "heading": "All products",
+        "show_price": true,
+        "subheading": "Find what fits.",
+        "padding_top": 24,
+        "color_scheme": "white",
+        "show_filters": true,
+        "show_wishlist": true,
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "catalog-intro",
+    "catalog"
+  ]
+}

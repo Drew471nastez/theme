@@ -1,0 +1,57 @@
+{# ===========================================================================
+   Text: a theme block
+
+   A paragraph or a few, with bold, italics and links. The value is rich
+   text, cleaned on the way in, which is why it is printed with `raw`. Its
+   colour follows the section's scheme text ("default": "scheme.text") until
+   somebody picks one; links take the same colour.
+   =========================================================================== #}
+<template>
+<div class="sl-text sl-text--{{ block.settings.size }} sl-text--{{ block.settings.align }}" style="--text-color: {{ block.settings.color | default: scheme.text }};">{{ block.settings.text | raw }}</div>
+</template>
+
+<style>
+.sl-text {
+  color: var(--text-color, var(--s-para, inherit));
+  font-size: var(--section-text-size, 17px);
+  line-height: var(--section-text-line-height, 1.6);
+  max-width: 44rem;
+  overflow-wrap: anywhere;
+}
+.sl-text--center { margin-inline: auto; text-align: center; }
+.sl-text--right { margin-left: auto; text-align: right; }
+.sl-text--small { font-size: 14px; }
+.sl-text--large { font-size: 20px; }
+.sl-text p { margin: 0 0 0.75em; }
+.sl-text p:last-child { margin-bottom: 0; }
+.sl-text a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+</style>
+
+<schema>
+{
+  "name": "Text",
+  "settings": [
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Say what this part of the page is about.</p>" },
+    {
+      "type": "select", "id": "size", "label": "Size", "default": "body",
+      "options": [
+        { "label": "Small", "value": "small" },
+        { "label": "Body", "value": "body" },
+        { "label": "Large", "value": "large" }
+      ]
+    },
+    {
+      "type": "radio", "id": "align", "label": "Alignment", "default": "left",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Centre", "value": "center" },
+        { "label": "Right", "value": "right" }
+      ]
+    },
+    { "type": "color", "id": "color", "label": "Text color", "default": "scheme.text" }
+  ],
+  "presets": [
+    { "name": "Text" }
+  ]
+}
+</schema>

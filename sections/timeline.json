@@ -1,0 +1,284 @@
+{
+  "type": "timeline",
+  "name": "Timeline",
+  "description": "Vertical timeline or story section with alternating or single-side layout.",
+  "supports_typography_overrides": false,
+  "icon": "clock",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Timeline",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Our Story",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "text",
+      "default": "From a small workshop to a global brand. Here's how it happened.",
+      "placeholder": "Section subheading"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "radio",
+      "default": "alternating",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Alternating",
+          "value": "alternating"
+        }
+      ]
+    },
+    {
+      "id": "connector_style",
+      "label": "Connector Style",
+      "type": "select",
+      "default": "line",
+      "options": [
+        {
+          "label": "Line",
+          "value": "line"
+        },
+        {
+          "label": "Dots",
+          "value": "dots"
+        },
+        {
+          "label": "Arrows",
+          "value": "arrows"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "connector_color",
+      "label": "Connector Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "dot_color",
+      "label": "Dot Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "dot_size",
+      "label": "Dot Size",
+      "type": "range",
+      "default": 16,
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline Item",
+      "fields": [
+        {
+          "id": "year",
+          "label": "Year / Date",
+          "type": "text",
+          "default": "2016",
+          "placeholder": "e.g. 2016, Q1 2020"
+        },
+        {
+          "id": "title",
+          "label": "Title",
+          "type": "text",
+          "default": "The Beginning",
+          "placeholder": "Milestone title"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Founded in a small garage with nothing but a sewing machine, a bold idea, and an unshakeable belief that clothing could be both beautiful and sustainable.",
+          "placeholder": "Milestone description"
+        },
+        {
+          "id": "image",
+          "label": "Image",
+          "type": "image",
+          "default": ""
+        },
+        {
+          "id": "side",
+          "label": "Side",
+          "type": "select",
+          "default": "left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "id": "highlight_color",
+          "label": "Highlight Color",
+          "type": "color",
+          "default": "#e67e22"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Timeline",
+      "settings": {
+        "heading": "Our Story",
+        "subheading": "From a small workshop to a global brand. Here's how it happened.",
+        "layout": "alternating",
+        "connector_style": "line",
+        "dot_size": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "timeline_block_1",
+          "type": "timeline_item",
+          "settings": {
+            "year": "2016",
+            "title": "The Beginning",
+            "description": "Founded in a small garage with nothing but a sewing machine, a bold idea, and an unshakeable belief that clothing could be both beautiful and sustainable.",
+            "side": "left",
+            "highlight_color": "#e67e22"
+          }
+        },
+        {
+          "id": "timeline_block_2",
+          "type": "timeline_item",
+          "settings": {
+            "year": "2018",
+            "title": "First Retail Partnership",
+            "description": "Signed our first major retail partnership, bringing our products to 50 stores across the country and reaching thousands of new customers.",
+            "side": "right",
+            "highlight_color": "#3498db"
+          }
+        },
+        {
+          "id": "timeline_block_3",
+          "type": "timeline_item",
+          "settings": {
+            "year": "2021",
+            "title": "Global Expansion",
+            "description": "Launched international shipping to 40+ countries and opened our flagship store in New York City's SoHo neighborhood.",
+            "side": "left",
+            "highlight_color": "#27ae60"
+          }
+        },
+        {
+          "id": "timeline_block_4",
+          "type": "timeline_item",
+          "settings": {
+            "year": "2024",
+            "title": "B Corp Certified",
+            "description": "Achieved B Corp certification, recognizing our commitment to people, planet, and sustainable business practices.",
+            "side": "right",
+            "highlight_color": "#8e44ad"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "type": "process_steps",
+  "name": "Process / how it works",
+  "description": "Explain your process or key steps with icons and descriptions.",
+  "supports_typography_overrides": false,
+  "icon": "list-ordered",
+  "category": "content",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "How it works",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "Get up and running in three simple steps.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "horizontal",
+      "options": [
+        {
+          "label": "Horizontal",
+          "value": "horizontal"
+        },
+        {
+          "label": "Vertical",
+          "value": "vertical"
+        },
+        {
+          "label": "Zigzag",
+          "value": "zigzag"
+        }
+      ]
+    },
+    {
+      "id": "show_numbers",
+      "label": "Show step numbers",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "connector_color",
+      "label": "Connector line color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "fields": [
+        {
+          "id": "number",
+          "label": "Step number / label",
+          "type": "text",
+          "default": "01",
+          "placeholder": "e.g. 01 or Step 1"
+        },
+        {
+          "id": "title",
+          "label": "Title",
+          "type": "text",
+          "default": "Sign up for free",
+          "placeholder": "Step title"
+        },
+        {
+          "id": "description",
+          "label": "Description",
+          "type": "textarea",
+          "default": "Create your account in under a minute, no credit card required.",
+          "placeholder": "Step description"
+        },
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "icon",
+          "default": "user-plus"
+        },
+        {
+          "id": "image",
+          "label": "Step image",
+          "type": "image",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Three-step horizontal process",
+      "settings": {
+        "heading": "How it works",
+        "subheading": "Get up and running in three simple steps.",
+        "layout": "horizontal",
+        "show_numbers": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "st1",
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Sign up for free",
+            "description": "Create your account in under a minute, no credit card required.",
+            "icon": "user-plus"
+          }
+        },
+        {
+          "id": "st2",
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Set up your workspace",
+            "description": "Import your data, invite your team, and configure your preferences.",
+            "icon": "settings"
+          }
+        },
+        {
+          "id": "st3",
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Launch and grow",
+            "description": "Go live, track your results, and scale with confidence.",
+            "icon": "rocket"
+          }
+        }
+      ]
+    }
+  ]
+}

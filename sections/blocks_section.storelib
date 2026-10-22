@@ -1,0 +1,447 @@
+{# ===========================================================================
+   Section: built from theme blocks
+
+   Shopify's "Section": a shell with a colour scheme and spacing, and
+   whatever theme blocks somebody puts in it, in the order they put them.
+   Every block in blocks/ fits, a Group included, so a layout is made here
+   rather than written.
+
+   Each preset is a state the section arrives in, written in Shopify's keyed
+   form. Add one here and it is in Add section the next time it opens.
+   =========================================================================== #}
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --gap: {{ settings.gap }}px;">
+  <div class="s__in s__in--{{ settings.max_width }}">
+    {% if blocks.size == 0 %}
+      {% if page.in_editor %}<p class="empty">Add blocks to this section in the sidebar</p>{% endif %}
+    {% else %}
+      <div class="stack stack--{{ settings.direction }} stack--{{ settings.align }}">{% content_for "blocks" %}</div>
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.empty { margin: 0; padding: 24px; border: 1px dashed var(--s-border); text-align: center; font-size: 13px; color: var(--s-para); }
+.stack { display: flex; gap: var(--gap); min-width: 0; }
+.stack--column { flex-direction: column; }
+.stack--row { flex-direction: row; }
+.stack--row > .sl-block { flex: 1 1 0; min-width: 0; }
+.stack--column.stack--center { align-items: center; text-align: center; }
+.stack--column.stack--end { align-items: flex-end; text-align: right; }
+.stack--column > .sl-block { max-width: 100%; }
+.stack--column.stack--center > .sl-block, .stack--column.stack--end > .sl-block { width: auto; }
+.stack--column > .sl-block:has(.sl-group), .stack--column > .sl-block:has(.sl-image), .stack--column > .sl-block:has(.sl-video), .stack--column > .sl-block:has(.sl-spacer) { width: 100%; }
+.stack--row.stack--center { align-items: center; }
+.stack--row.stack--end { align-items: flex-end; }
+@media (max-width: 749px) {
+  .stack--row { flex-direction: column; align-items: stretch; }
+}
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "blocks_section",
+  "name": "Section",
+  "category": "content",
+  "description": "Any blocks, in any order: headings, text, buttons, pictures, video and groups of them.",
+  "version": "1.0.0",
+  "icon": "layout",
+  "blocks": [
+    {
+      "type": "@theme"
+    }
+  ],
+  "max_blocks": 24,
+  "settings": [
+    {
+      "type": "header",
+      "id": "hdr_blocks",
+      "label": "Blocks"
+    },
+    {
+      "type": "radio",
+      "id": "direction",
+      "label": "Direction",
+      "default": "column",
+      "options": [
+        {
+          "label": "Column",
+          "value": "column"
+        },
+        {
+          "label": "Row",
+          "value": "row"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignment",
+      "default": "start",
+      "options": [
+        {
+          "label": "Start",
+          "value": "start"
+        },
+        {
+          "label": "Centre",
+          "value": "center"
+        },
+        {
+          "label": "End",
+          "value": "end"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Space between blocks",
+      "default": 20,
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "id": "hdr_layout",
+      "label": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Content width",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    {
+      "type": "header",
+      "id": "hdr_spacing",
+      "label": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "default": 64,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "default": 64,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text",
+      "category": "content",
+      "settings": {
+        "max_width": "medium"
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Something worth saying"
+          }
+        },
+        "text": {
+          "type": "text"
+        },
+        "button": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ]
+    },
+    {
+      "name": "Text, centred",
+      "category": "content",
+      "settings": {
+        "max_width": "medium",
+        "align": "center"
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Something worth saying",
+            "align": "center"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "align": "center"
+          }
+        },
+        "button": {
+          "type": "button"
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ]
+    },
+    {
+      "name": "Image with text",
+      "category": "media",
+      "blocks": {
+        "row": {
+          "type": "group",
+          "settings": {
+            "direction": "row",
+            "gap": 40,
+            "align": "center"
+          },
+          "blocks": {
+            "image": {
+              "type": "image",
+              "settings": {
+                "ratio": "portrait"
+              }
+            },
+            "words": {
+              "type": "group",
+              "settings": {
+                "gap": 16
+              },
+              "blocks": {
+                "heading": {
+                  "type": "heading",
+                  "settings": {
+                    "text": "Made by hand"
+                  }
+                },
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Tell the story behind what you sell, in a few lines.</p>"
+                  }
+                },
+                "button": {
+                  "type": "button"
+                }
+              },
+              "block_order": [
+                "heading",
+                "text",
+                "button"
+              ]
+            }
+          },
+          "block_order": [
+            "image",
+            "words"
+          ]
+        }
+      },
+      "block_order": [
+        "row"
+      ]
+    },
+    {
+      "name": "Video with text",
+      "category": "media",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "See it in use"
+          }
+        },
+        "video": {
+          "type": "video"
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A minute is enough to show what a page of words cannot.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "video",
+        "text"
+      ]
+    },
+    {
+      "name": "Three columns",
+      "category": "content",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Why people come back"
+          }
+        },
+        "columns": {
+          "type": "group",
+          "settings": {
+            "direction": "row",
+            "gap": 32
+          },
+          "blocks": {
+            "one": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "h": {
+                  "type": "heading",
+                  "settings": {
+                    "text": "Quick",
+                    "size": "small",
+                    "level": "h3"
+                  }
+                },
+                "t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Delivered the moment payment clears.</p>"
+                  }
+                }
+              },
+              "block_order": [
+                "h",
+                "t"
+              ]
+            },
+            "two": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "h": {
+                  "type": "heading",
+                  "settings": {
+                    "text": "Yours to keep",
+                    "size": "small",
+                    "level": "h3"
+                  }
+                },
+                "t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Every update arrives at no extra cost.</p>"
+                  }
+                }
+              },
+              "block_order": [
+                "h",
+                "t"
+              ]
+            },
+            "three": {
+              "type": "group",
+              "settings": {
+                "gap": 8
+              },
+              "blocks": {
+                "h": {
+                  "type": "heading",
+                  "settings": {
+                    "text": "A real person",
+                    "size": "small",
+                    "level": "h3"
+                  }
+                },
+                "t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Questions are answered by the maker.</p>"
+                  }
+                }
+              },
+              "block_order": [
+                "h",
+                "t"
+              ]
+            }
+          },
+          "block_order": [
+            "one",
+            "two",
+            "three"
+          ]
+        }
+      },
+      "block_order": [
+        "heading",
+        "columns"
+      ]
+    },
+    {
+      "name": "Empty section",
+      "category": "content"
+    }
+  ]
+}
+</schema>

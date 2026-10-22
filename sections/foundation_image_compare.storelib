@@ -1,0 +1,158 @@
+<template>
+<section class="fw fw-ic" data-scheme="{{ settings.color_scheme }}" style="--fw-bg:{{ scheme.bg }};--fw-title:{{ scheme.heading }};--fw-text:{{ scheme.text }};--fw-muted:{{ scheme.paragraph }};--fw-line:{{ scheme.border }};--fw-accent:{{ scheme.accent }};--fw-button:{{ scheme.primary_btn_bg }};--fw-button-text:{{ scheme.primary_btn_text }};--fw-button-2:{{ scheme.secondary_btn_bg }};--fw-button-2-text:{{ scheme.secondary_btn_text }};--fw-button-2-border:{{ scheme.secondary_btn_border }};--fw-radius:{{ theme.radius.medium }}px;--fw-top:{{ settings.padding_top }}px;--fw-bottom:{{ settings.padding_bottom }}px;" data-btn="{{ theme.buttons.style }}" data-btn-hover="{{ theme.buttons.hover }}">
+ <div class="fw__inner"><div class="fw-ic__intro">{% if settings.eyebrow %}<p class="fw__overline">{{ settings.eyebrow }}</p>{% endif %}<h2 class="fw__heading">{{ settings.heading }}</h2>{% if settings.body %}<p class="fw__lede">{{ settings.body }}</p>{% endif %}</div>
+ <div class="fw-ic__area" style="--split:50%" data-media>
+  <div class="fw-ic__picture fw-ic__picture--before">{% if settings.before_image %}<img src="{{ settings.before_image | asset }}" alt="{{ settings.before_alt }}" loading="lazy">{% else %}<span class="fw-ic__empty">{{ settings.before_label }}</span>{% endif %}</div>
+  <div class="fw-ic__picture fw-ic__picture--after">{% if settings.after_image %}<img src="{{ settings.after_image | asset }}" alt="{{ settings.after_alt }}" loading="lazy">{% else %}<span class="fw-ic__empty">{{ settings.after_label }}</span>{% endif %}</div>
+  <div class="fw-ic__line" aria-hidden="true"><span>↔</span></div>
+  <span class="fw-ic__label fw-ic__label--left">{{ settings.before_label }}</span><span class="fw-ic__label fw-ic__label--right">{{ settings.after_label }}</span>
+  <input type="range" min="0" max="100" value="50" step="1" aria-label="Move to compare before and after">
+ </div>
+ </div>
+</section>
+</template>
+
+<style scoped>
+.fw{background:var(--fw-bg);color:var(--fw-text);container-type:inline-size;font-family:var(--theme-font-body),sans-serif;}
+.fw,.fw *{box-sizing:border-box;}
+.fw *{min-width:0;}
+.fw img{display:block;max-width:100%;}
+.fw a{color:inherit;}
+.fw__inner{max-width:var(--theme-page-width,1280px);padding:calc(var(--fw-top) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--fw-bottom) * var(--theme-spacing-scale, 1));margin-inline:auto;}
+.fw__overline{margin:0 0 14px;font-family:var(--sl-caption-font,var(--theme-font-accent,var(--theme-font-body))),sans-serif;font-size:var(--sl-caption-size,11px);font-weight:var(--sl-caption-weight,700);letter-spacing:var(--sl-caption-tracking,.16em);text-transform:var(--sl-caption-transform,uppercase);line-height:var(--sl-caption-line-height,1.4);color:var(--fw-accent);}
+.fw__heading{margin:0;color:var(--fw-title);font-family:var(--section-heading-font,var(--theme-font-heading)),sans-serif;font-size:var(--section-heading-size,clamp(30px,4.2cqi,56px));font-weight:var(--section-heading-weight,650);line-height:var(--section-heading-line-height,1.12);letter-spacing:var(--section-heading-tracking,-.044em);text-transform:var(--section-heading-transform,none);overflow-wrap:anywhere;}
+.fw__lede{max-width:57ch;margin:20px 0 0;font-family:var(--theme-font-body),sans-serif;font-size:var(--section-text-size,clamp(15px,1.45cqi,18px));line-height:var(--section-text-line-height,1.7);color:var(--fw-muted);}
+.fw__action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:var(--sl-button-padding,12px 21px);text-decoration:none;border-radius:var(--theme-button-radius,var(--fw-radius));font-family:var(--theme-font-body),sans-serif;font-weight:var(--type-button-weight,var(--theme-button-weight,650));font-size:var(--type-button-size,var(--sl-button-size,14px));letter-spacing:var(--type-button-tracking,0);text-transform:var(--type-button-transform,none);line-height:var(--sl-button-line-height,1.2);background:var(--fw-button);color:var(--fw-button-text)!important;border:1px solid var(--fw-button);box-shadow:var(--sl-btn-shadow,none);transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease;}
+.fw[data-btn="outline"] .fw__action:not(.fw__action--secondary){background:transparent;color:var(--fw-button)!important;}
+.fw[data-btn="ghost"] .fw__action:not(.fw__action--secondary){background:transparent;color:var(--fw-button)!important;border-color:transparent;}
+.fw__action:hover{background:var(--scheme-button-primary-hover,var(--fw-button));color:var(--scheme-button-primary-hover-text,var(--fw-button-text))!important;}
+.fw[data-btn-hover="lift"] .fw__action:hover{transform:translateY(-1px);}
+.fw[data-btn-hover="scale"] .fw__action:hover{transform:scale(1.015);}
+.fw[data-btn-hover="none"] .fw__action,.fw[data-btn-hover="none"] .fw__action:hover{transition:none;transform:none;}
+.fw__action--secondary{background:var(--fw-button-2,transparent)!important;color:var(--fw-button-2-text,var(--fw-title))!important;border-color:var(--fw-button-2-border,var(--fw-line));}
+.fw__action--secondary:hover{background:var(--scheme-button-secondary-hover,transparent)!important;color:var(--scheme-button-secondary-hover-text,var(--fw-title))!important;border-color:var(--scheme-button-secondary-border,var(--fw-line));}
+.fw a:focus-visible,.fw button:focus-visible,.fw summary:focus-visible,.fw input:focus-visible{outline:3px solid var(--fw-accent);outline-offset:4px;}
+@media(prefers-reduced-motion:reduce){.fw *, .fw *::before,.fw *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
+
+.fw-ic__intro{max-width:680px;text-align:center;margin:0 auto 32px}.fw-ic__intro .fw__lede{margin-inline:auto}.fw-ic__area{isolation:isolate;position:relative;max-width:1000px;margin-inline:auto;aspect-ratio:1.9;min-height:270px;overflow:hidden;border-radius:var(--theme-image-radius, var(--fw-radius));background:#c8d5cb}.fw-ic__picture{position:absolute;inset:0;overflow:hidden}.fw-ic__picture>img{width:100%;height:100%;object-fit:cover}.fw-ic__picture--before{background:linear-gradient(140deg,#c6c6c0,#9fafa7)}.fw-ic__picture--after{clip-path:inset(0 0 0 var(--split));background:linear-gradient(130deg,#647e70,#e3e6d9)}.fw-ic__empty{display:grid;place-items:center;height:100%;font-size:clamp(30px,4vw,60px);color:#fff9;font-weight:650;letter-spacing:-.05em}.fw-ic__line{position:absolute;left:var(--split);top:0;bottom:0;width:2px;background:white;transform:translateX(-1px);pointer-events:none}.fw-ic__line span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:white;color:#162119;height:50px;width:50px;border-radius:50%;box-shadow:0 4px 30px #0004}.fw-ic__label{position:absolute;z-index:1;top:20px;padding:8px 14px;border-radius:var(--theme-radius,100px);background:var(--scheme-background,var(--fw-bg));color:var(--scheme-heading,var(--fw-title));font-family:var(--sl-caption-font,var(--theme-font-body)),sans-serif;font-size:var(--sl-caption-size,12px);font-weight:var(--sl-caption-weight,700);letter-spacing:var(--sl-caption-tracking,0);text-transform:var(--sl-caption-transform,none);pointer-events:none}.fw-ic__label--left{left:20px}.fw-ic__label--right{right:20px}.fw-ic__area input{position:absolute;inset:0;z-index:4;width:100%;height:100%;opacity:0;cursor:ew-resize}
+@container(max-width:600px){.fw-ic__area{aspect-ratio:1.15;min-height:250px}.fw-ic__label{top:12px}.fw-ic__label--left{left:12px}.fw-ic__label--right{right:12px}}
+</style>
+
+<script>
+// Each section script receives only its own `root` from Storelib's sandbox.
+// Never access the page document or attach global event handlers.
+const area = root.querySelector('.fw-ic__area');
+const slider = root.querySelector('.fw-ic__area input[type="range"]');
+
+if (area && slider) {
+  const updateComparison = () => {
+    const position = Number(slider.value);
+    if (!Number.isFinite(position)) return;
+    const percent = Math.min(100, Math.max(0, position));
+    area.style.setProperty('--split', percent + '%');
+  };
+
+  slider.addEventListener('input', updateComparison);
+  slider.addEventListener('change', updateComparison);
+  updateComparison();
+}
+</script>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "foundation_image_compare",
+  "name": "Foundation / Before and after",
+  "category": "images",
+  "description": "Native browser range slider comparing two images; keyboard accessible, reduced-motion friendly.",
+  "version": "1.0.0",
+  "icon": "sliders-horizontal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Overline",
+      "default": "THE TRANSFORMATION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See the difference."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Description",
+      "default": "Drag the handle to explore the details."
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before image",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "before_alt",
+      "label": "Before image description",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "Before"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After image",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "after_alt",
+      "label": "After image description",
+      "default": "After"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "After"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "white"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "default": 80,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "default": 80,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Foundation / Before and after"
+    }
+  ]
+}
+</schema>

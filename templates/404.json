@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "404": {
+      "name": "Not Found",
+      "type": "not_found",
+      "hidden": false,
+      "settings": {
+        "padding_top": 112,
+        "color_scheme": "white",
+        "padding_bottom": 112
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "404"
+  ]
+}

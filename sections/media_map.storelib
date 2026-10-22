@@ -1,0 +1,110 @@
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --map-h: {{ settings.map_height }}px;">
+  <div class="s__in s__in--{{ settings.max_width }}">
+    {% if settings.eyebrow or settings.heading or settings.subheading %}
+      <div class="s__head {% if settings.align == 'center' %}s__head--center{% endif %} s__headblock">
+        {% if settings.eyebrow %}<p class="s__eyebrow">{{ settings.eyebrow }}</p>{% endif %}
+        {% if settings.heading %}<h2 class="s__h">{{ settings.heading }}</h2>{% endif %}
+        {% if settings.subheading %}<p class="s__sub">{{ settings.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    {# The address is the map: no key, no embed code, no link to find. A
+       pasted Google Maps link works too. The `map` filter turns either into
+       Google's own embed, and `embed` is what keeps the frame on Google. #}
+    <div class="map">
+      {% if settings.address %}
+        <iframe src="{{ settings.address | map | embed }}" title="{{ settings.heading | default: settings.address }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      {% elsif page.in_editor %}<div class="map__empty">Type an address in the sidebar</div>{% endif %}
+    </div>
+    {% if settings.show_address and settings.address %}<p class="map__cap">{{ settings.address }}</p>{% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.s__eyebrow { margin: 0 0 12px; font-family: var(--sl-caption-font); font-size: var(--sl-caption-size, 12px); font-weight: var(--sl-caption-weight, 600); letter-spacing: var(--sl-caption-tracking, 0.14em); text-transform: var(--sl-caption-transform, uppercase); color: var(--s-accent); }
+.s__h {
+  margin: 0;
+  /* The section's heading style: Heading 2 unless the section picked
+     another, set by the theme stylesheet on the section root. */
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  /* The theme's font when the page sets one, the token otherwise, and a real
+     stack either way: a bare family name falls back to the browser's serif. */
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 14px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.s__head { max-width: 44rem; }
+.s__head--center { margin-inline: auto; text-align: center; }
+
+.s__headblock { margin-bottom: 40px; }
+
+.map { position: relative; height: var(--map-h, 420px); overflow: hidden; border-radius: var(--s-radius); background: var(--s-border); }
+.map iframe { display: block; width: 100%; height: 100%; border: 0; }
+.map__empty { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 14px; color: var(--s-para); opacity: 0.55; }
+.map__cap { margin: 14px 0 0; text-align: center; font-size: 14px; color: var(--s-para); }
+@container (max-width: 640px) { .map { height: min(var(--map-h, 420px), 360px); } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "media_map",
+  "name": "Map",
+  "category": "media",
+  "description": "A Google map of an address.",
+  "version": "1.0.0",
+  "icon": "map-pin",
+  "capabilities": [
+    "embed"
+  ],
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find us" },
+    { "type": "textarea", "id": "subheading", "label": "Supporting line", "default": "" },
+    {
+      "type": "radio", "id": "align", "label": "Heading sits", "default": "center",
+      "options": [ { "label": "Left", "value": "left" }, { "label": "Centre", "value": "center" } ]
+    },
+    { "type": "header", "id": "hdr_map", "label": "Map" },
+    { "type": "text", "id": "address", "label": "Address", "default": "", "placeholder": "12 Rue Oberkampf, Paris", "info": "A street address or a place name. A Google Maps link works too." },
+    { "type": "toggle", "id": "show_address", "label": "Show the address under the map", "default": true },
+    { "type": "range", "id": "map_height", "label": "Map height", "default": 420, "min": 240, "max": 720, "step": 20, "unit": "px" },
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    {
+      "type": "select", "id": "max_width", "label": "Content width", "default": "wide",
+      "options": [ { "label": "Narrow", "value": "narrow" }, { "label": "Medium", "value": "medium" }, { "label": "Wide", "value": "wide" }, { "label": "Full", "value": "full" } ]
+    },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 64, "min": 0, "max": 160, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 64, "min": 0, "max": 160, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Map" }
+  ]
+}
+</schema>

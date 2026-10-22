@@ -1,0 +1,717 @@
+{
+  "type": "header",
+  "name": "Header",
+  "description": "Site-wide navigation bar with logo, links, and CTA",
+  "icon": "layout-template",
+  "category": "structure",
+  "supports_typography_overrides": false,
+  "fields": [
+    {
+      "id": "hdr_logo",
+      "label": "Logo",
+      "type": "header"
+    },
+    {
+      "id": "logo_text",
+      "label": "Store title",
+      "type": "text",
+      "placeholder": "My Store"
+    },
+    {
+      "id": "logo_url",
+      "label": "Logo image",
+      "type": "image"
+    },
+    {
+      "id": "logo_mode",
+      "label": "Logo shows",
+      "type": "select",
+      "default": "image",
+      "info": "Without a logo image the header shows the name.",
+      "options": [
+        {
+          "label": "Image",
+          "value": "image"
+        },
+        {
+          "label": "Text",
+          "value": "text"
+        },
+        {
+          "label": "Image and text",
+          "value": "image_text"
+        }
+      ]
+    },
+    {
+      "id": "logo_font",
+      "label": "Logo font",
+      "type": "font",
+      "default": "inherit",
+      "options": [
+        {
+          "label": "Same as headings",
+          "value": "inherit"
+        },
+        {
+          "label": "Inter",
+          "value": "Inter"
+        },
+        {
+          "label": "Plus Jakarta Sans",
+          "value": "Plus Jakarta Sans"
+        },
+        {
+          "label": "Space Grotesk",
+          "value": "Space Grotesk"
+        },
+        {
+          "label": "DM Sans",
+          "value": "DM Sans"
+        },
+        {
+          "label": "Poppins",
+          "value": "Poppins"
+        },
+        {
+          "label": "Montserrat",
+          "value": "Montserrat"
+        },
+        {
+          "label": "Raleway",
+          "value": "Raleway"
+        },
+        {
+          "label": "Oswald",
+          "value": "Oswald"
+        },
+        {
+          "label": "Bebas Neue",
+          "value": "Bebas Neue"
+        },
+        {
+          "label": "Playfair Display",
+          "value": "Playfair Display"
+        },
+        {
+          "label": "Cormorant Garamond",
+          "value": "Cormorant Garamond"
+        },
+        {
+          "label": "Lora",
+          "value": "Lora"
+        },
+        {
+          "label": "Merriweather",
+          "value": "Merriweather"
+        },
+        {
+          "label": "Libre Baskerville",
+          "value": "Libre Baskerville"
+        },
+        {
+          "label": "EB Garamond",
+          "value": "EB Garamond"
+        }
+      ]
+    },
+    {
+      "id": "logo_height",
+      "label": "Logo height",
+      "type": "range",
+      "min": 20,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "id": "logo_horizontal_offset_enabled",
+      "label": "Custom logo horizontal position",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "logo_horizontal_offset_px",
+      "label": "Logo horizontal offset",
+      "type": "range",
+      "min": -120,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "id": "use_mobile_logo",
+      "label": "Use different logo for mobile devices",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "mobile_logo_url",
+      "label": "Mobile logo image",
+      "type": "image"
+    },
+    {
+      "id": "mobile_logo_height",
+      "label": "Logo height on phones",
+      "type": "range",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 32,
+      "info": "The logo's height on a phone, whichever logo it is. Empty uses the desktop height."
+    },
+    {
+      "id": "mobile_logo_horizontal_offset_enabled",
+      "label": "Custom mobile logo horizontal position",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "mobile_logo_horizontal_offset_px",
+      "label": "Mobile logo horizontal offset",
+      "type": "range",
+      "min": -80,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "id": "hdr_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "header_layout",
+      "label": "Header layout",
+      "type": "select",
+      "default": "logo_left_nav_right",
+      "options": [
+        {
+          "label": "Logo left, nav right",
+          "value": "logo_left_nav_right"
+        },
+        {
+          "label": "Logo left, nav inline",
+          "value": "logo_left_nav_inline"
+        },
+        {
+          "label": "Logo left, nav centered",
+          "value": "logo_left_nav_center"
+        },
+        {
+          "label": "Nav left, logo centered",
+          "value": "nav_left_logo_center"
+        },
+        {
+          "label": "Logo centered, nav below",
+          "value": "logo_center_nav_below"
+        }
+      ]
+    },
+    {
+      "id": "nav_alignment",
+      "label": "Navigation alignment",
+      "type": "select",
+      "default": "right",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "info": "Used by the default “Logo left, nav right” layout."
+    },
+    {
+      "id": "menu",
+      "label": "Menu",
+      "type": "link_list",
+      "default": "",
+      "info": "One of the site's menus in place of the header's own links. Empty shows the header's own links."
+    },
+    {
+      "id": "mobile_header_layout",
+      "label": "Mobile header layout",
+      "type": "select",
+      "default": "logo_center_hamburger_left",
+      "options": [
+        {
+          "label": "Logo centered · Hamburger left",
+          "value": "logo_center_hamburger_left"
+        },
+        {
+          "label": "Hamburger left · Logo left",
+          "value": "hamburger_left_logo_left"
+        }
+      ]
+    },
+    {
+      "id": "mobile_menu_style",
+      "label": "Menu on phones",
+      "type": "select",
+      "default": "left",
+      "options": [
+        {
+          "label": "Slides in from the left",
+          "value": "left"
+        },
+        {
+          "label": "Slides in from the right",
+          "value": "right"
+        },
+        {
+          "label": "Drops down from the top",
+          "value": "top"
+        },
+        {
+          "label": "Covers the screen",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "desktop_menu",
+      "label": "Menu on larger screens",
+      "type": "select",
+      "default": "inline",
+      "info": "Links in the header row, or a menu button that opens them in a drawer.",
+      "options": [
+        {
+          "label": "Links in the header",
+          "value": "inline"
+        },
+        {
+          "label": "Menu button, drawer from the left",
+          "value": "drawer_left"
+        },
+        {
+          "label": "Menu button, drawer from the right",
+          "value": "drawer_right"
+        },
+        {
+          "label": "Menu button, drops down from the top",
+          "value": "drawer_top"
+        }
+      ]
+    },
+    {
+      "id": "header_width",
+      "label": "Header width",
+      "type": "select",
+      "default": "wide",
+      "info": "Controls the maximum width of the header content on large (desktop) screens.",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full width",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "id": "vertical_padding",
+      "label": "Vertical padding",
+      "type": "range",
+      "min": 0,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "responsive": true,
+      "default": {
+        "desktop": 16,
+        "tablet": 14,
+        "mobile": 12
+      }
+    },
+    {
+      "id": "link_spacing",
+      "label": "Space between menu links",
+      "type": "range",
+      "min": 4,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "id": "hdr_sticky",
+      "label": "Sticky behaviour",
+      "type": "header"
+    },
+    {
+      "id": "header_sticky_enabled",
+      "label": "Enable sticky header",
+      "type": "toggle",
+      "default": true,
+      "info": "Header stays pinned to the top as the visitor scrolls."
+    },
+    {
+      "id": "header_sticky_on_scroll_up",
+      "label": "Sticky on scroll up",
+      "type": "toggle",
+      "default": false,
+      "info": "Only reveal the sticky header when scrolling up. It hides on the way down."
+    },
+    {
+      "id": "header_transparent",
+      "label": "Make header transparent",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "header_transparent_scope",
+      "label": "Transparent on",
+      "type": "select",
+      "default": "all",
+      "options": [
+        {
+          "label": "Every page",
+          "value": "all"
+        },
+        {
+          "label": "The home page only",
+          "value": "home"
+        }
+      ],
+      "info": "Used when the header is transparent. An inner page often has no picture at the top to sit over."
+    },
+    {
+      "id": "hdr_border",
+      "label": "Border & shadow",
+      "type": "header"
+    },
+    {
+      "id": "show_bottom_border",
+      "label": "Show bottom border",
+      "type": "toggle",
+      "default": true,
+      "info": "Shows a 1px line at the bottom of the header to visually separate it from the page content."
+    },
+    {
+      "id": "border_style",
+      "label": "Border style",
+      "type": "radio",
+      "default": "solid",
+      "options": [
+        {
+          "label": "Solid",
+          "value": "solid"
+        },
+        {
+          "label": "Subtle",
+          "value": "subtle"
+        }
+      ]
+    },
+    {
+      "id": "border_visibility",
+      "label": "Show border on",
+      "type": "select",
+      "default": "all",
+      "options": [
+        {
+          "label": "All pages",
+          "value": "all"
+        },
+        {
+          "label": "Homepage only",
+          "value": "home_only"
+        },
+        {
+          "label": "Inner pages only",
+          "value": "inner_only"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": "header_depth_shadow",
+      "label": "Subtle depth shadow",
+      "type": "toggle",
+      "default": true,
+      "info": "Adds a soft shadow underneath the header so it feels gently lifted off the page."
+    },
+    {
+      "id": "hdr_colors",
+      "label": "Colors",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "menu_link_hover_style",
+      "label": "Menu link hover style",
+      "type": "select",
+      "default": "inherit",
+      "options": [
+        {
+          "label": "Inherit (theme default)",
+          "value": "inherit"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Underline",
+          "value": "underline"
+        },
+        {
+          "label": "Underline (reverse)",
+          "value": "underline_reverse"
+        },
+        {
+          "label": "Fade siblings",
+          "value": "fade_siblings"
+        }
+      ]
+    },
+    {
+      "id": "hdr_elements",
+      "label": "Header elements",
+      "type": "header"
+    },
+    {
+      "id": "show_search_icon",
+      "label": "Show search icon",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "search_behaviour",
+      "label": "When search is clicked",
+      "type": "select",
+      "default": "header",
+      "options": [
+        {
+          "label": "Open it in the header",
+          "value": "header"
+        },
+        {
+          "label": "Open a search window",
+          "value": "modal"
+        },
+        {
+          "label": "Go to the search page",
+          "value": "page"
+        }
+      ]
+    },
+    {
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "type": "text",
+      "default": "Search"
+    },
+    {
+      "id": "show_account_icon",
+      "label": "Show account icon",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_wishlist_icon",
+      "label": "Show wishlist icon",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_cart_icon",
+      "label": "Show cart",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_button",
+      "label": "Call to action button",
+      "type": "header"
+    },
+    {
+      "id": "show_cta_button",
+      "label": "Show call to action button",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "cta_text",
+      "label": "Button text",
+      "type": "text",
+      "placeholder": "Shop Now",
+      "default": "Shop Now"
+    },
+    {
+      "id": "cta_url",
+      "label": "Button URL",
+      "type": "link"
+    },
+    {
+      "id": "cta_color",
+      "label": "Button color",
+      "type": "color",
+      "default": ""
+    },
+    {
+      "id": "cta_text_color",
+      "label": "Button text color",
+      "type": "color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "placeholder": "Home"
+        },
+        {
+          "id": "url",
+          "label": "URL",
+          "type": "link"
+        },
+        {
+          "id": "link_type",
+          "label": "Links to",
+          "type": "select",
+          "default": "custom",
+          "options": [
+            {
+              "label": "A URL",
+              "value": "custom"
+            },
+            {
+              "label": "A page",
+              "value": "page"
+            },
+            {
+              "label": "A product",
+              "value": "product"
+            },
+            {
+              "label": "The blog",
+              "value": "blog"
+            },
+            {
+              "label": "A blog post",
+              "value": "blog_post"
+            }
+          ]
+        },
+        {
+          "id": "target_id",
+          "label": "Handle",
+          "type": "text",
+          "default": "",
+          "placeholder": "my-product",
+          "info": "The slug of the page, product, collection or post. Ignored when this links to a URL."
+        },
+        {
+          "id": "open_in_new_tab",
+          "label": "Open in new tab",
+          "type": "toggle",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Default",
+      "settings": {},
+      "blocks": [
+        {
+          "id": "nav-home",
+          "type": "nav_link",
+          "settings": {
+            "label": "Home",
+            "url": "/",
+            "link_type": "custom"
+          }
+        },
+        {
+          "id": "nav-shop",
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products",
+            "link_type": "custom"
+          }
+        },
+        {
+          "id": "nav-about",
+          "type": "nav_link",
+          "settings": {
+            "label": "About",
+            "url": "/about",
+            "link_type": "custom"
+          }
+        },
+        {
+          "id": "nav-contact",
+          "type": "nav_link",
+          "settings": {
+            "label": "Contact",
+            "url": "/contact",
+            "link_type": "custom"
+          }
+        }
+      ]
+    }
+  ]
+}

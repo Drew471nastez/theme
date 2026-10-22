@@ -1,0 +1,220 @@
+{# ===========================================================================
+   All reviews (Storelib Reviews)
+
+   Every published review of the shop, newest and featured first, each with
+   the product it is about: the section of the website's /reviews page, and
+   one a creator can put on any page. From `reviews.all`
+   (lib/reviews/storefront.ts). With Storelib Reviews off it draws nothing
+   on a live page.
+   =========================================================================== #}
+<template>
+{% if reviews.enabled %}
+{% if reviews.all.summary.count > 0 or page.in_editor %}
+<section class="s rv" id="reviews" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px; --cols-d: {{ settings.columns.desktop }}; --cols-t: {{ settings.columns.tablet }}; --cols-m: {{ settings.columns.mobile }}; --rv-star: {{ settings.star_color | default: reviews.star_color }};">
+  <div class="s__in s__in--{{ settings.max_width }}">
+    {% if settings.heading %}<h2 class="s__h rv__h">{{ settings.heading }}</h2>{% endif %}
+    {% if settings.subheading %}<p class="rv__sub">{{ settings.subheading }}</p>{% endif %}
+    {% if page.in_editor and reviews.sample %}<p class="rv__sample">Sample reviews. Your real reviews show here once you have some.</p>{% endif %}
+    {% if settings.show_summary and reviews.all.summary.count > 0 %}
+      <div class="rv__top">
+        <div class="rv__sum">
+          <p class="rv__avg">{{ reviews.all.summary.average_label }}</p>
+          <div>
+            <span class="rv-stars rv-stars--lg" style="--rv: {{ reviews.all.summary.percent }}%;" role="img" aria-label="{{ reviews.all.summary.average_label }} {{ words.out_of_five_stars }}"></span>
+            <p class="rv__count">{{ words.based_on }} {{ reviews.all.summary.count }} {% if reviews.all.summary.count == 1 %}{{ words.review }}{% else %}{{ words.reviews }}{% endif %}</p>
+          </div>
+        </div>
+        {% if settings.show_bars %}
+          <ul class="rv__bars" aria-label="{{ words.reviews_by_rating }}">
+            {% for b in reviews.all.summary.bars %}<li><span class="rv__bar-n">{{ b.stars }}<span aria-hidden="true"> &#9733;</span></span><span class="rv__bar"><span style="width: {{ b.percent }}%;"></span></span><span class="rv__bar-c">{{ b.count }}</span></li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if reviews.all.items.size > 0 %}
+      <div class="rv__list rv__list--{{ settings.layout }}">
+        {% for r in reviews.all.items limit: settings.per_page %}
+          <article class="rv-card" data-review-id="{{ r.id }}">
+            {% if settings.show_product and r.product_title %}<a class="rv-card__prod" href="{{ r.product_url | url }}">{% if r.product_image %}<img src="{{ r.product_image }}" alt="" loading="lazy" decoding="async">{% endif %}<span>{{ r.product_title }}</span></a>{% endif %}
+            <div class="rv-card__top">
+              <span class="rv-stars" style="--rv: {{ r.rating | times: 20 }}%;" role="img" aria-label="{{ r.rating }} {{ words.out_of_five_stars }}"></span>
+              {% if reviews.show_date %}<span class="rv-card__date">{{ r.date }}</span>{% endif %}
+            </div>
+            {% if r.title %}<h3 class="rv-card__title">{{ r.title }}</h3>{% endif %}
+            <p class="rv-card__body">{{ r.body }}</p>
+            {% if reviews.show_photos and r.has_photos %}<div class="rv-card__photos">{% for ph in r.photos %}<a href="{{ ph | url }}" target="_blank" rel="noopener"><img src="{{ ph }}" alt="{{ words.photo_from }} {{ r.author }}" loading="lazy" decoding="async"></a>{% endfor %}</div>{% endif %}
+            <p class="rv-card__by"><span class="rv-card__av" aria-hidden="true">{{ r.initial }}</span><span class="rv-card__name">{{ r.author }}</span>{% if reviews.show_verified and r.verified %}<span class="rv-card__ver">{{ words.verified_buyer }}</span>{% endif %}</p>
+            {% if r.reply %}<div class="rv-card__reply"><p class="rv-card__reply-by">{{ words.reply_from }} {{ shop.name }}</p><p class="rv-card__body">{{ r.reply }}</p></div>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+      {% if reviews.all.items.size > settings.per_page %}
+        <details class="rv-more">
+          <summary class="rv-btn rv-btn--quiet">{{ words.show_more_reviews }}</summary>
+          <div class="rv__list rv__list--{{ settings.layout }}">
+            {% for r in reviews.all.items offset: settings.per_page %}
+          <article class="rv-card" data-review-id="{{ r.id }}">
+            {% if settings.show_product and r.product_title %}<a class="rv-card__prod" href="{{ r.product_url | url }}">{% if r.product_image %}<img src="{{ r.product_image }}" alt="" loading="lazy" decoding="async">{% endif %}<span>{{ r.product_title }}</span></a>{% endif %}
+            <div class="rv-card__top">
+              <span class="rv-stars" style="--rv: {{ r.rating | times: 20 }}%;" role="img" aria-label="{{ r.rating }} {{ words.out_of_five_stars }}"></span>
+              {% if reviews.show_date %}<span class="rv-card__date">{{ r.date }}</span>{% endif %}
+            </div>
+            {% if r.title %}<h3 class="rv-card__title">{{ r.title }}</h3>{% endif %}
+            <p class="rv-card__body">{{ r.body }}</p>
+            {% if reviews.show_photos and r.has_photos %}<div class="rv-card__photos">{% for ph in r.photos %}<a href="{{ ph | url }}" target="_blank" rel="noopener"><img src="{{ ph }}" alt="{{ words.photo_from }} {{ r.author }}" loading="lazy" decoding="async"></a>{% endfor %}</div>{% endif %}
+            <p class="rv-card__by"><span class="rv-card__av" aria-hidden="true">{{ r.initial }}</span><span class="rv-card__name">{{ r.author }}</span>{% if reviews.show_verified and r.verified %}<span class="rv-card__ver">{{ words.verified_buyer }}</span>{% endif %}</p>
+            {% if r.reply %}<div class="rv-card__reply"><p class="rv-card__reply-by">{{ words.reply_from }} {{ shop.name }}</p><p class="rv-card__body">{{ r.reply }}</p></div>{% endif %}
+          </article>
+            {% endfor %}
+          </div>
+        </details>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+{% endif %}
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in { margin: 0 auto; padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1)); }
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rv__h { margin-bottom: 24px; }
+.rv__sample { margin: -12px 0 20px; font-size: 13px; color: var(--s-para); opacity: 0.7; }
+
+.rv-stars { position: relative; display: inline-block; font-size: 16px; line-height: 1; letter-spacing: 2px; color: color-mix(in srgb, var(--s-para) 22%, transparent); }
+.rv-stars::before { content: "\2605\2605\2605\2605\2605"; }
+.rv-stars::after { content: "\2605\2605\2605\2605\2605"; position: absolute; inset: 0 auto 0 0; width: var(--rv, 0%); overflow: hidden; white-space: nowrap; color: var(--rv-star, var(--s-accent)); }
+.rv-stars--lg { font-size: 20px; }
+
+.rv__top { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 48px; padding-bottom: 24px; border-bottom: 1px solid var(--s-border); }
+.rv__sum { display: flex; align-items: center; gap: 14px; }
+.rv__avg { margin: 0; font-size: 44px; font-weight: 700; line-height: 1; color: var(--s-heading); font-variant-numeric: tabular-nums; }
+.rv__count { margin: 6px 0 0; font-size: 14px; color: var(--s-para); }
+.rv__none { margin: 0; font-size: 15px; color: var(--s-para); }
+.rv__bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; min-width: 220px; flex: 0 1 320px; }
+.rv__bars li { display: grid; grid-template-columns: 34px 1fr 28px; align-items: center; gap: 10px; font-size: 13px; color: var(--s-para); font-variant-numeric: tabular-nums; }
+.rv__bar { height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--s-para) 14%, transparent); overflow: hidden; }
+.rv__bar span { display: block; height: 100%; border-radius: inherit; background: var(--rv-star, var(--s-accent)); }
+.rv__bar-c { text-align: right; }
+
+.rv-btn { display: inline-flex; align-items: center; justify-content: center; padding: var(--sl-button-padding, 12px 22px); font-size: var(--sl-button-size, 15px); font-weight: var(--theme-button-weight, 600); border-radius: var(--s-radius); border: 1px solid var(--s-btn); background: var(--s-btn); color: var(--s-btn-text); cursor: pointer; list-style: none; transition: background-color 150ms ease, color 150ms ease; }
+.rv-btn::-webkit-details-marker { display: none; }
+.rv-btn:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.rv-btn--quiet { background: transparent; color: var(--s-heading); border-color: var(--s-border); }
+.rv-btn--quiet:hover { background: color-mix(in srgb, var(--s-para) 8%, transparent); color: var(--s-heading); border-color: var(--s-border); }
+
+.rv-note { display: none; margin: 20px 0 0; padding: 12px 16px; border-radius: var(--s-radius); background: color-mix(in srgb, var(--s-para) 8%, transparent); font-size: 14px; color: var(--s-heading); scroll-margin-top: 120px; }
+.rv-note:target { display: block; }
+.rv-note--error { border-left: 3px solid var(--s-heading); }
+
+.rv-write { margin-top: 24px; }
+.rv-write[open] > summary { margin-bottom: 20px; }
+.rv-form { display: grid; gap: 14px; max-width: 640px; padding: 20px; border: 1px solid var(--s-border); border-radius: var(--s-radius); }
+.rv-form__rate { border: 0; margin: 0; padding: 0; }
+.rv-form__rate legend { font-size: 14px; font-weight: 600; color: var(--s-heading); margin-bottom: 6px; }
+.rv-rate { display: inline-flex; flex-direction: row-reverse; justify-content: flex-end; }
+.rv-rate input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.rv-rate label { position: relative; width: 36px; height: 36px; cursor: pointer; font-size: 30px; line-height: 36px; text-align: center; color: color-mix(in srgb, var(--s-para) 25%, transparent); }
+.rv-rate label::before { content: "\2605"; }
+.rv-rate input:checked ~ label, .rv-rate label:hover, .rv-rate label:hover ~ label { color: var(--rv-star, var(--s-accent)); }
+.rv-rate input:focus-visible + label { outline: 2px solid var(--s-heading); outline-offset: 2px; border-radius: 6px; }
+.rv-form__f { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--s-heading); }
+.rv-form__opt { font-weight: 400; color: var(--s-para); }
+.rv-form input:not([type="radio"]):not([type="file"]), .rv-form textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; font: inherit; font-size: 16px; font-weight: 400; color: var(--s-text); background: var(--s-bg); border: 1px solid var(--s-border); border-radius: calc(var(--s-radius) * 0.6); }
+.rv-form textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+.rv-form input[type="file"] { font-size: 14px; font-weight: 400; color: var(--s-para); }
+.rv-form__two { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@container (min-width: 560px) { .rv-form__two { grid-template-columns: 1fr 1fr; } }
+.rv-form__note { margin: 0; font-size: 13px; color: var(--s-para); }
+.rv-form .rv-btn { justify-self: start; }
+.rv-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.rv__list { display: grid; gap: 0; margin-top: 8px; }
+.rv__list--list .rv-card { padding: 24px 0; border-bottom: 1px solid var(--s-border); }
+.rv__list--grid { gap: 20px; margin-top: 28px; grid-template-columns: repeat(var(--cols-m), minmax(0, 1fr)); }
+@container (min-width: 640px) { .rv__list--grid { grid-template-columns: repeat(var(--cols-t), minmax(0, 1fr)); } }
+@container (min-width: 900px) { .rv__list--grid { grid-template-columns: repeat(var(--cols-d), minmax(0, 1fr)); } }
+.rv__list--grid .rv-card { padding: 20px; border: 1px solid var(--s-border); border-radius: var(--s-radius); }
+.rv-card { min-width: 0; }
+.rv-card__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rv-card__date { font-size: 13px; color: var(--s-para); }
+.rv-card__title { margin: 12px 0 0; font-size: 16px; font-weight: 600; color: var(--s-heading); overflow-wrap: anywhere; }
+.rv-card__body { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--s-para); white-space: pre-line; overflow-wrap: anywhere; }
+.rv-card__photos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.rv-card__photos img { width: 72px; height: 72px; object-fit: cover; border-radius: calc(var(--s-radius) * 0.6); display: block; }
+.rv-card__by { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 0; font-size: 13px; color: var(--s-para); }
+.rv-card__av { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: color-mix(in srgb, var(--s-para) 12%, transparent); color: var(--s-heading); }
+.rv-card__name { font-weight: 600; color: var(--s-heading); }
+.rv-card__ver { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--s-para); }
+.rv-card__ver::before { content: "\2713"; font-weight: 700; color: var(--s-heading); }
+.rv-card__product { margin: 8px 0 0; font-size: 13px; color: var(--s-para); }
+.rv-card__product a { color: var(--s-heading); text-decoration: underline; text-underline-offset: 3px; }
+.rv-card__reply { margin-top: 14px; padding: 12px 14px; border-left: 2px solid var(--s-border); background: color-mix(in srgb, var(--s-para) 5%, transparent); border-radius: 0 calc(var(--s-radius) * 0.6) calc(var(--s-radius) * 0.6) 0; }
+.rv-card__reply-by { margin: 0; font-size: 13px; font-weight: 600; color: var(--s-heading); }
+.rv-card__reply .rv-card__body { margin-top: 4px; font-size: 14px; }
+
+.rv-more { margin-top: 20px; }
+.rv-more > summary { margin: 0 auto; }
+.rv-more[open] > summary { display: none; }
+
+.rv__sub { margin: -12px 0 24px; font-size: var(--section-text-size, 17px); line-height: 1.6; color: var(--s-para); max-width: 44rem; }
+.rv-card__prod { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: 13px; font-weight: 600; color: var(--s-heading); text-decoration: none; }
+.rv-card__prod img { width: 36px; height: 36px; border-radius: calc(var(--s-radius) * 0.5); object-fit: cover; flex: none; }
+.rv-card__prod:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "reviews_all",
+  "name": "All reviews",
+  "category": "reviews",
+  "description": "Storelib Reviews: every review of the shop, with the product each is about.",
+  "version": "1.0.0",
+  "icon": "star",
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Reviews" },
+    { "type": "textarea", "id": "subheading", "label": "Supporting line", "default": "" },
+    { "type": "toggle", "id": "show_summary", "label": "Show the rating", "default": true },
+    { "type": "toggle", "id": "show_bars", "label": "Show reviews by stars", "default": true },
+    { "type": "toggle", "id": "show_product", "label": "Show the product", "default": true },
+    { "type": "range", "id": "per_page", "label": "Reviews before Show more", "default": 12, "min": 3, "max": 48, "step": 1 },
+    { "type": "header", "id": "hdr_layout", "label": "Layout" },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "grid", "options": [{ "label": "List", "value": "list" }, { "label": "Cards", "value": "grid" }] },
+    { "type": "range", "id": "columns", "label": "Columns (cards)", "default": { "desktop": 3, "tablet": 2, "mobile": 1 }, "min": 1, "max": 4, "step": 1, "responsive": true },
+    { "type": "select", "id": "max_width", "label": "Content width", "default": "wide", "options": [{ "label": "Narrow", "value": "narrow" }, { "label": "Medium", "value": "medium" }, { "label": "Wide", "value": "wide" }, { "label": "Full", "value": "full" }] },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "color", "id": "star_color", "label": "Star colour", "default": "", "info": "Empty uses the colour set in Storelib Reviews." },
+    { "type": "header", "id": "hdr_spacing", "label": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 64, "min": 0, "max": 160, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 64, "min": 0, "max": 160, "step": 4, "unit": "px" }
+  ],
+  "presets": [{ "name": "All reviews", "settings": {} }]
+}
+</schema>

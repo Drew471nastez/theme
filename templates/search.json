@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "search": {
+      "name": "Search",
+      "type": "search",
+      "hidden": false,
+      "settings": {
+        "padding_top": 72,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "search"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "collection-hero": {
+      "name": "Collection Featured",
+      "type": "collection_featured",
+      "hidden": false,
+      "settings": {
+        "padding_top": 64,
+        "color_scheme": "light",
+        "padding_bottom": 36
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "collection-products": {
+      "name": "Product Grid",
+      "type": "product_grid",
+      "hidden": false,
+      "settings": {
+        "source": "shop",
+        "columns": {
+          "mobile": 1,
+          "tablet": 2,
+          "desktop": 3
+        },
+        "show_price": true,
+        "padding_top": 32,
+        "color_scheme": "white",
+        "show_filters": true,
+        "padding_bottom": 80
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "collection-hero",
+    "collection-products"
+  ]
+}

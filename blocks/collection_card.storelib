@@ -1,0 +1,68 @@
+{# ===========================================================================
+   Collection card: a theme block
+
+   One of the creator's collections as a card: its picture, its name and how
+   many products are in it, linking to it. Pick the collection and the card
+   is its own: the picture (or the first product's, when the collection has
+   none), the title and the count are read from the collection whenever the
+   page is drawn. A picture or a title set here is drawn instead, until
+   Reset to collection empties it (lib/storelib-theme/collection-binding.ts).
+   =========================================================================== #}
+<template>
+{% if block.settings.collection.title %}
+<a class="sl-ccard" href="{{ block.settings.collection | url }}" data-card="collection">
+  <div class="sl-ccard__media sl-ccard__media--{{ block.settings.ratio }}" data-card-media>
+    {% if block.settings.image %}<img src="{{ block.settings.image | asset }}" alt="{{ block.settings.title }}" loading="lazy" decoding="async" sizes="(min-width: 900px) 33vw, 100vw">{% endif %}
+  </div>
+  <span class="sl-ccard__title">{{ block.settings.title }}</span>
+  {% if block.settings.show_count %}<span class="sl-ccard__count">{{ block.settings.collection.products_count }} {% if block.settings.collection.products_count == 1 %}{{ block.settings.count_one }}{% else %}{{ block.settings.count_many }}{% endif %}</span>{% endif %}
+  {% if block.settings.show_description and block.settings.description %}<span class="sl-ccard__text">{{ block.settings.description | truncate: 160 }}</span>{% endif %}
+</a>
+{% elsif page.in_editor %}
+<div class="sl-ccard sl-ccard--empty"><span>Choose a collection</span></div>
+{% endif %}
+</template>
+
+<style>
+.sl-ccard { position: relative; display: flex; flex-direction: column; gap: 6px; color: inherit; text-decoration: none; width: 100%; }
+.sl-ccard__media { position: relative; overflow: hidden; border-radius: var(--s-radius, 8px); background: var(--s-border, rgba(0, 0, 0, 0.06)); }
+.sl-ccard__media--square { aspect-ratio: 1 / 1; }
+.sl-ccard__media--portrait { aspect-ratio: 4 / 5; }
+.sl-ccard__media--landscape { aspect-ratio: 4 / 3; }
+.sl-ccard__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sl-ccard__title { margin-top: 8px; font-size: 16px; font-weight: 600; color: var(--s-heading, inherit); }
+.sl-ccard__count { font-size: 13px; color: var(--s-para, inherit); }
+.sl-ccard__text { font-size: 14px; line-height: 1.5; color: var(--s-para, inherit); }
+.sl-ccard--empty {
+  align-items: center; justify-content: center; aspect-ratio: 4 / 3;
+  border: 1px dashed var(--s-border, currentColor); border-radius: var(--s-radius, 8px);
+  color: var(--s-para, inherit); font-size: 13px; opacity: 0.7;
+}
+</style>
+
+<schema>
+{
+  "name": "Collection card",
+  "settings": [
+    { "type": "collection_picker", "id": "collection", "label": "Collection" },
+    { "type": "image_picker", "id": "image", "label": "Picture", "default": "", "from": "collection.image" },
+    { "type": "text", "id": "title", "label": "Title", "default": "", "from": "collection.title" },
+    { "type": "text", "id": "description", "label": "Description", "default": "", "from": "collection.description", "visible_if": "{{ block.settings.show_description }}" },
+    {
+      "type": "select", "id": "ratio", "label": "Picture shape", "default": "portrait",
+      "options": [
+        { "label": "Square", "value": "square" },
+        { "label": "Portrait", "value": "portrait" },
+        { "label": "Landscape", "value": "landscape" }
+      ]
+    },
+    { "type": "toggle", "id": "show_count", "label": "Show how many products", "default": true },
+    { "type": "text", "id": "count_one", "label": "Word after 1", "default": "product", "visible_if": "{{ block.settings.show_count }}" },
+    { "type": "text", "id": "count_many", "label": "Word after 2 or more", "default": "products", "visible_if": "{{ block.settings.show_count }}" },
+    { "type": "toggle", "id": "show_description", "label": "Show the description", "default": false }
+  ],
+  "presets": [
+    { "name": "Collection card" }
+  ]
+}
+</schema>

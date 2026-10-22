@@ -1,0 +1,177 @@
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in s__in--{{ settings.max_width }} cf cf--{{ settings.layout }}">
+    <div class="cf__intro">
+      {# The store's own name when the heading is left empty, so a new
+         contact page says who it is for without anybody typing it. The same
+         for the box's label below: the words in quotes are only the fallback
+         for a setting the creator can change. #}
+      <h2 class="s__h">{% if settings.heading %}{{ settings.heading }}{% elsif shop.name %}{{ words.contact }} {{ shop.name }}{% else %}{{ words.contact }}{% endif %}</h2>
+      {% if settings.text %}<p class="s__sub">{{ settings.text }}</p>{% endif %}
+
+      {% if settings.show_email %}
+        {% if shop.email %}
+          <p class="cf__detail"><span class="cf__dlabel">{{ settings.email_heading }}</span><a class="cf__dlink" href="{{ shop.email | prepend: 'mailto:' | url }}">{{ shop.email }}</a></p>
+        {% elsif page.in_editor %}
+          <p class="cf__detail cf__detail--hint">Your support email from Settings shows here on your live site.</p>
+        {% endif %}
+      {% endif %}
+      {% if settings.show_socials and shop.socials.size > 0 %}
+        <ul class="cf__social">
+          {% for link in shop.socials %}<li><a class="cf__dlink" href="{{ link.url | url }}" target="_blank" rel="noopener">{{ link.label }}</a></li>{% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    {# Sent by the page (StorelibSection) to the creator: kept in Emails,
+       emailed to them with Reply going to the sender. `company` is for
+       scripts: nobody can see it or tab to it, so a value in it is not a
+       person. The box starts unticked, always. #}
+    <form class="cf__form" data-storelib-form="contact">
+      <div class="cf__pair">
+        <label class="cf__field"><span class="cf__label">{{ settings.name_label }}</span><input class="cf__input" name="name" type="text" autocomplete="name" maxlength="120" placeholder="{{ settings.name_placeholder }}" required></label>
+        <label class="cf__field"><span class="cf__label">{{ settings.email_label }}</span><input class="cf__input" name="email" type="email" autocomplete="email" maxlength="254" placeholder="{{ settings.email_placeholder }}" required></label>
+      </div>
+      {% if settings.show_subject %}
+        <label class="cf__field"><span class="cf__label">{{ settings.subject_label }}</span><input class="cf__input" name="subject" type="text" maxlength="150" placeholder="{{ settings.subject_placeholder }}"></label>
+      {% endif %}
+      <label class="cf__field"><span class="cf__label">{{ settings.message_label }}</span><textarea class="cf__input cf__area" name="message" rows="6" maxlength="5000" placeholder="{{ settings.message_placeholder }}" required></textarea></label>
+      <div class="cf__trap" aria-hidden="true"><label>Company <input name="company" type="text" tabindex="-1" autocomplete="off"></label></div>
+      {% if settings.show_consent %}
+        <label class="cf__check"><input class="cf__box" type="checkbox" name="consent" value="yes"><span>{% if settings.consent_label %}{{ settings.consent_label }}{% elsif shop.name %}{{ words.email_me_news_from | append: ' ' | append: shop.name }}{% else %}{{ words.email_me_news }}{% endif %}</span></label>
+      {% endif %}
+      <button class="cf__send" type="submit">{{ settings.button_text }}</button>
+      <p class="cf__done" data-storelib-success hidden>{{ settings.success_message }}</p>
+    </form>
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 12px 0 0; max-width: 40rem; font-size: var(--section-text-size, 16px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+
+.cf { display: grid; gap: 32px; }
+@container (min-width: 860px) {
+  .cf--split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+}
+.cf__detail { margin: 24px 0 0; font-size: 15px; line-height: 1.5; }
+.cf__detail--hint { color: var(--s-para); font-style: italic; }
+.cf__dlabel { display: block; font-size: 13px; color: var(--s-para); }
+.cf__dlink { color: var(--s-heading); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.cf__social { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 20px 0 0; padding: 0; list-style: none; font-size: 15px; }
+
+.cf__form { display: grid; gap: 16px; }
+.cf__pair { display: grid; gap: 16px; }
+@container (min-width: 560px) { .cf__pair { grid-template-columns: 1fr 1fr; } }
+.cf__field { display: grid; gap: 6px; }
+.cf__label { font-size: 14px; font-weight: 500; color: var(--s-heading); }
+.cf__input {
+  width: 100%; box-sizing: border-box; min-height: 48px; padding: 12px 14px;
+  font: inherit; font-size: 16px; /* 16px: iOS zooms a smaller field on focus */
+  color: var(--s-heading); background: var(--s-bg);
+  border: 1px solid var(--s-border); border-radius: var(--s-radius);
+  outline: none; transition: border-color 150ms ease;
+}
+.cf__input::placeholder { color: var(--s-para); opacity: 0.75; }
+.cf__input:focus { border-color: var(--s-heading); }
+.cf__area { min-height: 144px; resize: vertical; line-height: 1.5; }
+.cf__trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
+.cf__check { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.45; color: var(--s-text); cursor: pointer; }
+.cf__box { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--s-btn); }
+.cf__send {
+  justify-self: start; min-height: 48px; padding: 12px 28px;
+  font: inherit; font-size: 15px; font-weight: 600;
+  color: var(--s-btn-text); background: var(--s-btn);
+  border: 1px solid var(--s-btn); border-radius: var(--s-radius);
+  cursor: pointer; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.cf__send:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.cf__send:disabled { opacity: 0.6; cursor: default; }
+.cf__send:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+.cf__done { margin: 0; font-size: 16px; line-height: 1.6; color: var(--s-heading); }
+@container (max-width: 559px) { .cf__send { justify-self: stretch; } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "contact",
+  "name": "Contact form",
+  "category": "about",
+  "description": "A form that sends you a message. Each one is emailed to you and kept in Emails.",
+  "version": "1.0.0",
+  "icon": "mail",
+  "settings": [
+    { "type": "paragraph", "id": "about_messages", "label": "Messages go to your support email in Settings, or your account email when there is none, and are kept in Emails. Senders become contacts; only people who tick the box join your Subscribers." },
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "", "placeholder": "Contact and your store name", "info": "Empty shows Contact and your store name." },
+    { "type": "textarea", "id": "text", "label": "Line under the heading", "default": "Questions about an order, a product or anything else? Send a message and you will get a reply by email." },
+    { "type": "toggle", "id": "show_email", "label": "Show your support email", "default": false, "info": "The support email from Settings. Messages reach you either way." },
+    { "type": "text", "id": "email_heading", "label": "Label above it", "default": "Email" },
+    { "type": "toggle", "id": "show_socials", "label": "Show your social links", "default": true, "info": "The links in Theme settings, Social links." },
+    { "type": "header", "id": "hdr_form", "label": "Form" },
+    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
+    { "type": "text", "id": "name_placeholder", "label": "Name placeholder", "default": "Your name" },
+    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "you@example.com" },
+    { "type": "toggle", "id": "show_subject", "label": "Ask for a subject", "default": true },
+    { "type": "text", "id": "subject_label", "label": "Subject label", "default": "Subject (optional)" },
+    { "type": "text", "id": "subject_placeholder", "label": "Subject placeholder", "default": "What it is about" },
+    { "type": "text", "id": "message_label", "label": "Message label", "default": "Message" },
+    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Write your message" },
+    { "type": "toggle", "id": "show_consent", "label": "Offer to join your list", "default": true, "info": "An unticked box. Only people who tick it join your Subscribers." },
+    { "type": "text", "id": "consent_label", "label": "Box label", "default": "", "placeholder": "Email me news from your store", "info": "Empty names your store." },
+    { "type": "text", "id": "button_text", "label": "Button", "default": "Send message" },
+    { "type": "text", "id": "success_message", "label": "After sending", "default": "Thanks. Your message has been sent, and the reply will come to your email." },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    {
+      "type": "radio", "id": "layout", "label": "Layout", "default": "stacked",
+      "options": [
+        { "label": "Stacked", "value": "stacked" },
+        { "label": "Side by side", "value": "split" }
+      ]
+    },
+    {
+      "type": "select", "id": "max_width", "label": "Width", "default": "medium",
+      "options": [
+        { "label": "Narrow", "value": "narrow" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "Wide", "value": "wide" }
+      ]
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 72, "min": 0, "max": 160, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 88, "min": 0, "max": 160, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Contact form", "settings": {} },
+    { "name": "Contact form, side by side", "settings": { "layout": "split", "max_width": "wide", "show_email": true } }
+  ]
+}
+</schema>

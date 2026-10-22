@@ -1,0 +1,261 @@
+<template>
+<section class="s cd" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-accent: {{ scheme.accent }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in s__in--{{ settings.max_width }} cd__in">
+    <div class="cd__copy">
+      {% if settings.label %}<p class="s__eyebrow">{{ settings.label }}</p>{% endif %}
+      {% if settings.heading %}<h2 class="s__h">{{ settings.heading }}</h2>{% endif %}
+      {% if settings.subheading %}<p class="s__sub">{{ settings.subheading }}</p>{% endif %}
+    </div>
+    <div class="cd__side">
+      {# The words the creator typed, or the date they picked, written out.
+         A picked date is also in the markup as a <time>, so a browser, a
+         search engine and a script can read the moment itself. #}
+      {% if settings.ends_text or settings.ends_at %}
+        <p class="cd__ends"{% if settings.ends_at %} data-ends="{{ settings.ends_at | date: 'iso' }}"{% endif %}>
+          <span class="cd__ends-label">{{ settings.ends_label }}</span>
+          {% if settings.ends_at %}
+            <time class="cd__ends-when" datetime="{{ settings.ends_at | date: 'iso' }}">{% if settings.ends_text %}{{ settings.ends_text }}{% else %}{{ settings.ends_at | date: 'long_time' }}{% endif %}</time>
+          {% else %}
+            <span class="cd__ends-when">{{ settings.ends_text }}</span>
+          {% endif %}
+        </p>
+      {% endif %}
+      {% if settings.code %}<p class="cd__code"><span>{{ settings.code_label }}</span><code>{{ settings.code }}</code></p>{% endif %}
+      {% if settings.button_text %}
+        <div class="s__btns cd__btns"><a class="s__btn s__btn--primary" href="{{ settings.button_url | default: '/products' | url }}">{{ settings.button_text }}</a></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.s__in--narrow { max-width: 720px; }
+.s__in--medium { max-width: 960px; }
+.s__in--wide { max-width: var(--theme-page-width, 1280px); }
+.s__in--full { max-width: none; }
+.s__eyebrow { margin: 0 0 12px; font-family: var(--sl-caption-font); font-size: var(--sl-caption-size, 12px); font-weight: var(--sl-caption-weight, 600); letter-spacing: var(--sl-caption-tracking, 0.14em); text-transform: var(--sl-caption-transform, uppercase); color: var(--s-accent); }
+.s__h {
+  margin: 0;
+  /* The section's heading style: Heading 2 unless the section picked
+     another, set by the theme stylesheet on the section root. */
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  /* The theme's font when the page sets one, the token otherwise, and a real
+     stack either way: a bare family name falls back to the browser's serif. */
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+}
+.s__sub { margin: 14px 0 0; font-size: var(--section-text-size, 17px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.s__head { max-width: 44rem; }
+.s__head--center { margin-inline: auto; text-align: center; }
+.s__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.s__head--center .s__btns { justify-content: center; }
+.s__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--sl-button-padding, 13px 24px); font-size: var(--sl-button-size, 15px); line-height: var(--sl-button-line-height); font-weight: var(--theme-button-weight, 600); text-decoration: none;
+  border-radius: var(--s-radius); border: 1px solid transparent; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+/* Each button's hover colours come from the scheme, after the section's own
+   Advanced colors: automatic until somebody chooses them. */
+.s__btn--primary:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.s__btn--secondary:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+.s__btn--primary { background: var(--s-btn); color: var(--s-btn-text); border-color: var(--s-btn); }
+/* The scheme's OWN secondary-button colours, not a stand-in for them.
+   This said `transparent / var(--s-heading) / var(--s-border)`, so the
+   two Secondary button controls in the section panel changed nothing at
+   all, and on a light scheme the outline was drawn in the faint divider
+   colour instead of the dark one the scheme asks for. */
+.s__btn--secondary { background: var(--s-btn2); color: var(--s-btn2-text); border-color: var(--s-btn2-border); }
+.s__note { margin: 16px 0 0; font-size: 13px; color: var(--s-para); opacity: 0.8; }
+
+.cd__in { display: flex; flex-direction: column; gap: 26px; }
+@container (min-width: 880px) { .cd__in { flex-direction: row; align-items: center; justify-content: space-between; gap: 48px; } }
+.cd__copy { max-width: 34rem; }
+.cd__side { flex: none; }
+.cd__ends { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.cd__ends-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--s-para); opacity: 0.8; }
+.cd__ends-when { font-size: 20px; font-weight: 700; color: var(--s-heading); font-variant-numeric: tabular-nums; }
+.cd__code { margin: 16px 0 0; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--s-para); }
+.cd__code code { padding: 5px 11px; border: 1px dashed var(--s-border); border-radius: 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--s-heading); }
+.cd__btns { margin-top: 18px; }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "promo_countdown",
+  "name": "Countdown Offer",
+  "category": "marketing",
+  "description": "An offer with the date it ends, and a button.",
+  "version": "1.0.0",
+  "icon": "clock",
+  "settings": [
+    {
+      "type": "header",
+      "id": "hdr_content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Eyebrow",
+      "default": "This week only"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "20% off everything"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Supporting line",
+      "default": "Including the things that never go on sale."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button",
+      "default": "Start shopping"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link",
+      "default": "/products"
+    },
+    {
+      "type": "header",
+      "id": "hdr_when",
+      "label": "When it ends"
+    },
+    {
+      "type": "text",
+      "id": "ends_label",
+      "label": "Label",
+      "default": "Ends"
+    },
+    {
+      "type": "text",
+      "id": "ends_text",
+      "label": "Ends",
+      "default": "Sunday, 11pm"
+    },
+    {
+      "type": "datetime",
+      "id": "ends_at",
+      "label": "Exact time",
+      "default": "",
+      "info": "When Ends above is empty, this is written out in its place."
+    },
+    {
+      "type": "header",
+      "id": "hdr_code",
+      "label": "Discount code"
+    },
+    {
+      "type": "text",
+      "id": "code_label",
+      "label": "Label",
+      "default": "Use code"
+    },
+    {
+      "type": "text",
+      "id": "code",
+      "label": "Code",
+      "default": ""
+    },
+    {
+      "type": "header",
+      "id": "hdr_layout",
+      "label": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Content width",
+      "default": "wide",
+      "options": [
+        {
+          "label": "Narrow",
+          "value": "narrow"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        },
+        {
+          "label": "Full",
+          "value": "full"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "id": "hdr_style",
+      "label": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "white"
+    },
+    {
+      "type": "header",
+      "id": "hdr_spacing",
+      "label": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "default": 56,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "default": 56,
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Offer",
+      "settings": {
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}
+</schema>

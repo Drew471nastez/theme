@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "login": {
+      "name": "Main Login",
+      "type": "main_login",
+      "hidden": false,
+      "settings": {
+        "color_scheme": "white"
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "login"
+  ]
+}

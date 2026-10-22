@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "membership-hero": {
+      "name": "Hero Centered",
+      "type": "hero_centered",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "MORE TOGETHER",
+        "heading": "Go a little further.",
+        "subheading": "Discover what membership includes.",
+        "button_text": "",
+        "padding_top": 80,
+        "button2_text": "",
+        "color_scheme": "light",
+        "padding_bottom": 60
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "pricing": {
+      "name": "Pricing Table",
+      "type": "pricing_table",
+      "hidden": false,
+      "settings": {
+        "padding_top": 64,
+        "color_scheme": "white",
+        "padding_bottom": 80
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "membership-faq": {
+      "name": "Faq Accordion",
+      "type": "faq_accordion",
+      "hidden": false,
+      "settings": {
+        "heading": "Membership questions",
+        "padding_top": 72,
+        "color_scheme": "light",
+        "padding_bottom": 80
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "membership-hero",
+    "pricing",
+    "membership-faq"
+  ]
+}

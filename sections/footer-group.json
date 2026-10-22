@@ -1,0 +1,95 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "name": "Footer",
+      "type": "footer",
+      "hidden": false,
+      "settings": {
+        "bg_color": "#151B18",
+        "copyright": "© 2026 Your Studio. All rights reserved.",
+        "logo_text": "YOUR STUDIO",
+        "text_color": "#C7D0C8",
+        "padding_bottom": 32
+      },
+      "blocks": {
+        "foot-col-shop": {
+          "type": "footer_column",
+          "settings": {
+            "heading": "Explore"
+          }
+        },
+        "foot-shop": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/products",
+            "label": "The collection"
+          }
+        },
+        "foot-about": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/about",
+            "label": "Our story"
+          }
+        },
+        "foot-contact": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/contact",
+            "label": "Contact"
+          }
+        },
+        "foot-col-help": {
+          "type": "footer_column",
+          "settings": {
+            "heading": "Information"
+          }
+        },
+        "foot-privacy": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/privacy-policy",
+            "label": "Privacy policy"
+          }
+        },
+        "foot-refund": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/refund-policy",
+            "label": "Refund policy"
+          }
+        },
+        "foot-terms": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/terms-of-service",
+            "label": "Terms of service"
+          }
+        },
+        "foot-shipping": {
+          "type": "footer_link",
+          "settings": {
+            "url": "/shipping-policy",
+            "label": "Shipping policy"
+          }
+        }
+      },
+      "block_order": [
+        "foot-col-shop",
+        "foot-shop",
+        "foot-about",
+        "foot-contact",
+        "foot-col-help",
+        "foot-privacy",
+        "foot-refund",
+        "foot-terms",
+        "foot-shipping"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

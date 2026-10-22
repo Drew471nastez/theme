@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "about-intro": {
+      "name": "Hero Centered",
+      "type": "hero_centered",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "OUR STORY",
+        "heading": "A little about us.",
+        "subheading": "Why we care about the things we create and share.",
+        "button_text": "",
+        "padding_top": 88,
+        "button2_text": "",
+        "color_scheme": "light",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "about-image": {
+      "name": "About Image",
+      "type": "about_image",
+      "hidden": false,
+      "settings": {
+        "padding_top": 72,
+        "color_scheme": "white",
+        "padding_bottom": 72
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "about-values": {
+      "name": "Foundation Image Text Grid",
+      "type": "foundation_image_text_grid",
+      "hidden": false,
+      "settings": {
+        "intro": "The important things are often the simplest.",
+        "eyebrow": "WHAT GUIDES US",
+        "heading": "Care in every detail.",
+        "button_url": "/products",
+        "padding_top": 72,
+        "button_label": "Browse our products",
+        "color_scheme": "white",
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "block-1": {
+          "type": "reason",
+          "settings": {
+            "text": "Thoughtful decisions at every stage.",
+            "title": "Quality matters"
+          }
+        },
+        "block-2": {
+          "type": "reason",
+          "settings": {
+            "text": "A clear focus on what adds value.",
+            "title": "Less, but better"
+          }
+        },
+        "block-3": {
+          "type": "reason",
+          "settings": {
+            "text": "Experiences that feel easy and welcoming.",
+            "title": "Built for people"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ]
+    }
+  },
+  "order": [
+    "about-intro",
+    "about-image",
+    "about-values"
+  ]
+}

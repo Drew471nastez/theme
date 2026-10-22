@@ -1,0 +1,341 @@
+<template>
+<section class="s" data-scheme="{{ settings.color_scheme }}" style="--s-bg: {{ scheme.bg }}; --s-text: {{ scheme.text }}; --s-heading: {{ scheme.heading }}; --s-para: {{ scheme.paragraph }}; --s-border: {{ scheme.border }}; --s-btn: {{ scheme.primary_btn_bg }}; --s-btn-text: {{ scheme.primary_btn_text }}; --s-btn2: {{ scheme.secondary_btn_bg }}; --s-btn2-text: {{ scheme.secondary_btn_text }}; --s-btn2-border: {{ scheme.secondary_btn_border }}; --s-btn-hover: {{ scheme.primary_btn_hover_bg }}; --s-btn-hover-text: {{ scheme.primary_btn_hover_text }}; --s-btn2-hover: {{ scheme.secondary_btn_hover_bg }}; --s-btn2-hover-text: {{ scheme.secondary_btn_hover_text }}; --s-radius: {{ theme.radius.medium }}px; --s-pt: {{ settings.padding_top }}px; --s-pb: {{ settings.padding_bottom }}px;">
+  <div class="s__in acct acct--{{ settings.max_width }}">
+    {% if customer %}
+      {# The page is the customer's, laid out the way a shop's account page
+         is: its title and the way out, then orders, profile and what they
+         saved. In the builder there is no customer, and `customer.sample`
+         says the name and email are placeholders. #}
+      <div class="acct__top">
+        <h1 class="s__h">{{ settings.heading }}</h1>
+        <form class="acct__out" method="post" action="{{ routes.account_logout_url }}" data-storelib-form="native">
+          <button class="acct__link" type="submit">{{ settings.signout_label }}</button>
+        </form>
+      </div>
+
+      <div class="acct__block">
+        <h2 class="acct__h2">{{ settings.orders_heading }}</h2>
+        {% if customer.orders.size == 0 %}
+          <p class="acct__empty">{{ settings.orders_empty }} <a class="acct__inline" href="{{ routes.products_url }}">{{ settings.shop_link }}</a></p>
+        {% else %}
+          <ol class="orders">
+            {% for order in customer.orders %}
+            <li class="order">
+              <div class="order__head">
+                <div class="order__when">
+                  <p class="order__date">{{ order.date }}</p>
+                  <p class="order__no">{{ settings.order_label }} #{{ order.number }}</p>
+                </div>
+                <p class="order__status" data-state="{{ order.state }}">{{ order.status }}</p>
+              </div>
+              <ul class="items">
+                {% for item in order.items %}
+                <li class="item">
+                  {# The whole row is the link, picture and all, so it is a
+                     thumb's height on a phone rather than one line of text. #}
+                  {% if item.url %}
+                  <a class="item__row" href="{{ item.url | url }}">
+                    <span class="item__img">{% if item.image %}<img src="{{ item.image | asset }}" alt="" loading="lazy" decoding="async">{% endif %}</span>
+                    <span class="item__main"><span class="item__title">{{ item.title }}</span>{% if item.variant %}<span class="item__meta">{{ item.variant }}</span>{% endif %}</span>
+                  </a>
+                  {% else %}
+                  <div class="item__row">
+                    <span class="item__img">{% if item.image %}<img src="{{ item.image | asset }}" alt="" loading="lazy" decoding="async">{% endif %}</span>
+                    <span class="item__main"><span class="item__title">{{ item.title }}</span>{% if item.variant %}<span class="item__meta">{{ item.variant }}</span>{% endif %}</span>
+                  </div>
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+              {# A parcel on its way: the carrier and number, linked to the
+                 carrier's own tracking page when it has one. The order's
+                 own page (Track order) has the whole story. #}
+              {% if order.tracking.size > 0 %}
+              <ul class="track">
+                {% for t in order.tracking %}
+                <li class="track__row">
+                  <span class="track__status">{{ t.status }}</span>
+                  {% if t.url %}<a class="acct__inline" href="{{ t.url | url }}" target="_blank" rel="noopener">{% if t.company %}{{ t.company }} {% endif %}{{ t.number }}</a>{% else %}<span>{% if t.company %}{{ t.company }} {% endif %}{{ t.number }}</span>{% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              <div class="order__foot">
+                <p class="order__total"><span class="order__total-label">{{ settings.total_label }}</span> {{ order.total }}</p>
+                {% if order.action_url %}<a class="order__go" href="{{ order.action_url | url }}">{{ order.action_label }}</a>{% endif %}
+              </div>
+            </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </div>
+
+      <div class="acct__block" id="profile">
+        <h2 class="acct__h2">{{ settings.profile_heading }}</h2>
+        {% if page.notice %}<p class="acct__notice" role="status">{{ page.notice }}</p>{% endif %}
+        <div class="rows">
+          {# Edit opens the field in place (page.edit, from ?edit=name), so it
+             needs no script; Save posts it, Cancel is the page again. #}
+          {% if page.edit == "name" %}
+            <form class="row row--edit" method="post" action="{{ routes.account_profile_url }}" data-storelib-form="native">
+              <label class="row__label" for="{{ section.id }}-name">{{ settings.name_label }}</label>
+              <div class="edit">
+                <input class="edit__input" id="{{ section.id }}-name" name="name" type="text" value="{{ customer.name }}" maxlength="120" autocomplete="name" placeholder="{{ settings.name_placeholder }}" autofocus>
+                <button class="s__btn s__btn--primary" type="submit">{{ settings.save_label }}</button>
+                <a class="acct__link" href="{{ routes.account_url }}#profile">{{ settings.cancel_label }}</a>
+              </div>
+            </form>
+          {% else %}
+            <div class="row">
+              <p class="row__label">{{ settings.name_label }}</p>
+              <p class="row__value{% if customer.sample %} is-sample{% endif %}">{% if customer.name %}{{ customer.name }}{% else %}<span class="is-muted">{{ settings.name_empty }}</span>{% endif %}</p>
+              <a class="acct__link" href="{{ routes.account_url }}?edit=name#profile">{{ settings.edit_label }}</a>
+            </div>
+          {% endif %}
+          <div class="row">
+            <p class="row__label">{{ settings.email_label }}</p>
+            <p class="row__value{% if customer.sample %} is-sample{% endif %}">{{ customer.email }}</p>
+          </div>
+        </div>
+      </div>
+
+      {# The addresses this customer's orders from this shop went to, newest
+         first, as the checkout took them. Shown only when there is one: a
+         shop that sells files has no addresses to list. #}
+      {% if settings.show_addresses and customer.addresses.size > 0 %}
+        <div class="acct__block" id="addresses">
+          <h2 class="acct__h2">{{ settings.addresses_heading }}</h2>
+          <ul class="addrs">
+            {% for address in customer.addresses %}
+            <li class="addr{% if customer.sample %} is-sample{% endif %}">
+              {% for line in address.lines %}<span class="addr__line">{{ line }}</span>{% endfor %}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if settings.show_wishlist %}
+        <div class="acct__block">
+          <h2 class="acct__h2">{{ settings.wishlist_heading }}</h2>
+          <a class="entry" href="{{ routes.wishlist_url }}">
+            <span class="entry__text">{% if wishlist.count > 0 %}{{ wishlist.count }} {{ settings.wishlist_saved }}{% else %}{{ settings.wishlist_empty }}{% endif %}</span>
+            <span class="entry__go">{{ settings.wishlist_link }}</span>
+          </a>
+        </div>
+      {% endif %}
+
+      {# Closing the account, the way a shop's own account page offers it:
+         a quiet link at the end that opens one sentence and one button, so
+         it takes two presses and no script. The button posts the session's
+         own account to the delete route; nothing in the form names it. #}
+      {% if settings.show_delete %}
+        <details class="acct__block del" id="delete">
+          <summary class="acct__link">{{ settings.delete_label }}</summary>
+          <p class="acct__empty">{{ settings.delete_text }}</p>
+          <form class="del__form" method="post" action="{{ routes.account_delete_url }}" data-storelib-form="native">
+            <input type="hidden" name="confirm" value="delete">
+            <button class="s__btn s__btn--secondary" type="submit">{{ settings.delete_confirm }}</button>
+          </form>
+        </details>
+      {% endif %}
+    {% else %}
+      {# Nobody signed in. The live page sends them to sign in before it gets
+         here; this is what the page says if it is ever drawn without them. #}
+      <h1 class="s__h">{{ settings.heading }}</h1>
+      <p class="acct__empty">{{ settings.signed_out_text }}</p>
+      <div class="acct__actions">
+        <a class="s__btn s__btn--primary" href="{{ routes.account_login_url }}">{{ settings.signin_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+</template>
+
+<style scoped>
+.s { container-type: inline-size; background: var(--s-bg); color: var(--s-text); }
+.s__in {
+  margin: 0 auto;
+  padding: calc(var(--s-pt) * var(--theme-spacing-scale, 1)) var(--theme-padding-x, 24px) calc(var(--s-pb) * var(--theme-spacing-scale, 1));
+}
+.acct { max-width: 760px; }
+.acct--narrow { max-width: 600px; }
+.acct--wide { max-width: 1040px; }
+.s__h {
+  margin: 0;
+  font-size: var(--section-heading-size, 32px);
+  line-height: var(--section-heading-line-height, 1.15);
+  font-weight: var(--section-heading-weight, 700);
+  color: var(--s-heading);
+  letter-spacing: var(--section-heading-tracking, -0.01em);
+  text-transform: var(--section-heading-transform, none);
+  font-family: var(--section-heading-font, var(--theme-font-heading, {{ theme.typography.heading }}), ui-sans-serif, system-ui, sans-serif);
+  overflow-wrap: anywhere;
+}
+.acct__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.acct__out { margin: 0; flex: none; }
+.acct__link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0;
+  font: inherit; font-size: 15px; font-weight: 500; color: var(--s-heading);
+  background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+}
+.acct__block { margin-top: 40px; }
+.acct__h2 { margin: 0; padding-bottom: 12px; font-size: 19px; font-weight: 600; color: var(--s-heading); border-bottom: 1px solid var(--s-border); }
+.acct__empty { margin: 16px 0 0; font-size: var(--section-text-size, 15px); line-height: var(--section-text-line-height, 1.6); color: var(--s-para); }
+.acct__inline { color: var(--s-heading); font-weight: 500; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
+.acct__notice { margin: 16px 0 0; font-size: 14px; color: var(--s-heading); }
+.acct__actions { margin-top: 24px; max-width: 320px; }
+
+.orders { list-style: none; margin: 0; padding: 0; }
+.order { padding: 20px 0; border-bottom: 1px solid var(--s-border); }
+.order__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.order__when { min-width: 0; }
+.order__date { margin: 0; font-size: 15px; font-weight: 600; color: var(--s-heading); }
+.order__no { margin: 2px 0 0; font-size: 13px; color: var(--s-para); }
+.order__status { margin: 0; flex: none; font-size: 14px; font-weight: 500; color: var(--s-heading); }
+.order__status[data-state="refunded"], .order__status[data-state="held"] { color: var(--s-para); }
+.items { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.item { min-width: 0; }
+.item__row { display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 48px; color: inherit; text-decoration: none; }
+.item__img { flex: none; width: 48px; height: 48px; overflow: hidden; border-radius: calc(var(--s-radius) * 0.6); background: var(--s-border); }
+.item__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.item__main { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.item__title { display: block; font-size: var(--section-text-size, 15px); line-height: 1.4; font-weight: 500; color: var(--s-heading); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+a.item__row:hover .item__title { text-decoration: underline; text-underline-offset: 3px; }
+.item__meta { margin-top: 2px; font-size: 13px; color: var(--s-para); }
+.track { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.4; color: var(--s-para); }
+.track__row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; overflow-wrap: anywhere; }
+.track__status { font-weight: 500; color: var(--s-heading); }
+.order__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+.order__total { margin: 0; font-size: 15px; font-weight: 600; color: var(--s-heading); font-variant-numeric: tabular-nums; }
+.order__total-label { margin-right: 6px; font-weight: 400; color: var(--s-para); }
+.order__go {
+  display: inline-flex; align-items: center; justify-content: center; flex: none; min-height: 44px; padding: 0 18px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  color: var(--s-btn2-text); background: var(--s-btn2); border: 1px solid var(--s-btn2-border); border-radius: var(--s-radius);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.order__go:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; column-gap: 16px; min-height: 56px; margin: 0; padding: 6px 0; border-bottom: 1px solid var(--s-border); }
+.row__label { margin: 0; font-size: 14px; color: var(--s-para); }
+.row__value { margin: 0; font-size: var(--section-text-size, 15px); color: var(--s-heading); overflow-wrap: anywhere; }
+/* No name yet, and the builder's placeholders: the colour a field's placeholder has. */
+.is-muted, .is-sample { color: var(--s-para); }
+.row--edit { padding: 12px 0; }
+.edit { grid-column: 2 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.edit__input {
+  box-sizing: border-box; flex: 1 1 200px; min-width: 0; min-height: 48px; padding: 12px 14px;
+  font: inherit; font-size: 16px; color: var(--s-text); background: var(--s-bg);
+  border: 1px solid var(--s-border); border-radius: var(--s-radius); -webkit-appearance: none; appearance: none;
+}
+.edit__input::placeholder { color: var(--s-para); opacity: 0.75; }
+.edit__input:focus { outline: 2px solid var(--s-heading); outline-offset: 1px; border-color: var(--s-heading); }
+
+.addrs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 32px; }
+@container (min-width: 560px) { .addrs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.addr { display: flex; flex-direction: column; padding: 16px 0; border-bottom: 1px solid var(--s-border); font-size: var(--section-text-size, 15px); line-height: 1.5; color: var(--s-heading); overflow-wrap: anywhere; }
+.addr.is-sample { color: var(--s-para); }
+/* One address takes the whole row, so its hairline runs the width of the others on the page. */
+.addr:only-child { grid-column: 1 / -1; }
+
+.entry {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px;
+  border-bottom: 1px solid var(--s-border); text-decoration: none;
+}
+.entry__text { font-size: var(--section-text-size, 15px); color: var(--s-heading); }
+.del > summary { list-style: none; color: var(--s-para); }
+.del > summary::-webkit-details-marker { display: none; }
+.del__form { margin: 16px 0 0; max-width: 320px; }
+.entry__go { font-size: 15px; font-weight: 500; color: var(--s-heading); text-decoration: underline; text-underline-offset: 4px; }
+
+.s__btn {
+  display: flex; align-items: center; justify-content: center; min-height: 48px;
+  padding: 12px 24px; font: inherit; font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer;
+  border-radius: var(--s-radius); border: 1px solid transparent; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.s__btn--primary { background: var(--s-btn); color: var(--s-btn-text); border-color: var(--s-btn); }
+.s__btn--secondary { background: var(--s-btn2); color: var(--s-btn2-text); border-color: var(--s-btn2-border); }
+.s__btn:focus-visible, .order__go:focus-visible, .acct__link:focus-visible, .entry:focus-visible, .item__row:focus-visible { outline: 2px solid var(--s-heading); outline-offset: 2px; }
+/* Hover colours from the scheme, after the section's own Advanced colors. */
+.s__btn--primary:hover { background: var(--s-btn-hover); color: var(--s-btn-hover-text); border-color: var(--s-btn-hover); }
+.s__btn--secondary:hover { background: var(--s-btn2-hover); color: var(--s-btn2-hover-text); }
+@container (max-width: 480px) {
+  .row { grid-template-columns: 72px minmax(0, 1fr) auto; column-gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .s__btn, .order__go { transition: none; } }
+
+/* Foundation baseline: content-width and mobile overflow guard. */
+.s, .s__in { box-sizing: border-box; min-width: 0; }
+.s__in { width: 100%; }
+.s img, .s video, .s svg { max-width: 100%; }
+.s button, .s input, .s select, .s textarea { max-width: 100%; }
+.s :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .s *, .s *::before, .s *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<schema>
+{
+  "schema_version": 1,
+  "type": "main_account",
+  "name": "Account",
+  "category": "account",
+  "description": "A signed-in customer's page: their orders from you, their name and email, their wishlist and a way to sign out.",
+  "version": "2.0.0",
+  "icon": "user",
+  "allowed_templates": ["page.account"],
+  "settings": [
+    { "type": "header", "id": "hdr_content", "label": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Account" },
+    { "type": "text", "id": "signout_label", "label": "Sign out link", "default": "Sign out" },
+    { "type": "header", "id": "hdr_orders", "label": "Orders" },
+    { "type": "text", "id": "orders_heading", "label": "Heading", "default": "Orders" },
+    { "type": "text", "id": "order_label", "label": "Before the order number", "default": "Order" },
+    { "type": "text", "id": "total_label", "label": "Before the total", "default": "Total" },
+    { "type": "text", "id": "orders_empty", "label": "When there are none", "default": "No orders yet." },
+    { "type": "text", "id": "shop_link", "label": "Link to the shop", "default": "Browse the shop" },
+    { "type": "header", "id": "hdr_profile", "label": "Profile" },
+    { "type": "text", "id": "profile_heading", "label": "Heading", "default": "Profile" },
+    { "type": "text", "id": "name_label", "label": "Name", "default": "Name" },
+    { "type": "text", "id": "name_empty", "label": "When there is no name", "default": "Not added" },
+    { "type": "text", "id": "email_label", "label": "Email", "default": "Email" },
+    { "type": "text", "id": "edit_label", "label": "Edit link", "default": "Edit" },
+    { "type": "text", "id": "name_placeholder", "label": "Name field placeholder", "default": "Your name" },
+    { "type": "text", "id": "save_label", "label": "Save button", "default": "Save" },
+    { "type": "text", "id": "cancel_label", "label": "Cancel link", "default": "Cancel" },
+    { "type": "header", "id": "hdr_addresses", "label": "Addresses" },
+    { "type": "toggle", "id": "show_addresses", "label": "Show addresses", "default": true, "info": "The addresses their orders were sent to. Hidden when there are none." },
+    { "type": "text", "id": "addresses_heading", "label": "Heading", "default": "Addresses" },
+    { "type": "header", "id": "hdr_saved", "label": "Wishlist" },
+    { "type": "toggle", "id": "show_wishlist", "label": "Show the wishlist", "default": true },
+    { "type": "text", "id": "wishlist_heading", "label": "Heading", "default": "Wishlist" },
+    { "type": "text", "id": "wishlist_saved", "label": "After the count", "default": "saved" },
+    { "type": "text", "id": "wishlist_empty", "label": "When there are none", "default": "Nothing saved yet." },
+    { "type": "text", "id": "wishlist_link", "label": "Link to the Wishlist", "default": "View" },
+    { "type": "header", "id": "hdr_delete", "label": "Delete account" },
+    { "type": "toggle", "id": "show_delete", "label": "Let customers delete their account", "default": true },
+    { "type": "text", "id": "delete_label", "label": "Link", "default": "Delete account" },
+    { "type": "text", "id": "delete_text", "label": "Line", "default": "This deletes your account and saved items on this website. Your past orders stay with the store." },
+    { "type": "text", "id": "delete_confirm", "label": "Button", "default": "Delete my account" },
+    { "type": "header", "id": "hdr_signed_out", "label": "Signed out" },
+    { "type": "text", "id": "signed_out_text", "label": "Line", "default": "Sign in to see your orders and saved items." },
+    { "type": "text", "id": "signin_label", "label": "Button", "default": "Sign in" },
+    { "type": "header", "id": "hdr_style", "label": "Style" },
+    {
+      "type": "select", "id": "max_width", "label": "Width", "default": "medium",
+      "options": [
+        { "label": "Narrow", "value": "narrow" },
+        { "label": "Medium", "value": "medium" },
+        { "label": "Wide", "value": "wide" }
+      ]
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "white" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "default": 56, "min": 0, "max": 160, "step": 4, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "default": 88, "min": 0, "max": 160, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Account", "settings": {} }
+  ]
+}
+</schema>

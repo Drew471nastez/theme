@@ -1,0 +1,102 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "name": "Breadcrumbs",
+      "type": "breadcrumbs",
+      "hidden": false,
+      "settings": {
+        "padding_top": 16,
+        "color_scheme": "white",
+        "padding_bottom": 8
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "product-main": {
+      "name": "Product",
+      "type": "product",
+      "hidden": false,
+      "settings": {
+        "format": "compact",
+        "bg_color": "#FCFCFA",
+        "text_color": "#1D2922",
+        "image_width": "55%",
+        "padding_top": 32,
+        "color_scheme": "white",
+        "show_wishlist": true,
+        "padding_bottom": 55,
+        "product_layout": "two_column",
+        "show_share_button": true,
+        "show_social_icons": false,
+        "image_click_action": "none",
+        "image_hover_action": "none",
+        "show_whats_included": true,
+        "show_reviews_summary": false,
+        "multiple_images_layout": "stacked"
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "product-tabs": {
+      "name": "Foundation Tabs",
+      "type": "foundation_tabs",
+      "hidden": false,
+      "settings": {
+        "eyebrow": "GOOD TO KNOW",
+        "heading": "A little more detail.",
+        "padding_top": 72,
+        "color_scheme": "light",
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "block-1": {
+          "type": "tab",
+          "settings": {
+            "text": "The product description above contains its full details and what comes with your purchase.",
+            "title": "What’s included"
+          }
+        },
+        "block-2": {
+          "type": "tab",
+          "settings": {
+            "text": "Have a question? Visit the contact page and reach out to the store.",
+            "title": "Getting help"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2"
+      ]
+    },
+    "related": {
+      "name": "Product Grid",
+      "type": "product_grid",
+      "hidden": false,
+      "settings": {
+        "source": "shop",
+        "columns": {
+          "mobile": 1,
+          "tablet": 2,
+          "desktop": 3
+        },
+        "eyebrow": "KEEP EXPLORING",
+        "heading": "You might also like.",
+        "button_url": "/products",
+        "show_price": true,
+        "button_text": "See all products",
+        "padding_top": 72,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "product-main",
+    "product-tabs",
+    "related"
+  ]
+}

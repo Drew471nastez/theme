@@ -1,0 +1,276 @@
+{
+  "type": "brand_logo",
+  "name": "Brand logos",
+  "description": "Row of brand or partner logos with configurable width, spacing, and framing.",
+  "supports_typography_overrides": false,
+  "icon": "badge",
+  "category": "social-proof",
+  "fields": [
+    {
+      "id": "hdr_header",
+      "label": "Section header",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Featured in"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea"
+    },
+    {
+      "id": "show_view_all_button",
+      "label": "Show view-all button",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "view_all_button_link",
+      "label": "View all URL",
+      "type": "link"
+    },
+    {
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "hdr_logo",
+      "label": "Logo settings",
+      "type": "header"
+    },
+    {
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "type": "select",
+      "default": "adapt",
+      "options": [
+        {
+          "label": "Adapt",
+          "value": "adapt"
+        },
+        {
+          "label": "Square",
+          "value": "square"
+        },
+        {
+          "label": "Portrait",
+          "value": "portrait"
+        },
+        {
+          "label": "Landscape",
+          "value": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "img_width",
+      "label": "Logo width",
+      "type": "range",
+      "min": 50,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "id": "logo_opacity",
+      "label": "Logo opacity",
+      "type": "range",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "id": "grayscale",
+      "label": "Grayscale logos",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "open_link_newtab",
+      "label": "Open links in new tab",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "framed",
+      "label": "Show frame border",
+      "type": "toggle",
+      "default": false
+    },
+    {
+      "id": "items_per_row",
+      "label": "Items per row",
+      "type": "range",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "id": "column_gap",
+      "label": "Column gap",
+      "type": "range",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Section padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand_items",
+      "name": "Brand logo",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Logo image",
+          "type": "image"
+        },
+        {
+          "id": "link",
+          "label": "Link URL",
+          "type": "link"
+        },
+        {
+          "id": "alt",
+          "label": "Alt text",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "Six brand logos",
+      "settings": {
+        "heading": "Featured in",
+        "items_per_row": 6,
+        "img_width": 140,
+        "grayscale": true,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "b1",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 1"
+          }
+        },
+        {
+          "id": "b2",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 2"
+          }
+        },
+        {
+          "id": "b3",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 3"
+          }
+        },
+        {
+          "id": "b4",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 4"
+          }
+        },
+        {
+          "id": "b5",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 5"
+          }
+        },
+        {
+          "id": "b6",
+          "type": "brand_items",
+          "settings": {
+            "alt": "Brand 6"
+          }
+        }
+      ]
+    }
+  ]
+}

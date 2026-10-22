@@ -1,0 +1,270 @@
+{
+  "type": "gallery",
+  "name": "Gallery",
+  "description": "Image gallery with grid, masonry, or carousel layouts.",
+  "supports_typography_overrides": false,
+  "icon": "image",
+  "category": "media",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "",
+      "placeholder": "Optional gallery heading"
+    },
+    {
+      "id": "layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "grid",
+      "options": [
+        {
+          "label": "Grid",
+          "value": "grid"
+        },
+        {
+          "label": "Masonry",
+          "value": "masonry"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        }
+      ]
+    },
+    {
+      "id": "columns",
+      "label": "Columns",
+      "type": "select",
+      "default": "3",
+      "options": [
+        {
+          "label": "2 columns",
+          "value": "2"
+        },
+        {
+          "label": "3 columns",
+          "value": "3"
+        },
+        {
+          "label": "4 columns",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "gap",
+      "label": "Gap between images",
+      "type": "range",
+      "default": 8,
+      "min": 4,
+      "max": 32,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "hover_effect",
+      "label": "Hover effect",
+      "type": "select",
+      "default": "zoom",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Zoom",
+          "value": "zoom"
+        },
+        {
+          "label": "Overlay",
+          "value": "overlay"
+        },
+        {
+          "label": "Caption reveal",
+          "value": "caption"
+        }
+      ]
+    },
+    {
+      "id": "lightbox",
+      "label": "Enable lightbox",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_colors",
+      "label": "Colors",
+      "type": "header"
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the color scheme."
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_item",
+      "name": "Gallery image",
+      "fields": [
+        {
+          "id": "image",
+          "label": "Image",
+          "type": "image",
+          "default": ""
+        },
+        {
+          "id": "alt",
+          "label": "Alt text",
+          "type": "text",
+          "default": "",
+          "placeholder": "Describe the image"
+        },
+        {
+          "id": "caption",
+          "label": "Caption",
+          "type": "text",
+          "default": "",
+          "placeholder": "Optional caption"
+        },
+        {
+          "id": "link",
+          "label": "Link URL",
+          "type": "link",
+          "default": "",
+          "placeholder": "Optional link on click"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 40,
+  "presets": [
+    {
+      "name": "Grid gallery",
+      "settings": {
+        "layout": "grid",
+        "columns": "3",
+        "gap": 8,
+        "hover_effect": "zoom",
+        "lightbox": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "white"
+      },
+      "blocks": [
+        {
+          "id": "g1",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 1",
+            "caption": "Our studio space"
+          }
+        },
+        {
+          "id": "g2",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 2",
+            "caption": "Product detail"
+          }
+        },
+        {
+          "id": "g3",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 3",
+            "caption": "Behind the scenes"
+          }
+        },
+        {
+          "id": "g4",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 4",
+            "caption": "Team at work"
+          }
+        },
+        {
+          "id": "g5",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 5",
+            "caption": "Packaging"
+          }
+        },
+        {
+          "id": "g6",
+          "type": "gallery_item",
+          "settings": {
+            "alt": "Gallery image 6",
+            "caption": "Final result"
+          }
+        }
+      ]
+    }
+  ]
+}

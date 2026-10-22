@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "contact": {
+      "name": "Contact",
+      "type": "contact",
+      "hidden": false,
+      "settings": {
+        "text": "Questions, feedback, or just saying hello? We’d love to hear from you.",
+        "heading": "Get in touch.",
+        "padding_top": 80,
+        "color_scheme": "white",
+        "padding_bottom": 88
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": [
+    "contact"
+  ]
+}

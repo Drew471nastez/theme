@@ -1,0 +1,20 @@
+{# Spacer: empty room between two blocks, as tall as chosen. #}
+<template>
+<div class="sl-spacer" style="height: {{ block.settings.height }}px;" aria-hidden="true"></div>
+</template>
+
+<style>
+.sl-spacer { width: 100%; }
+</style>
+
+<schema>
+{
+  "name": "Spacer",
+  "settings": [
+    { "type": "range", "id": "height", "label": "Height", "default": 32, "min": 4, "max": 200, "step": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Spacer" }
+  ]
+}
+</schema>

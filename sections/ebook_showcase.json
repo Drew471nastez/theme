@@ -1,0 +1,390 @@
+{
+  "type": "ebook_showcase",
+  "name": "Ebook Showcase",
+  "description": "Full-featured ebook or digital book sales section with cover, details, and purchase CTAs.",
+  "supports_typography_overrides": false,
+  "icon": "book-open",
+  "category": "niche",
+  "fields": [
+    {
+      "id": "hdr_content",
+      "label": "Book Details",
+      "type": "header"
+    },
+    {
+      "id": "heading",
+      "label": "Book Title",
+      "type": "text",
+      "default": "The Complete Guide to Modern Business",
+      "placeholder": "Enter book title"
+    },
+    {
+      "id": "subheading",
+      "label": "Subtitle",
+      "type": "text",
+      "default": "Strategies, Systems & Secrets for 2026 and Beyond",
+      "placeholder": "Enter subtitle"
+    },
+    {
+      "id": "author_name",
+      "label": "Author Name",
+      "type": "text",
+      "default": "Jane Harlow",
+      "placeholder": "Author full name"
+    },
+    {
+      "id": "author_title",
+      "label": "Author Title / Credentials",
+      "type": "text",
+      "default": "MBA, Forbes 30 Under 30",
+      "placeholder": "e.g. MBA, Bestselling Author"
+    },
+    {
+      "id": "price_text",
+      "label": "Price",
+      "type": "text",
+      "default": "$27",
+      "placeholder": "e.g. $27"
+    },
+    {
+      "id": "original_price",
+      "label": "Original Price (strikethrough)",
+      "type": "text",
+      "default": "$49",
+      "placeholder": "e.g. $49"
+    },
+    {
+      "id": "badge_text",
+      "label": "Badge Text",
+      "type": "text",
+      "default": "Bestseller",
+      "placeholder": "e.g. Bestseller, New Release"
+    },
+    {
+      "id": "format_tags",
+      "label": "Format Tags",
+      "type": "text",
+      "default": "PDF · EPUB · MOBI",
+      "placeholder": "e.g. PDF · EPUB · MOBI"
+    },
+    {
+      "id": "book_cover_image",
+      "label": "Book Cover Image",
+      "type": "image",
+      "default": ""
+    },
+    {
+      "id": "mockup_style",
+      "label": "Mockup Style",
+      "type": "select",
+      "default": "perspective",
+      "options": [
+        {
+          "label": "Flat",
+          "value": "flat"
+        },
+        {
+          "label": "Perspective",
+          "value": "perspective"
+        },
+        {
+          "label": "Stack",
+          "value": "stack"
+        },
+        {
+          "label": "3D",
+          "value": "3d"
+        }
+      ]
+    },
+    {
+      "id": "show_mockup_shadow",
+      "label": "Show Mockup Shadow",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "page_count",
+      "label": "Page Count",
+      "type": "number",
+      "default": 280
+    },
+    {
+      "id": "chapter_count",
+      "label": "Chapter Count",
+      "type": "number",
+      "default": 18
+    },
+    {
+      "id": "read_time",
+      "label": "Read Time",
+      "type": "text",
+      "default": "4 hours",
+      "placeholder": "e.g. 4 hours"
+    },
+    {
+      "id": "release_date",
+      "label": "Release Date",
+      "type": "text",
+      "default": "January 2026",
+      "placeholder": "e.g. January 2026"
+    },
+    {
+      "id": "hdr_desc",
+      "label": "Description",
+      "type": "header"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "type": "textarea",
+      "default": "Unlock the strategies used by the world's most successful entrepreneurs. Whether you're launching your first venture or scaling an existing business, this guide delivers actionable frameworks, real-world case studies, and proven systems.",
+      "placeholder": "Book description"
+    },
+    {
+      "id": "excerpt",
+      "label": "Excerpt / First Chapter Preview",
+      "type": "textarea",
+      "default": "Chapter 1: The Foundations of Modern Business\n\nEvery great business begins with a single insight, a moment of clarity where opportunity meets preparation...",
+      "placeholder": "Paste a short excerpt or first chapter preview"
+    },
+    {
+      "id": "show_table_of_contents",
+      "label": "Show Table of Contents",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "toc_items",
+      "label": "Table of Contents (one per line)",
+      "type": "textarea",
+      "default": "Part 1: Foundations\nChapter 1: The Modern Business Landscape\nChapter 2: Identifying Opportunity\nPart 2: Building Systems\nChapter 3: Operations That Scale\nChapter 4: Team & Culture\nPart 3: Growth\nChapter 5: Marketing in the Digital Age\nChapter 6: Sales Funnels That Convert",
+      "placeholder": "Chapter 1: Title\nChapter 2: Title"
+    },
+    {
+      "id": "hdr_ratings",
+      "label": "Ratings & Reviews",
+      "type": "header"
+    },
+    {
+      "id": "rating_value",
+      "label": "Rating",
+      "type": "range",
+      "default": 4.8,
+      "min": 1,
+      "max": 5,
+      "step": 0.1
+    },
+    {
+      "id": "review_count",
+      "label": "Review Count",
+      "type": "number",
+      "default": 1247
+    },
+    {
+      "id": "show_stars",
+      "label": "Show Star Rating",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_buttons",
+      "label": "Buttons",
+      "type": "header"
+    },
+    {
+      "id": "buy_button_text",
+      "label": "Buy Button Text",
+      "type": "text",
+      "default": "Buy Now for $27",
+      "placeholder": "e.g. Buy Now"
+    },
+    {
+      "id": "buy_button_url",
+      "label": "Buy Button URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "buy_button_color",
+      "label": "Buy Button Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "buy_button_text_color",
+      "label": "Buy Button Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "sample_button_text",
+      "label": "Sample Button Text",
+      "type": "text",
+      "default": "Read Free Sample",
+      "placeholder": "e.g. Read Free Sample"
+    },
+    {
+      "id": "sample_button_url",
+      "label": "Sample Button URL",
+      "type": "link",
+      "default": "#",
+      "placeholder": "https://..."
+    },
+    {
+      "id": "sample_button_style",
+      "label": "Sample Button Style",
+      "type": "radio",
+      "default": "outline",
+      "options": [
+        {
+          "label": "Outline",
+          "value": "outline"
+        },
+        {
+          "label": "Ghost",
+          "value": "ghost"
+        }
+      ]
+    },
+    {
+      "id": "hdr_style",
+      "label": "Style",
+      "type": "header"
+    },
+    {
+      "id": "layout",
+      "label": "Image Position",
+      "type": "radio",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        }
+      ]
+    },
+    {
+      "id": "bg_color",
+      "label": "Background Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "text_color",
+      "label": "Text Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent Color",
+      "type": "color",
+      "default": "",
+      "info": "Leave empty to use the section's color scheme."
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding Top",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "type": "range",
+      "default": 80,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ebook Showcase",
+      "settings": {
+        "heading": "The Complete Guide to Modern Business",
+        "subheading": "Strategies, Systems & Secrets for 2026 and Beyond",
+        "author_name": "Jane Harlow",
+        "author_title": "MBA, Forbes 30 Under 30",
+        "price_text": "$27",
+        "original_price": "$49",
+        "badge_text": "Bestseller",
+        "format_tags": "PDF · EPUB · MOBI",
+        "mockup_style": "perspective",
+        "show_mockup_shadow": true,
+        "page_count": 280,
+        "chapter_count": 18,
+        "read_time": "4 hours",
+        "release_date": "January 2026",
+        "description": "Unlock the strategies used by the world's most successful entrepreneurs. Whether you're launching your first venture or scaling an existing business, this guide delivers actionable frameworks, real-world case studies, and proven systems.",
+        "excerpt": "Chapter 1: The Foundations of Modern Business\n\nEvery great business begins with a single insight, a moment of clarity where opportunity meets preparation...",
+        "show_table_of_contents": true,
+        "toc_items": "Part 1: Foundations\nChapter 1: The Modern Business Landscape\nChapter 2: Identifying Opportunity\nPart 2: Building Systems\nChapter 3: Operations That Scale\nChapter 4: Team & Culture",
+        "rating_value": 4.8,
+        "review_count": 1247,
+        "show_stars": true,
+        "buy_button_text": "Buy Now for $27",
+        "buy_button_url": "#",
+        "sample_button_text": "Read Free Sample",
+        "sample_button_url": "#",
+        "sample_button_style": "outline",
+        "layout": "left",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "color_scheme": "white"
+      }
+    }
+  ]
+}

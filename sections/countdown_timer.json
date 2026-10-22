@@ -1,0 +1,256 @@
+{
+  "type": "countdown_timer",
+  "name": "Countdown timer",
+  "description": "Build urgency with a live countdown to a date or event.",
+  "supports_typography_overrides": false,
+  "icon": "clock",
+  "category": "marketing",
+  "fields": [
+    {
+      "id": "heading",
+      "label": "Heading",
+      "type": "text",
+      "default": "Sale ends in…",
+      "placeholder": "Section heading"
+    },
+    {
+      "id": "subheading",
+      "label": "Subheading",
+      "type": "textarea",
+      "default": "Don't miss out. Our biggest sale of the year ends soon.",
+      "placeholder": "Supporting text"
+    },
+    {
+      "id": "end_date",
+      "label": "Ends",
+      "type": "datetime",
+      "default": "",
+      "info": "The countdown reaches zero at this time in the time zone below."
+    },
+    {
+      "id": "timezone",
+      "label": "Timezone",
+      "type": "select",
+      "default": "UTC",
+      "options": [
+        {
+          "label": "UTC",
+          "value": "UTC"
+        },
+        {
+          "label": "US Eastern (ET)",
+          "value": "America/New_York"
+        },
+        {
+          "label": "US Pacific (PT)",
+          "value": "America/Los_Angeles"
+        },
+        {
+          "label": "London (GMT/BST)",
+          "value": "Europe/London"
+        },
+        {
+          "label": "Paris (CET/CEST)",
+          "value": "Europe/Paris"
+        },
+        {
+          "label": "Tokyo (JST)",
+          "value": "Asia/Tokyo"
+        },
+        {
+          "label": "Sydney (AEST)",
+          "value": "Australia/Sydney"
+        }
+      ]
+    },
+    {
+      "id": "style",
+      "label": "Style",
+      "type": "select",
+      "default": "boxes",
+      "options": [
+        {
+          "label": "Boxes",
+          "value": "boxes"
+        },
+        {
+          "label": "Minimal",
+          "value": "minimal"
+        },
+        {
+          "label": "Digital",
+          "value": "digital"
+        }
+      ]
+    },
+    {
+      "id": "show_labels",
+      "label": "Show unit labels",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_days",
+      "label": "Show days",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_hours",
+      "label": "Show hours",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_minutes",
+      "label": "Show minutes",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "show_seconds",
+      "label": "Show seconds",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "days_label",
+      "label": "Days label",
+      "type": "text",
+      "default": "Days"
+    },
+    {
+      "id": "hours_label",
+      "label": "Hours label",
+      "type": "text",
+      "default": "Hours"
+    },
+    {
+      "id": "minutes_label",
+      "label": "Minutes label",
+      "type": "text",
+      "default": "Minutes"
+    },
+    {
+      "id": "seconds_label",
+      "label": "Seconds label",
+      "type": "text",
+      "default": "Seconds"
+    },
+    {
+      "id": "expired_text",
+      "label": "Expired message",
+      "type": "text",
+      "default": "This offer has ended.",
+      "placeholder": "Shown when timer reaches zero"
+    },
+    {
+      "id": "alignment",
+      "label": "Alignment",
+      "type": "select",
+      "default": "center",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "type": "select",
+      "default": "dark",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "hdr_padding",
+      "label": "Padding",
+      "type": "header"
+    },
+    {
+      "id": "bg_color",
+      "label": "Background color",
+      "type": "color",
+      "default": "#111827"
+    },
+    {
+      "id": "text_color",
+      "label": "Text color",
+      "type": "color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "accent_color",
+      "label": "Accent / box color",
+      "type": "color",
+      "default": "#4f46e5"
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "default": 60,
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dark countdown banner",
+      "settings": {
+        "heading": "Flash sale ends in…",
+        "subheading": "Up to 40% off sitewide. Today only.",
+        "end_date": "",
+        "timezone": "UTC",
+        "style": "boxes",
+        "show_labels": true,
+        "expired_text": "This offer has ended.",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "color_scheme": "dark"
+      }
+    }
+  ]
+}

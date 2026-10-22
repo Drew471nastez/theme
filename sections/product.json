@@ -1,0 +1,2085 @@
+{
+  "type": "product",
+  "name": "Product",
+  "description": "The product a product page is about: its pictures, price, options and buy buttons, as blocks you add, move and style.",
+  "supports_typography_overrides": false,
+  "icon": "star",
+  "category": "commerce",
+  "fields": [
+    {
+      "id": "hdr_product_media",
+      "label": "Media",
+      "type": "header"
+    },
+    {
+      "id": "multiple_images_layout",
+      "label": "Layout",
+      "type": "select",
+      "default": "stacked",
+      "options": [
+        {
+          "label": "Stacked",
+          "value": "stacked"
+        },
+        {
+          "label": "Slideshow with thumbnails",
+          "value": "slideshow"
+        },
+        {
+          "label": "Grid",
+          "value": "stacked_2col"
+        },
+        {
+          "label": "Carousel",
+          "value": "carousel"
+        }
+      ]
+    },
+    {
+      "id": "image_width",
+      "label": "Media width",
+      "type": "select",
+      "default": "55%",
+      "options": [
+        {
+          "label": "35%",
+          "value": "35%"
+        },
+        {
+          "label": "40%",
+          "value": "40%"
+        },
+        {
+          "label": "45%",
+          "value": "45%"
+        },
+        {
+          "label": "50%",
+          "value": "50%"
+        },
+        {
+          "label": "55%",
+          "value": "55%"
+        },
+        {
+          "label": "60%",
+          "value": "60%"
+        },
+        {
+          "label": "65%",
+          "value": "65%"
+        },
+        {
+          "label": "75%",
+          "value": "75%"
+        }
+      ]
+    },
+    {
+      "id": "media_ratio",
+      "label": "Picture shape",
+      "type": "select",
+      "default": "natural",
+      "options": [
+        {
+          "label": "As uploaded",
+          "value": "natural"
+        },
+        {
+          "label": "Square",
+          "value": "square"
+        },
+        {
+          "label": "Portrait",
+          "value": "portrait"
+        },
+        {
+          "label": "Landscape",
+          "value": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "mobile_media",
+      "label": "On a phone",
+      "type": "select",
+      "default": "slider",
+      "options": [
+        {
+          "label": "Swipe, with dots",
+          "value": "slider"
+        },
+        {
+          "label": "One under the other",
+          "value": "stacked"
+        }
+      ]
+    },
+    {
+      "id": "image_click_action",
+      "label": "Click a picture",
+      "type": "select",
+      "default": "lightbox",
+      "options": [
+        {
+          "label": "Nothing",
+          "value": "none"
+        },
+        {
+          "label": "Open it larger",
+          "value": "lightbox"
+        },
+        {
+          "label": "Open it larger, with zoom",
+          "value": "zoom"
+        }
+      ]
+    },
+    {
+      "id": "image_hover_action",
+      "label": "Hover a picture",
+      "type": "select",
+      "default": "none",
+      "options": [
+        {
+          "label": "Nothing",
+          "value": "none"
+        },
+        {
+          "label": "Zoom in",
+          "value": "zoom"
+        }
+      ]
+    },
+    {
+      "id": "variant_image",
+      "label": "Show the chosen variant's picture",
+      "type": "toggle",
+      "default": true
+    },
+    {
+      "id": "hdr_product_layout",
+      "label": "Layout",
+      "type": "header"
+    },
+    {
+      "id": "product_layout",
+      "label": "Product layout",
+      "type": "select",
+      "default": "two_column",
+      "options": [
+        {
+          "label": "Two columns",
+          "value": "two_column"
+        },
+        {
+          "label": "One column",
+          "value": "one_column"
+        }
+      ]
+    },
+    {
+      "id": "sticky_info",
+      "label": "Keep the details in view while scrolling",
+      "type": "toggle",
+      "default": true,
+      "info": "On a computer, when the pictures are taller than the details."
+    },
+    {
+      "id": "format",
+      "label": "Width",
+      "type": "select",
+      "default": "standard",
+      "options": [
+        {
+          "label": "Compact",
+          "value": "compact"
+        },
+        {
+          "label": "Standard",
+          "value": "standard"
+        },
+        {
+          "label": "Wide",
+          "value": "wide"
+        }
+      ]
+    },
+    {
+      "id": "column_gap",
+      "label": "Gap between columns",
+      "type": "range",
+      "min": 16,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "type": "select",
+      "default": "white",
+      "options": [
+        {
+          "label": "Light",
+          "value": "white"
+        },
+        {
+          "label": "Soft",
+          "value": "light"
+        },
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Brand",
+          "value": "black"
+        },
+        {
+          "label": "Accent",
+          "value": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "padding_top",
+      "label": "Padding top",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "shop_label",
+          "label": "Shop link",
+          "type": "text",
+          "default": "Shop"
+        },
+        {
+          "id": "separator",
+          "label": "Separator",
+          "type": "select",
+          "default": "slash",
+          "options": [
+            {
+              "label": "/",
+              "value": "slash"
+            },
+            {
+              "label": ">",
+              "value": "chevron"
+            },
+            {
+              "label": "·",
+              "value": "dot"
+            }
+          ]
+        },
+        {
+          "id": "size",
+          "label": "Text size",
+          "type": "range",
+          "min": 11,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "id": "color",
+          "label": "Text color",
+          "type": "color",
+          "default": "scheme.text_muted"
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "badges",
+      "name": "Badges",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "show_sale",
+          "label": "Sale badge",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "sale_label",
+          "label": "Sale label",
+          "type": "text",
+          "default": "Sale",
+          "visible_if": "{{ block.settings.show_sale }}"
+        },
+        {
+          "id": "sale_percent",
+          "label": "The saving instead, such as 20% off",
+          "type": "toggle",
+          "default": false,
+          "visible_if": "{{ block.settings.show_sale }}"
+        },
+        {
+          "id": "show_new",
+          "label": "New badge",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "new_label",
+          "label": "New label",
+          "type": "text",
+          "default": "New",
+          "visible_if": "{{ block.settings.show_new }}"
+        },
+        {
+          "id": "new_days",
+          "label": "New for",
+          "type": "range",
+          "min": 1,
+          "max": 90,
+          "step": 1,
+          "unit": "days",
+          "default": 30
+        },
+        {
+          "id": "show_sold_out",
+          "label": "Sold out badge",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "sold_out_label",
+          "label": "Sold out label",
+          "type": "text",
+          "default": "Sold out",
+          "visible_if": "{{ block.settings.show_sold_out }}"
+        },
+        {
+          "id": "shape",
+          "label": "Shape",
+          "type": "select",
+          "default": "pill",
+          "options": [
+            {
+              "label": "Pill",
+              "value": "pill"
+            },
+            {
+              "label": "Square",
+              "value": "square"
+            }
+          ]
+        },
+        {
+          "id": "background",
+          "label": "Background",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "text_color",
+          "label": "Text color",
+          "type": "color",
+          "default": "scheme.background"
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "tag",
+          "label": "Heading level",
+          "type": "select",
+          "default": "h1",
+          "options": [
+            {
+              "label": "H1",
+              "value": "h1"
+            },
+            {
+              "label": "H2",
+              "value": "h2"
+            }
+          ]
+        },
+        {
+          "id": "size",
+          "label": "Text size",
+          "type": "range",
+          "min": 18,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "default": 32
+        },
+        {
+          "id": "weight",
+          "label": "Weight",
+          "type": "select",
+          "default": "700",
+          "options": [
+            {
+              "label": "Regular",
+              "value": "400"
+            },
+            {
+              "label": "Medium",
+              "value": "500"
+            },
+            {
+              "label": "Semibold",
+              "value": "600"
+            },
+            {
+              "label": "Bold",
+              "value": "700"
+            }
+          ]
+        },
+        {
+          "id": "color",
+          "label": "Text color",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "Star rating",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "show_average",
+          "label": "Show the average",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "show_count",
+          "label": "Show how many reviews",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "size",
+          "label": "Star size",
+          "type": "range",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "id": "star_color",
+          "label": "Star color",
+          "type": "color",
+          "default": "",
+          "info": "Empty uses the color set in Storelib Reviews."
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 14
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "size",
+          "label": "Text size",
+          "type": "range",
+          "min": 14,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "id": "color",
+          "label": "Price color",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "show_compare",
+          "label": "Show the price before the sale",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "show_saving",
+          "label": "Show the saving",
+          "type": "toggle",
+          "default": true,
+          "visible_if": "{{ block.settings.show_compare }}"
+        },
+        {
+          "id": "sale_color",
+          "label": "Saving color",
+          "type": "color",
+          "default": "scheme.accent"
+        },
+        {
+          "id": "free_label",
+          "label": "When it is free",
+          "type": "text",
+          "default": "Free"
+        },
+        {
+          "id": "pwyw_prefix",
+          "label": "Pay what you want, before the price",
+          "type": "text",
+          "default": "From"
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "style",
+          "label": "Style",
+          "type": "select",
+          "default": "pills",
+          "options": [
+            {
+              "label": "Buttons",
+              "value": "pills"
+            },
+            {
+              "label": "Dropdown",
+              "value": "dropdown"
+            }
+          ]
+        },
+        {
+          "id": "swatches",
+          "label": "Colours as swatches",
+          "type": "toggle",
+          "default": true,
+          "info": "For an option named Colour or Color."
+        },
+        {
+          "id": "swatch_shape",
+          "label": "Swatch shape",
+          "type": "select",
+          "default": "circle",
+          "options": [
+            {
+              "label": "Circle",
+              "value": "circle"
+            },
+            {
+              "label": "Square",
+              "value": "square"
+            }
+          ]
+        },
+        {
+          "id": "show_value",
+          "label": "Show the chosen value beside the name",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "size",
+          "label": "Size",
+          "type": "select",
+          "default": "medium",
+          "options": [
+            {
+              "label": "Small",
+              "value": "small"
+            },
+            {
+              "label": "Medium",
+              "value": "medium"
+            },
+            {
+              "label": "Large",
+              "value": "large"
+            }
+          ]
+        },
+        {
+          "id": "selected_bg",
+          "label": "Chosen fill",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "selected_text",
+          "label": "Chosen text",
+          "type": "color",
+          "default": "scheme.background"
+        },
+        {
+          "id": "border",
+          "label": "Border",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "fallback_name",
+          "label": "Name for unnamed options",
+          "type": "text",
+          "default": "Option"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "pay_what_you_want",
+      "name": "Pay what you want",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "default": "Name your price"
+        },
+        {
+          "id": "amounts",
+          "label": "Amounts to tap",
+          "type": "text",
+          "default": "",
+          "placeholder": "5, 10, 25",
+          "info": "In dollars, separated by commas. Empty uses the product's suggested price."
+        },
+        {
+          "id": "show_minimum",
+          "label": "Show the lowest price",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "accent",
+          "label": "Chosen amount",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "default": "Quantity"
+        },
+        {
+          "id": "size",
+          "label": "Size",
+          "type": "select",
+          "default": "medium",
+          "options": [
+            {
+              "label": "Small",
+              "value": "small"
+            },
+            {
+              "label": "Medium",
+              "value": "medium"
+            },
+            {
+              "label": "Large",
+              "value": "large"
+            }
+          ]
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "show_add",
+          "label": "Add to cart",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "add_label",
+          "label": "Add to cart label",
+          "type": "text",
+          "default": "Add to cart",
+          "visible_if": "{{ block.settings.show_add }}"
+        },
+        {
+          "id": "show_buy",
+          "label": "Buy now",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "buy_label",
+          "label": "Buy now label",
+          "type": "text",
+          "default": "Buy now",
+          "visible_if": "{{ block.settings.show_buy }}"
+        },
+        {
+          "id": "free_label",
+          "label": "When it is free",
+          "type": "text",
+          "default": "Get it free"
+        },
+        {
+          "id": "layout",
+          "label": "Layout",
+          "type": "select",
+          "default": "stacked",
+          "options": [
+            {
+              "label": "One under the other",
+              "value": "stacked"
+            },
+            {
+              "label": "Side by side",
+              "value": "row"
+            }
+          ]
+        },
+        {
+          "id": "height",
+          "label": "Button height",
+          "type": "range",
+          "min": 40,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 52
+        },
+        {
+          "id": "fill",
+          "label": "Buy now fill",
+          "type": "color",
+          "default": "scheme.primary_button_background"
+        },
+        {
+          "id": "text_color",
+          "label": "Buy now text",
+          "type": "color",
+          "default": "scheme.primary_button_text"
+        },
+        {
+          "id": "outline",
+          "label": "Add to cart outline",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "low_stock",
+      "name": "Low stock",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "threshold",
+          "label": "Show at or under",
+          "type": "range",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "",
+          "default": 0,
+          "info": "0 uses each product's low stock line (Settings, Locations)."
+        },
+        {
+          "id": "text",
+          "label": "Text",
+          "type": "text",
+          "default": "Only {count} left",
+          "info": "{count} is how many are left."
+        },
+        {
+          "id": "in_stock_text",
+          "label": "Above that",
+          "type": "text",
+          "default": "",
+          "placeholder": "In stock"
+        },
+        {
+          "id": "show_dot",
+          "label": "Dot",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "color",
+          "label": "Color",
+          "type": "color",
+          "default": "#b45309"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "delivery",
+      "name": "Delivery and pickup",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "show_delivery",
+          "label": "Delivery",
+          "type": "toggle",
+          "default": true,
+          "info": "The cheapest rate to your home country and how long it takes (Settings, Shipping and delivery)."
+        },
+        {
+          "id": "show_pickup",
+          "label": "Pickup",
+          "type": "toggle",
+          "default": true,
+          "info": "Where the chosen option can be picked up (Settings, Locations)."
+        },
+        {
+          "id": "color",
+          "label": "Color",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "offers",
+      "name": "Bundles and upsells",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "show_bundles",
+          "label": "Bundles",
+          "type": "toggle",
+          "default": true,
+          "info": "Bundles with this product in (Products, Upsells and bundles)."
+        },
+        {
+          "id": "show_upsells",
+          "label": "Upsells",
+          "type": "toggle",
+          "default": true,
+          "info": "Upsells this product shows, set to show on product pages."
+        },
+        {
+          "id": "add_all_label",
+          "label": "Bundle button",
+          "type": "text",
+          "default": "Add all to cart"
+        },
+        {
+          "id": "add_label",
+          "label": "Upsell button",
+          "type": "text",
+          "default": "Add"
+        },
+        {
+          "id": "button_style",
+          "label": "Button style",
+          "type": "select",
+          "default": "outline",
+          "options": [
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "fill",
+              "label": "Filled"
+            }
+          ]
+        },
+        {
+          "id": "heading_color",
+          "label": "Heading",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "text_color",
+          "label": "Text",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "price_color",
+          "label": "Price",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "border_color",
+          "label": "Border",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "badge_background",
+          "label": "Saving background",
+          "type": "color",
+          "default": "#dcfce7"
+        },
+        {
+          "id": "badge_text",
+          "label": "Saving text",
+          "type": "color",
+          "default": "#166534"
+        },
+        {
+          "id": "button_background",
+          "label": "Button background",
+          "type": "color",
+          "default": "scheme.primary_button_background"
+        },
+        {
+          "id": "button_text",
+          "label": "Button text",
+          "type": "color",
+          "default": "scheme.primary_button_text"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "size",
+          "label": "Text size",
+          "type": "range",
+          "min": 12,
+          "max": 22,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        },
+        {
+          "id": "color",
+          "label": "Text color",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "product_details",
+      "name": "Product details",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Details"
+        },
+        {
+          "id": "border",
+          "label": "Divider",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "product_faq",
+      "name": "Product questions",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Questions"
+        },
+        {
+          "id": "open_first",
+          "label": "First answer open to start with",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "border",
+          "label": "Divider",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "Collapsible tab",
+      "fields": [
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Details"
+        },
+        {
+          "id": "content",
+          "label": "Content",
+          "type": "richtext",
+          "default": "<p>Write what a buyer should know.</p>"
+        },
+        {
+          "id": "use_description",
+          "label": "Show the product description instead",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "open",
+          "label": "Open to start with",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "border",
+          "label": "Divider",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "fields": [
+        {
+          "id": "text",
+          "label": "Text",
+          "type": "textarea",
+          "default": "Instant download after payment."
+        },
+        {
+          "id": "size",
+          "label": "Text size",
+          "type": "range",
+          "min": 11,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "id": "weight",
+          "label": "Weight",
+          "type": "select",
+          "default": "400",
+          "options": [
+            {
+              "label": "Regular",
+              "value": "400"
+            },
+            {
+              "label": "Medium",
+              "value": "500"
+            },
+            {
+              "label": "Semibold",
+              "value": "600"
+            },
+            {
+              "label": "Bold",
+              "value": "700"
+            }
+          ]
+        },
+        {
+          "id": "uppercase",
+          "label": "Capitals",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "color",
+          "label": "Text color",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "align",
+          "label": "Alignment",
+          "type": "alignment",
+          "default": "left"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "icon_with_text",
+      "name": "Icon with text",
+      "fields": [
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "icon_picker",
+          "default": "truck"
+        },
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "Free shipping"
+        },
+        {
+          "id": "text",
+          "label": "Text",
+          "type": "text",
+          "default": "On orders over $50"
+        },
+        {
+          "id": "icon_size",
+          "label": "Icon size",
+          "type": "range",
+          "min": 14,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "id": "color",
+          "label": "Icon color",
+          "type": "color",
+          "default": "scheme.heading"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "Share",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "default": "Share"
+        },
+        {
+          "id": "copy",
+          "label": "Copy link",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "x",
+          "label": "X",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "facebook",
+          "label": "Facebook",
+          "type": "toggle",
+          "default": true
+        },
+        {
+          "id": "pinterest",
+          "label": "Pinterest",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "type": "toggle",
+          "default": false
+        },
+        {
+          "id": "color",
+          "label": "Color",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "wishlist",
+      "name": "Wishlist button",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "label",
+          "label": "Label",
+          "type": "text",
+          "default": "Add to wishlist"
+        },
+        {
+          "id": "saved_label",
+          "label": "Once saved",
+          "type": "text",
+          "default": "Saved to wishlist"
+        },
+        {
+          "id": "style",
+          "label": "Style",
+          "type": "select",
+          "default": "link",
+          "options": [
+            {
+              "label": "Text link",
+              "value": "link"
+            },
+            {
+              "label": "Button",
+              "value": "button"
+            }
+          ]
+        },
+        {
+          "id": "color",
+          "label": "Color",
+          "type": "color",
+          "default": "scheme.text"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "fields": [
+        {
+          "id": "style",
+          "label": "Style",
+          "type": "select",
+          "default": "solid",
+          "options": [
+            {
+              "label": "Solid",
+              "value": "solid"
+            },
+            {
+              "label": "Dashed",
+              "value": "dashed"
+            },
+            {
+              "label": "Dotted",
+              "value": "dotted"
+            }
+          ]
+        },
+        {
+          "id": "thickness",
+          "label": "Thickness",
+          "type": "range",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "id": "width",
+          "label": "Width",
+          "type": "range",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "id": "color",
+          "label": "Color",
+          "type": "color",
+          "default": "scheme.border"
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 8
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "files",
+      "name": "File list",
+      "limit": 1,
+      "fields": [
+        {
+          "id": "heading",
+          "label": "Heading",
+          "type": "text",
+          "default": "You will get"
+        },
+        {
+          "id": "show",
+          "label": "Files before Show all",
+          "type": "range",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "unit": "",
+          "default": 4
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "custom_code",
+      "name": "Custom code",
+      "fields": [
+        {
+          "id": "html_content",
+          "label": "Code",
+          "type": "html",
+          "default": "",
+          "info": "HTML and CSS. Scripts are removed."
+        },
+        {
+          "id": "margin_top",
+          "label": "Space above",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "id": "margin_bottom",
+          "label": "Space below",
+          "type": "range",
+          "min": 0,
+          "max": 64,
+          "step": 2,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Default product",
+      "settings": {
+        "multiple_images_layout": "stacked",
+        "image_width": "55%",
+        "media_ratio": "natural",
+        "mobile_media": "slider",
+        "image_click_action": "lightbox",
+        "image_hover_action": "none",
+        "variant_image": true,
+        "product_layout": "two_column",
+        "sticky_info": true,
+        "format": "standard",
+        "column_gap": 48,
+        "color_scheme": "white",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": [
+        {
+          "id": "pb-breadcrumbs",
+          "type": "breadcrumbs",
+          "settings": {
+            "shop_label": "Shop",
+            "separator": "slash",
+            "size": 13,
+            "color": "scheme.text_muted",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        {
+          "id": "pb-badges",
+          "type": "badges",
+          "settings": {
+            "show_sale": true,
+            "sale_label": "Sale",
+            "sale_percent": false,
+            "show_new": false,
+            "new_label": "New",
+            "new_days": 30,
+            "show_sold_out": true,
+            "sold_out_label": "Sold out",
+            "shape": "pill",
+            "background": "scheme.heading",
+            "text_color": "scheme.background",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        {
+          "id": "pb-title",
+          "type": "title",
+          "settings": {
+            "tag": "h1",
+            "size": 32,
+            "weight": "700",
+            "color": "scheme.heading",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        {
+          "id": "pb-price",
+          "type": "price",
+          "settings": {
+            "size": 24,
+            "color": "scheme.heading",
+            "show_compare": true,
+            "show_saving": true,
+            "sale_color": "scheme.accent",
+            "free_label": "Free",
+            "pwyw_prefix": "From",
+            "align": "left",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-variant_picker",
+          "type": "variant_picker",
+          "settings": {
+            "style": "pills",
+            "swatches": true,
+            "swatch_shape": "circle",
+            "show_value": true,
+            "size": "medium",
+            "selected_bg": "scheme.heading",
+            "selected_text": "scheme.background",
+            "border": "scheme.border",
+            "fallback_name": "Option",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-pay_what_you_want",
+          "type": "pay_what_you_want",
+          "settings": {
+            "label": "Name your price",
+            "amounts": "",
+            "show_minimum": true,
+            "accent": "scheme.heading",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-quantity",
+          "type": "quantity",
+          "settings": {
+            "label": "Quantity",
+            "size": "medium",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        {
+          "id": "pb-buy_buttons",
+          "type": "buy_buttons",
+          "settings": {
+            "show_add": true,
+            "add_label": "Add to cart",
+            "show_buy": true,
+            "buy_label": "Buy now",
+            "free_label": "Get it free",
+            "layout": "stacked",
+            "height": 52,
+            "fill": "scheme.primary_button_background",
+            "text_color": "scheme.primary_button_text",
+            "outline": "scheme.heading",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-low_stock",
+          "type": "low_stock",
+          "settings": {
+            "threshold": 0,
+            "text": "Only {count} left",
+            "in_stock_text": "",
+            "show_dot": true,
+            "color": "#b45309",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        {
+          "id": "pb-delivery",
+          "type": "delivery",
+          "settings": {
+            "show_delivery": true,
+            "show_pickup": true,
+            "color": "scheme.text",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-description",
+          "type": "description",
+          "settings": {
+            "size": 15,
+            "color": "scheme.text",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-product_details",
+          "type": "product_details",
+          "settings": {
+            "heading": "Details",
+            "border": "scheme.border",
+            "margin_top": 8,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-product_faq",
+          "type": "product_faq",
+          "settings": {
+            "heading": "Questions",
+            "open_first": false,
+            "border": "scheme.border",
+            "margin_top": 8,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-files",
+          "type": "files",
+          "settings": {
+            "heading": "You will get",
+            "show": 4,
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        {
+          "id": "pb-share",
+          "type": "share",
+          "settings": {
+            "label": "Share",
+            "copy": true,
+            "x": true,
+            "facebook": true,
+            "pinterest": false,
+            "email": false,
+            "color": "scheme.text",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        {
+          "id": "pb-wishlist",
+          "type": "wishlist",
+          "settings": {
+            "label": "Add to wishlist",
+            "saved_label": "Saved to wishlist",
+            "style": "link",
+            "color": "scheme.text",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        }
+      ]
+    }
+  ]
+}
