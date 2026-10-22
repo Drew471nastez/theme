@@ -23,6 +23,7 @@
         "image_width": "55%",
         "padding_top": 32,
         "color_scheme": "white",
+        "reviews_added": true,
         "show_wishlist": true,
         "padding_bottom": 55,
         "product_layout": "two_column",
@@ -30,9 +31,245 @@
         "show_social_icons": false,
         "image_click_action": "none",
         "image_hover_action": "none",
+        "offers_block_added": true,
         "show_whats_included": true,
+        "delivery_block_added": true,
         "show_reviews_summary": false,
         "multiple_images_layout": "stacked"
+      },
+      "blocks": {
+        "legacy-badges": {
+          "type": "badges",
+          "settings": {
+            "align": "left",
+            "shape": "pill",
+            "new_days": 30,
+            "show_new": false,
+            "new_label": "New",
+            "show_sale": true,
+            "background": "scheme.heading",
+            "margin_top": 0,
+            "sale_label": "Sale",
+            "text_color": "scheme.background",
+            "sale_percent": false,
+            "margin_bottom": 12,
+            "show_sold_out": true,
+            "sold_out_label": "Sold out"
+          }
+        },
+        "legacy-title": {
+          "type": "title",
+          "settings": {
+            "tag": "h1",
+            "size": 32,
+            "align": "left",
+            "color": "scheme.heading",
+            "weight": "700",
+            "margin_top": 0,
+            "margin_bottom": 12
+          }
+        },
+        "auto-rating": {
+          "type": "rating",
+          "settings": {
+            "size": 16,
+            "align": "left",
+            "margin_top": 0,
+            "show_count": true,
+            "star_color": "",
+            "show_average": true,
+            "margin_bottom": 14
+          }
+        },
+        "legacy-price": {
+          "type": "price",
+          "settings": {
+            "size": 24,
+            "align": "left",
+            "color": "scheme.heading",
+            "free_label": "Free",
+            "margin_top": 0,
+            "sale_color": "scheme.accent",
+            "pwyw_prefix": "From",
+            "show_saving": true,
+            "show_compare": true,
+            "margin_bottom": 20
+          }
+        },
+        "legacy-variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size": "medium",
+            "style": "pills",
+            "border": "scheme.border",
+            "swatches": true,
+            "margin_top": 0,
+            "show_value": true,
+            "selected_bg": "scheme.heading",
+            "swatch_shape": "circle",
+            "fallback_name": "Option",
+            "margin_bottom": 20,
+            "selected_text": "scheme.background"
+          }
+        },
+        "legacy-pay_what_you_want": {
+          "type": "pay_what_you_want",
+          "settings": {
+            "label": "Name your price",
+            "accent": "scheme.heading",
+            "amounts": "",
+            "margin_top": 0,
+            "show_minimum": true,
+            "margin_bottom": 20
+          }
+        },
+        "legacy-quantity": {
+          "type": "quantity",
+          "settings": {
+            "size": "medium",
+            "label": "Quantity",
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        "legacy-buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "fill": "scheme.primary_button_background",
+            "height": 52,
+            "layout": "stacked",
+            "outline": "scheme.heading",
+            "show_add": true,
+            "show_buy": true,
+            "add_label": "Add to cart",
+            "buy_label": "Buy now",
+            "free_label": "Get it free",
+            "margin_top": 0,
+            "text_color": "scheme.primary_button_text",
+            "margin_bottom": 20
+          }
+        },
+        "legacy-low_stock": {
+          "type": "low_stock",
+          "settings": {
+            "text": "Only {count} left",
+            "color": "#b45309",
+            "show_dot": true,
+            "threshold": 0,
+            "margin_top": 0,
+            "in_stock_text": "",
+            "margin_bottom": 16
+          }
+        },
+        "auto-delivery": {
+          "type": "delivery",
+          "settings": {
+            "color": "scheme.text",
+            "margin_top": 0,
+            "show_pickup": true,
+            "margin_bottom": 20,
+            "show_delivery": true
+          }
+        },
+        "auto-offers": {
+          "type": "offers",
+          "settings": {
+            "add_label": "Add",
+            "badge_text": "#166534",
+            "margin_top": 0,
+            "text_color": "scheme.text",
+            "button_text": "scheme.primary_button_text",
+            "price_color": "scheme.heading",
+            "border_color": "scheme.border",
+            "button_style": "outline",
+            "show_bundles": true,
+            "show_upsells": true,
+            "add_all_label": "Add all to cart",
+            "heading_color": "scheme.heading",
+            "margin_bottom": 20,
+            "badge_background": "#dcfce7",
+            "button_background": "scheme.primary_button_background"
+          }
+        },
+        "legacy-wishlist": {
+          "type": "wishlist",
+          "settings": {
+            "color": "scheme.text",
+            "label": "Add to wishlist",
+            "style": "link",
+            "margin_top": 0,
+            "saved_label": "Saved to wishlist",
+            "margin_bottom": 16
+          }
+        },
+        "legacy-share": {
+          "type": "share",
+          "settings": {
+            "x": true,
+            "copy": true,
+            "color": "scheme.text",
+            "email": false,
+            "label": "Share",
+            "facebook": true,
+            "pinterest": false,
+            "margin_top": 0,
+            "margin_bottom": 16
+          }
+        },
+        "legacy-description": {
+          "type": "description",
+          "settings": {
+            "size": 15,
+            "color": "scheme.text",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        },
+        "legacy-product_faq": {
+          "type": "product_faq",
+          "settings": {
+            "border": "scheme.border",
+            "heading": "Questions",
+            "margin_top": 8,
+            "open_first": false,
+            "margin_bottom": 20
+          }
+        },
+        "legacy-files": {
+          "type": "files",
+          "settings": {
+            "show": 4,
+            "heading": "You will get",
+            "margin_top": 0,
+            "margin_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "legacy-badges",
+        "legacy-title",
+        "auto-rating",
+        "legacy-price",
+        "legacy-variant_picker",
+        "legacy-pay_what_you_want",
+        "legacy-quantity",
+        "legacy-buy_buttons",
+        "legacy-low_stock",
+        "auto-delivery",
+        "auto-offers",
+        "legacy-wishlist",
+        "legacy-share",
+        "legacy-description",
+        "legacy-product_faq",
+        "legacy-files"
+      ]
+    },
+    "auto-reviews": {
+      "name": "Product reviews",
+      "type": "reviews_product",
+      "hidden": false,
+      "settings": {
+        "color_scheme": "white"
       },
       "blocks": {},
       "block_order": []
@@ -96,6 +333,7 @@
   "order": [
     "breadcrumb",
     "product-main",
+    "auto-reviews",
     "product-tabs",
     "related"
   ]
