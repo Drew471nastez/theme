@@ -290,17 +290,17 @@
       "heading": "#1d2922",
       "input_border": "#e2e8e0",
       "input_background": "#fcfcfa",
+      "primary_btn_text": "#ffffff",
+      "primary_button_text": "#ffffff",
       "primary_button_border": "#263d31",
       "secondary_button_text": "#263d31",
+      "primary_btn_hover_text": "#ffffff",
       "secondary_button_border": "#e2e8e0",
+      "primary_button_background": "#0d0d0d",
+      "primary_button_hover_text": "#ffffff",
       "secondary_button_hover_text": "#ffffff",
       "primary_button_hover_background": "#516e5b",
-      "secondary_button_hover_background": "#263d31",
-      "primary_button_background": "#0d0d0d",
-      "primary_button_text": "#ffffff",
-      "primary_button_hover_text": "#ffffff",
-      "primary_btn_text": "#ffffff",
-      "primary_btn_hover_text": "#ffffff"
+      "secondary_button_hover_background": "#263d31"
     },
     "highlight": {
       "bg": "#EBE7DB",
