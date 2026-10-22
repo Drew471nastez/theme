@@ -4,19 +4,19 @@
       "links": [
         {
           "url": "/",
-          "title": "New link"
+          "title": "Home"
         },
         {
-          "url": "/",
-          "title": "New link"
+          "url": "/collections/best-sellters",
+          "title": "Shop"
         },
         {
-          "url": "/",
-          "title": "New link"
+          "url": "/contact",
+          "title": "Contact"
         },
         {
-          "url": "/",
-          "title": "New link"
+          "url": "/faq",
+          "title": "About Us"
         }
       ],
       "title": "Main menu"

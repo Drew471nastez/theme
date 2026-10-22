@@ -17,6 +17,7 @@
       "type": "header",
       "hidden": false,
       "settings": {
+        "menu": "main-menu",
         "sticky": true,
         "cta_url": "",
         "bg_color": "#FCFCFA",
