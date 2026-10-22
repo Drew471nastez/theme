@@ -1,6 +1,6 @@
 # Foundation
 
-This repository is a Storelib website. Storelib writes the whole theme here, and a push to `main` comes back into the site as a draft within seconds. Nothing is live until the creator presses Publish.
+This repository is a Storelib website. Storelib writes the whole theme here, and a push to `cursor/theme-settings-motion-1b53` comes back into the site as a draft within seconds. Nothing is live until the creator presses Publish.
 
 Start with AGENTS.md if you are an AI agent (Claude Code and Codex read it on their own).
 
