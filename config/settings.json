@@ -383,7 +383,7 @@
   "spacing_scale": 1,
   "surface_color": "#F5F6F3",
   "font_size_base": 16,
-  "animation_style": "rise",
+  "animation_style": "blur-in",
   "page_transition": "none",
   "secondary_color": "#B8CDBD",
   "use_mobile_logo": false,
