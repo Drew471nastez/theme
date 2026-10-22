@@ -2,12 +2,13 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "promo_announcement-1792616626080": {
+    "promo_announcement-1792660310883": {
       "name": "Announcement / Promo",
       "type": "promo_announcement",
       "hidden": false,
       "settings": {
-        "color_scheme": "dark"
+        "label": "New",
+        "color_scheme": "highlight"
       },
       "blocks": {},
       "block_order": []
@@ -114,7 +115,7 @@
     }
   },
   "order": [
-    "promo_announcement-1792616626080",
+    "promo_announcement-1792660310883",
     "header"
   ]
 }
